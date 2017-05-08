@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler/>
+	
+	<mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
+	<mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
+	<mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
+	<mvc:resources location="/WEB-INF/views/include/" mapping="/include/**" />
+	
+	<mvc:view-resolvers>
+		<mvc:jsp prefix="/WEB-INF/views/" />
+	</mvc:view-resolvers>
+	
+	<!-- 화면 보여주기 시작 -->
+	<!-- index화면 -->
+	<mvc:view-controller path="/" view-name="index"/>
+	<mvc:view-controller path="home" view-name="index"/>
+	
+	<!-- 로그인 화면 -->
+	<mvc:view-controller path="login" view-name="member/login/loginUI"/>
+	
+	<!-- 회원가입 화면 -->
+	<mvc:view-controller path="join" view-name="member/join/joinUI"/>
+	
+	<!-- 찾기 화면 -->
+	<mvc:view-controller path="findId" view-name="member/find/findIdUI"/>
+	<mvc:view-controller path="findPwdForEmailUI" view-name="member/find/findPwdForEmailUI"/>
+	<mvc:view-controller path="findPwdForTelUI" view-name="member/find/findPwdForTelUI"/>
+	
+	<!-- 삽니다  화면 -->
+	<mvc:view-controller path="buyList" view-name="buy/buyList"/>
+	<mvc:view-controller path="buyWrite" view-name="buy/buyWrite"/>
+	
+	<!-- 팝니다  화면 -->
+	<mvc:view-controller path="sellList" view-name="sell/sellList"/>
+	<mvc:view-controller path="sellWrite" view-name="sell/sellWrite"/>
+	<!-- 화면 보여주기 끝 -->
+	
+	<!-- package 등록 시작 -->
+	<context:component-scan base-package="com.controller.*" />
+	<!-- package 등록 끝 -->
+	
+	<!-- 유효성 검사 등록 시작 -->
+	<mvc:annotation-driven validator="validator" />
+	<bean id="validator" class="com.controller.validator.GlobalValidator" />
+	<!-- 유효성 검사 등록 끝 -->
+		
+</beans>
