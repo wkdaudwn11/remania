@@ -1,6 +1,6 @@
 --회원 테이블
 create table member(
-	memnum    number(5)		  constraint	member_mnum_pk	primary key,	--회원번호
+	membernum    number(5)		  constraint	member_mnum_pk	primary key,--회원번호
 	email     varchar2(50)	constraint	member_email_uk	unique	not null,	--아이디
 	name      varchar2(10)	not null,         	--회원이름
 	pwd       varchar2(16)	not null,         	--비밀번호
@@ -13,16 +13,28 @@ create table member(
 	logindate date          default sysdate,	--로그인 날짜
     buyCount  number(5)     default 0,      	--구매횟수
     sellCount number(5)     default 0,        	--판매횟수
-	sns       varchar2(10)	default 'remania' 	--sns로그인 (null이면 momo유저)
+	sns       varchar2(10)	default 'remania' 	--sns로그인 (remania면 일반회원)
 );
-
-drop table member;
 
 create sequence member_seq minvalue 0;
 
-insert into member(memnum, email, name, pwd, tel, post1, post2, addr1, addr2, joindate, logindate,
+insert into member(membernum, email, name, pwd, tel, post1, post2, addr1, addr2, joindate, logindate,
                     buyCount, sellCount, sns)
 values(member_seq.nextval, 'admin', '관리자', '123', '010', '123', '456', '주소1', '주소2',
         sysdate, sysdate, 0, 0, 'remania');
+        
+--자유게시판 테이블
+create table freeBoard(
+	freeboardnum	number(4)		constraint freeBoard_freeBoard_pk primary key,--게시판번호
+	email       	varchar2(16)	not null,		--작성자의 이메일
+	author			varchar2(16)	not null,		--작성자 이름
+	title	  		varchar2(50)	not null,		--제목
+	content			varchar2(4000)	not null,		--내용
+	writeday		date		    default sysdate,--작성일
+	readcnt			number(4)		default 0,		--조회
+	replecnt 		number(4)       default 0,      --댓글수
+	constraint freeboard_email_fk foreign key(email) references member(email) on delete cascade
+);
+create sequence freeBoard_seq minvalue 1;
         
 commit;

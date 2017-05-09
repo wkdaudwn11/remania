@@ -35,13 +35,21 @@
 	<mvc:view-controller path="findPwdForEmailUI" view-name="member/find/findPwdForEmailUI"/>
 	<mvc:view-controller path="findPwdForTelUI" view-name="member/find/findPwdForTelUI"/>
 	
+	<!-- 자유 게시판 -->
+	<mvc:view-controller path="freeBoardList" view-name="board/free/freeBoardList"/>
+	<mvc:view-controller path="freeBoardWrite" view-name="board/free/freeBoardWrite"/>
+	<mvc:view-controller path="freeBoardDetail" view-name="board/free/freeBoardDetail"/>
+	
+	<!-- 질문과답변 게시판 -->
+	<mvc:view-controller path="questionList" view-name="board/question/questionList"/>
+	
 	<!-- 삽니다  화면 -->
-	<mvc:view-controller path="buyList" view-name="buy/buyList"/>
-	<mvc:view-controller path="buyWrite" view-name="buy/buyWrite"/>
+	<mvc:view-controller path="buyList" view-name="trade/buy/buyList"/>
+	<mvc:view-controller path="buyWrite" view-name="trade/buy/buyWrite"/>
 	
 	<!-- 팝니다  화면 -->
-	<mvc:view-controller path="sellList" view-name="sell/sellList"/>
-	<mvc:view-controller path="sellWrite" view-name="sell/sellWrite"/>
+	<mvc:view-controller path="sellList" view-name="trade/sell/sellList"/>
+	<mvc:view-controller path="sellWrite" view-name="trade/sell/sellWrite"/>
 	<!-- 화면 보여주기 끝 -->
 	
 	<!-- package 등록 시작 -->
