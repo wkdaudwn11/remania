@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.entity.member.MemberDTO;
-import com.service.MemberService;
+import com.service.member.LoginService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
-	private MemberService service;
+	private LoginService service;
 	
-	/*@RequestMapping(value="login", method=RequestMethod.GET)
+	@RequestMapping(value="login", method=RequestMethod.GET)
 	public String login(@ModelAttribute("login") MemberDTO dto){
 		return "member/login/loginUI";
 	}
-	
+	/*
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(@Valid @ModelAttribute("login") MemberDTO dto, BindingResult error){
 		
@@ -53,14 +53,13 @@ public class LoginController {
 		}
 		
 		return target;
-	}//loginCheck()
+	}//loginCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
 	
+	/** 로그아웃 메소드 */
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public String login(HttpSession session){
-		
 		session.invalidate();
-		
 		return "index";
-	}
+	}//login(HttpSession session)
 	
 }

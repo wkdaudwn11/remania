@@ -1,10 +1,10 @@
-package com.dao;
+package com.dao.member;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.entity.member.MemberDTO;
 
-public class MemberDAO {
+public class LoginDAO {
 
 	private String namespace = "com.remania.MemberMapper.";
 	private SqlSessionTemplate template;

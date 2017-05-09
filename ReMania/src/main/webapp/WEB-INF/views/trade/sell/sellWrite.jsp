@@ -22,14 +22,15 @@
 
 </head>
 <body>
-	<jsp:include page="../include/nav.jsp" flush="true" />
+	<jsp:include page="../../include/nav.jsp" flush="true" />
 
 	<br /><br /><br /><br /><br /><br />
-	<center><font size="100"><b>삽니다 등록</b></font></center>
+	<center><font size="100"><b>팝니다 등록</b></font></center>
 
 	<div class="container">
-		<div class="alert alert-danger">
-			<strong>구&nbsp;&nbsp;매&nbsp;&nbsp;자</strong>&nbsp;&nbsp;
+		<div class="alert alert-info">
+			<div class="sibal">
+			<strong>판&nbsp;&nbsp;매&nbsp;&nbsp;자</strong>&nbsp;&nbsp;
 			<font color="black">장명주</font><br /><br />
 			
 			<strong>상　　품</strong>&nbsp;&nbsp;
@@ -64,29 +65,28 @@
 			
 			<strong>가　　격</strong>&nbsp;&nbsp;
 			<font color="black">
-				<select style="width: 10em; height: 1.5em;">
-					<option selected="selected">합의 후 결정</option>
-					<option>범위 설정</option>
-				</select>
+				<input type="text" style="width: 10em;">
 			</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			
 			<!-- 위의 가격에서 '범위 설정'을 선택하면 나타나야함. -->
 			<small>
-				<strong>범　　위</strong>&nbsp;&nbsp;&nbsp;
+				<strong>흥　　정</strong>&nbsp;&nbsp;&nbsp;
 				<font color="black">
-					<input type="text" name="title" style="width: 6em;"> ~ 
-					<input type="text" name="title" style="width: 6em;">원
+					<select style="width: 10em; height: 1.5em;">
+						<option selected="selected">불가능</option>
+						<option>가능</option>
+					</select>
 				</font>
 			</small>
 			<br /><br />
 			
 			<strong>제　　목</strong>&nbsp;&nbsp;
 			<font color="black">
-				<input type="text" name="title" style="width: 37.5em;">
+				<input type="text" style="width: 37.5em;">
 			</font>
 			<br /><br />
 			
-			<button type="button" class="btn btn-danger">사　　진</button>&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn btn-primary">사　　진</button>&nbsp;&nbsp;&nbsp;
 			<br />
 			<small><font color="black">* 첫번 째 사진을 대표사진으로 합니다.</font></small>
 			<br /><br />
@@ -95,25 +95,25 @@
 			<font color="black">
 				<textarea rows="20" cols="84"></textarea>
 			<font color="black">
-			
+			</div>
 		</div>
 		
 		<p style="text-align: left; float: left;">
-			<button type="button" class="btn btn-danger" id="writeBtn">
+			<button type="button" class="btn btn-primary" id="writeBtn">
 				수정하기
 			</button>
-			<button type="button" class="btn btn-danger" id="writeBtn">
+			<button type="button" class="btn btn-primary" id="writeBtn">
 				삭제하기
 			</button>
 		</p>
 		
 		<p style="text-align: right;">
-			<button type="button" class="btn btn-danger" id="writeBtn">
+			<button type="button" class="btn btn-primary" id="writeBtn">
 				등록하기
 			</button>
 		</p>
 	</div>
 
-	<jsp:include page="../include/footer.jsp" flush="true" />
+	<jsp:include page="../../include/footer.jsp" flush="true" />
 </body>
 </html>

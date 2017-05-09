@@ -35,12 +35,12 @@
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 	
-	<bean id="dao" class="com.dao.MemberDAO">
+	<bean id="loginDao" class="com.dao.member.LoginDAO">
 		<property name="template" ref="sqlSession" />
 	</bean>
 
-	<bean id="memberService" class="com.service.MemberService">
-		<property name="dao" ref="dao" />
+	<bean id="loginService" class="com.service.member.LoginService">
+		<property name="dao" ref="loginDao" />
 	</bean>
 	<!-- Mybatis 연동 끝 -->
 	

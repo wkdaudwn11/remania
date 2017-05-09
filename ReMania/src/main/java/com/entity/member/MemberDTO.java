@@ -5,7 +5,7 @@ import org.apache.ibatis.type.Alias;
 @Alias("MemberDTO")
 public class MemberDTO {
 
-	private int memnum;			//회원번호
+	private int membernum;		//회원번호
 	private String email;		//이메일
 	private String name;		//회원이름
 	private String pwd;			//비밀번호
@@ -24,10 +24,10 @@ public class MemberDTO {
 		super();
 	}
 
-	public MemberDTO(int memnum, String email, String name, String pwd, String tel, String post1, String post2,
+	public MemberDTO(int membernum, String email, String name, String pwd, String tel, String post1, String post2,
 			String addr1, String addr2, String joindate, String logindate, int buyCount, int sellCount, String sns) {
 		super();
-		this.memnum = memnum;
+		this.membernum = membernum;
 		this.email = email;
 		this.name = name;
 		this.pwd = pwd;
@@ -45,18 +45,18 @@ public class MemberDTO {
 
 	@Override
 	public String toString() {
-		return "MemberDTO [memnum=" + memnum + ", email=" + email + ", name=" + name + ", pwd=" + pwd + ", tel=" + tel
+		return "MemberDTO [memnum=" + membernum + ", email=" + email + ", name=" + name + ", pwd=" + pwd + ", tel=" + tel
 				+ ", post1=" + post1 + ", post2=" + post2 + ", addr1=" + addr1 + ", addr2=" + addr2 + ", joindate="
 				+ joindate + ", logindate=" + logindate + ", buyCount=" + buyCount + ", sellCount=" + sellCount
 				+ ", sns=" + sns + "]";
 	}
 
-	public int getMemnum() {
-		return memnum;
+	public int getMembernum() {
+		return membernum;
 	}
 
-	public void setMemnum(int memnum) {
-		this.memnum = memnum;
+	public void setMembernum(int membernum) {
+		this.membernum = membernum;
 	}
 
 	public String getEmail() {

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Remania Buy</title>
+<title>Remania Sell</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -11,7 +11,7 @@
 	$(document).ready(function(){
 		
 		$("#writeBtn").on("click", function(){
-			location.replace('buyWrite');
+			location.replace('sellWrite');
 		})
 		
 	});
@@ -19,11 +19,11 @@
 
 </head>
 <body>
-	<jsp:include page="../include/nav.jsp" flush="true" />
+	<jsp:include page="../../include/nav.jsp" flush="true" />
 	
 	<br /><br /><br /><br /><br /><br />
 	<center>
-		<font size="100"><b>삽니다</b></font><br /><br />
+		<font size="100"><b>팝니다</b></font><br /><br />
 		<form class="form-inline">
 			<div class="form-group">
 				<select class="form-control">
@@ -33,7 +33,7 @@
 			</div>
 			<input type="text" class="form-control" size="50"
 				placeholder="검색어를 입력하세요.">
-			<button type="button" class="btn btn-danger">Search</button>
+			<button type="button" class="btn btn-primary">Search</button>
 		</form>
 	</center>
 
@@ -59,7 +59,7 @@
 		
 		<div class="row">
 			<div class="col-sm-4">
-				<div class="panel panel-danger">
+				<div class="panel panel-primary">
 					<div class="panel-heading">품목</div>
 					<div class="panel-body">
 						<img src="images/test/sample1.jpg" class="img-responsive"
@@ -69,7 +69,7 @@
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="panel panel-danger">
+				<div class="panel panel-primary">
 					<div class="panel-heading">품목</div>
 					<div class="panel-body">
 						<img src="images/test/sample1.jpg" class="img-responsive"
@@ -79,7 +79,7 @@
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="panel panel-danger">
+				<div class="panel panel-primary">
 					<div class="panel-heading">품목</div>
 					<div class="panel-body">
 						<img src="images/test/sample1.jpg" class="img-responsive"
@@ -91,7 +91,17 @@
 		</div> <!-- row -->
 		<div class="row">
 			<div class="col-sm-4">
-				<div class="panel panel-danger">
+				<div class="panel panel-primary">
+					<div class="panel-heading">품목</div>
+					<div class="panel-body">
+						<img src="images/test/sample1.jpg" class="img-responsive"
+							style="width: 100%; height: 15em;" alt="Image">
+					</div>
+					<div class="panel-primary">제목</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="panel panel-primary">
 					<div class="panel-heading">품목</div>
 					<div class="panel-body">
 						<img src="images/test/sample1.jpg" class="img-responsive"
@@ -101,17 +111,7 @@
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="panel panel-danger">
-					<div class="panel-heading">품목</div>
-					<div class="panel-body">
-						<img src="images/test/sample1.jpg" class="img-responsive"
-							style="width: 100%; height: 15em;" alt="Image">
-					</div>
-					<div class="panel-footer">제목</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="panel panel-danger">
+				<div class="panel panel-primary">
 					<div class="panel-heading">품목</div>
 					<div class="panel-body">
 						<img src="images/test/sample1.jpg" class="img-responsive"
@@ -123,7 +123,7 @@
 		</div><!-- row -->
 		<div class="row">
 			<div class="col-sm-4">
-				<div class="panel panel-danger">
+				<div class="panel panel-primary">
 					<div class="panel-heading">품목</div>
 					<div class="panel-body">
 						<img src="images/test/sample1.jpg" class="img-responsive"
@@ -133,7 +133,7 @@
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="panel panel-danger">
+				<div class="panel panel-primary">
 					<div class="panel-heading">품목</div>
 					<div class="panel-body">
 						<img src="images/test/sample1.jpg" class="img-responsive"
@@ -143,7 +143,7 @@
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="panel panel-danger">
+				<div class="panel panel-primary">
 					<div class="panel-heading">품목</div>
 					<div class="panel-body">
 						<img src="images/test/sample1.jpg" class="img-responsive"
@@ -182,13 +182,13 @@
 			<br />
 		</div>
 		<p style="text-align: right;">
-			<button type="button" class="btn btn-danger" id="writeBtn">
-				삽니다 등록
+			<button type="button" class="btn btn-primary" id="writeBtn">
+				팝니다 등록
 			</button>
 		</p>
 		
 	</div>
 	
-	<jsp:include page="../include/footer.jsp" flush="true" />
+	<jsp:include page="../../include/footer.jsp" flush="true" />
 </body>
 </html>

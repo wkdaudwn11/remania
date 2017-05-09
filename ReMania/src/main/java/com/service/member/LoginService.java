@@ -1,18 +1,18 @@
-package com.service;
+package com.service.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dao.MemberDAO;
+import com.dao.member.LoginDAO;
 import com.entity.member.MemberDTO;
 
-public class MemberService {
+public class LoginService {
 
 	@Autowired
-	private MemberDAO dao;
+	private LoginDAO loginDao;
 
-	public void setDao(MemberDAO dao) {
-		this.dao = dao;
+	public void setDao(LoginDAO loginDao) {
+		this.loginDao = loginDao;
 	}
 
 	/** 존재하지 않는 이메일이면 -1을 리턴하고
@@ -21,12 +21,12 @@ public class MemberService {
 	 *  비밀번호가 틀리면 null이 들어가있다. */
 	public MemberDTO loginCheck(MemberDTO dto) {
 		
-		MemberDTO dto2 = dao.loginCheck1(dto);
+		MemberDTO dto2 = loginDao.loginCheck1(dto);
 		
 		if(dto2.getEmail().equals("-1")){
 			return dto2;
 		}else{
-			return dao.loginCheck2(dto);
+			return loginDao.loginCheck2(dto);
 		}
 		
 		
