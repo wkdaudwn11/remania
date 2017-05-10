@@ -18,11 +18,12 @@ public class LoginController {
 	@Autowired
 	private LoginService service;
 	
+	/*
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public String login(@ModelAttribute("login") MemberDTO dto){
 		return "member/login/loginUI";
 	}
-	/*
+	
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(@Valid @ModelAttribute("login") MemberDTO dto, BindingResult error){
 		
