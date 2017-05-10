@@ -61,7 +61,9 @@
 			</tr>
 			<tr height="30">
 				<td  width="50" align="center" >10</td>
-			    <td  width="250" align="center">제목</td>
+			    <td  width="250" align="center">
+			    	<a href="freeBoardDetail">제목</a>
+			    </td>
 				<td width="100" align="center">작성자</td>			    
 			    <td width="150" align="center">2017-05-09</td>
 			    <td width="50" align="center">10</td>
