@@ -46,10 +46,13 @@
 	<!-- 삽니다  화면 -->
 	<mvc:view-controller path="buyList" view-name="trade/buy/buyList"/>
 	<mvc:view-controller path="buyWrite" view-name="trade/buy/buyWrite"/>
+	<mvc:view-controller path="buyDetail" view-name="trade/buy/buyDetail"/>
 	
 	<!-- 팝니다  화면 -->
 	<mvc:view-controller path="sellList" view-name="trade/sell/sellList"/>
 	<mvc:view-controller path="sellWrite" view-name="trade/sell/sellWrite"/>
+	<mvc:view-controller path="sellDetail" view-name="trade/sell/sellDetail"/>
+	
 	<!-- 화면 보여주기 끝 -->
 	
 	<!-- package 등록 시작 -->

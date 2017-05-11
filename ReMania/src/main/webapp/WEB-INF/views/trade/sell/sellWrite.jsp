@@ -88,7 +88,10 @@
 			
 			<button type="button" class="btn btn-primary">사　　진</button>&nbsp;&nbsp;&nbsp;
 			<br />
-			<small><font color="black">* 첫번 째 사진을 대표사진으로 합니다.</font></small>
+			<small><font color="black">
+				* 첫번 째 사진을 대표사진으로 합니다. <br />
+				* 사진은 올리셔도 되고, 안올리셔도 됩니다.
+			</font></small>
 			<br /><br />
 			
 			<strong>내　　용</strong><br />
