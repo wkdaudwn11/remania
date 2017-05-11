@@ -58,105 +58,8 @@
 			<strong>내　　용</strong><br />
 			<pre style="width: 100%; height: 40em; background-color: white; color: black;"></pre>
 			<br /><br />
-			
-			<!-- 댓글 입력 폼 -->
-			<strong>댓글</strong><br />
-			<form>
-				<font color="black">
-					<textarea rows="3" cols="87%">여러분들의 소중한 의견을 작성해주세요.</textarea>
-				</font>
-			</form>
-			<p style="text-align: right;">
-				<button type="button" class="btn btn-success" id="writeBtn">
-					댓글작성
-				</button>
-			</p>
-			
-			<hr />
-			
-			<!-- 댓글 리스트 -->
-			<small>장명주　(2017-05-10 15:40)</small><br />
-			<pre style="width: 68.7em; height: 5em; background-color: white; color: black;">댓글1</pre>
-			<span style="text-align: left; float: left;">
-				<button type="button" class="btn btn-success">
-					수정하기
-				</button>
-				<button type="button" class="btn btn-success">
-					삭제하기
-				</button>
-			</span>
-			<br /><br /><hr />
-			
-			<small>장명주　(2017-05-10 15:40)</small><br />
-			<pre style="width: 68.7em; height: 5em; background-color: white; color: black;">댓글2</pre>
-			<span style="text-align: left; float: left;">
-				<button type="button" class="btn btn-success">
-					답변하기
-				</button>
-			</span>
-			<br /><br />
-			
-			<!-- 답변 리스트 (답변이라면 이놈으로 시작해야함)-->
-			<div>
-				<!-- 반복문시작 -->
-				<div style="float: left; width: 7.5%;">
-						<br />
-					　<img src="images/answerArrow.png" width="25"/>
-				</div>
-				
-				<!-- 작성자와 로그인 아이디가 같으면 시작 (if문) -->
-				<div style="width: 100%;">
-					<small>장명주　(2017-05-10 17:10)</small><br />
-					<pre style="width: 63.5em; height: 5em; background-color: white; color: black;">답변</pre>
-					
-					<!-- 버튼 옆에 공백 건들지말것 -->
-					　　　&nbsp;<button type="button" class="btn btn-success">
-						삭제하기
-					</button>
-				</div>
-				<br />
-				<!-- 작성자와 로그인 아이디가 같으면 끝 -->
-				
-				<!-- 이건 위에 겹치는 div. 걍 지우셈 시작-->
-				<div style="float: left; width: 7.5%;">
-						<br />
-					　<img src="images/answerArrow.png" width="25"/>
-				</div>
-				<!-- 지우셈 끝 -->
-				
-				<!-- 작성자와 로그인 아이디가 같지 않으면 시작 -->
-				<div style="width: 100%;">
-					<small>장명주　(2017-05-10 17:10)</small><br />
-					<pre style="width: 63.5em; height: 5em; background-color: white; color: black;">답변</pre>
-				</div>
-				<!-- 작성자와 로그인 아이디가 같지 않으면 끝 -->
-				<!-- 반복문 끝 -->
-				
-				<!-- 지우셈 시작-->
-				<div style="float: left; width: 7.5%;">
-						<br />
-					　<img src="images/answerArrow.png" width="25"/>
-				</div>
-				<div style="width: 100%;">
-					<small>장명주　(2017-05-10 17:10)</small><br />
-					<pre style="width: 63.5em; height: 5em; background-color: white; color: black;">답변</pre>
-				</div>
-				<!-- 지우셈 끝-->
-				
-			</div>
-			
-			<hr />
-			
-			<small>장명주　(2017-05-10 15:40)</small><br />
-			<pre style="width: 68.7em; height: 5em; background-color: white; color: black;">댓글3</pre>
-			<span style="text-align: left; float: left;">
-				<button type="button" class="btn btn-success">
-					답변하기
-				</button>
-			</span>
-			<br /><br /><hr />
 		</div>
-		
+				
 		<p style="text-align: left; float: left;">
 			<button type="button" class="btn btn-success">
 				수정하기
@@ -165,6 +68,114 @@
 				삭제하기
 			</button>
 		</p>
+		
+		<br /><br /><hr /><br />
+		
+		<div class="panel-group">
+			<!-- 댓글 입력 폼 -->
+			<div class="panel panel-success">
+				<div class="panel-heading"><strong>댓글</strong></div>
+				<div class="panel-body">
+					<form>
+						<font color="black">
+							<textarea rows="5" cols="130%" style="border: 0px solid white;">여러분들의 소중한 의견을 작성해주세요.</textarea>
+						</font>
+					</form>
+				</div>
+			</div>
+			<p style="text-align: right;">
+				<button type="button" class="btn btn-success" id="writeBtn">
+					댓글작성
+				</button>
+			</p>
+				
+			<br />
+				
+			<!-- 댓글 리스트 -->
+			<div class="panel panel-default">
+				<div class="panel-heading"><small>장명주　(2017-05-10 15:40)</small></div>
+				<div class="panel-body">
+					<pre style="width: 100%; height: 5em; background-color: white; color: black;
+						border: 0px solid white;">댓글1</pre>
+				</div>
+			</div>
+			<span style="text-align: left; float: left;">
+				<button type="button" class="btn btn-success">
+					수정하기
+				</button>
+				<button type="button" class="btn btn-success">
+					삭제하기
+				</button>
+			</span>
+			<br /><br /><br />
+				
+			<div class="panel panel-default">
+				<div class="panel-heading"><small>장명주　(2017-05-10 15:40)</small></div>
+				<div class="panel-body">
+					<pre style="width: 100%; height: 5em; background-color: white; color: black;
+						border: 0px solid white;">댓글2</pre>
+				</div>
+			</div>
+			<span style="text-align: left; float: left;">
+				<button type="button" class="btn btn-success">
+					답변하기
+				</button>
+			</span>
+			<br /><br /><br />
+			
+			<!-- 답변 리스트 (답변이라면 이놈으로 시작해야함)-->
+			<div style="float: left; width: 7.5%;">
+				<br /><br /><br /><br />
+				　<img src="images/answerArrow.png" width="25"/>
+			</div>
+			<div class="panel panel-default" style="width: 92.5%; margin-left: 7.5%;">
+				<div class="panel-heading"><small>장명주　(2017-05-10 15:40)</small></div>
+				<div class="panel-body">
+					<pre style="width: 100%; height: 5em; background-color: white; color: black;
+						border: 0px solid white;">댓글2</pre>
+				</div>
+			</div>
+			<span style="text-align: left; margin-left: 7.5%;">
+				<button type="button" class="btn btn-success">
+					답변하기
+				</button>
+			</span>
+			<br /><br /><br />
+			
+			<div style="float: left; width: 7.5%;">
+				<br /><br /><br /><br />
+				　<img src="images/answerArrow.png" width="25"/>
+			</div>
+			<div class="panel panel-default" style="width: 92.5%; margin-left: 7.5%;">
+				<div class="panel-heading"><small>장명주　(2017-05-10 15:40)</small></div>
+				<div class="panel-body">
+					<pre style="width: 100%; height: 5em; background-color: white; color: black;
+						border: 0px solid white;">댓글2</pre>
+				</div>
+			</div>
+			<span style="text-align: left; margin-left: 7.5%;">
+				<button type="button" class="btn btn-success">
+					수정하기
+				</button>
+				<button type="button" class="btn btn-success">
+					삭제하기
+				</button>
+			</span>
+			<br /><br /><br />
+			
+			<div class="panel panel-default">
+				<div class="panel-heading"><small>장명주　(2017-05-10 15:40)</small></div>
+				<div class="panel-body">
+					<pre style="width: 100%; height: 5em; background-color: white; color: black;
+						border: 0px solid white;">댓글2</pre>
+				</div>
+			</div>
+			<span style="text-align: left; float: left;">
+				<button type="button" class="btn btn-success">
+					답변하기
+				</button>
+			</span>
+		</div>
 		
 		<br /><br /><br /><br /><hr /><br /><br />
 		
