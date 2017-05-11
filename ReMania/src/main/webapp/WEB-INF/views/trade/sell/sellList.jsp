@@ -58,16 +58,18 @@
 		<br />
 		
 		<div class="row">
-			<div class="col-sm-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading">품목</div>
-					<div class="panel-body">
-						<img src="images/test/sample1.jpg" class="img-responsive"
-							style="width: 100%; height: 15em;" alt="Image">
+			<a href="sellDetail">
+				<div class="col-sm-4">
+					<div class="panel panel-primary">
+						<div class="panel-heading">품목</div>
+						<div class="panel-body">
+							<img src="images/test/sample1.jpg" class="img-responsive"
+								style="width: 100%; height: 15em;" alt="Image">
+						</div>
+						<div class="panel-footer">제목</div>
 					</div>
-					<div class="panel-footer">제목</div>
 				</div>
-			</div>
+			</a>
 			<div class="col-sm-4">
 				<div class="panel panel-primary">
 					<div class="panel-heading">품목</div>

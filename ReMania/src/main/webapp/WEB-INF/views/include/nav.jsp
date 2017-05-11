@@ -43,9 +43,8 @@
 						</li>
 					</c:when>
 					<c:when test="${!empty login}">
-						<li><a href="#">Mypage</a></li>
-						<li><a href="#">Trade</a></li>
 						<li><a href="logout">Logout</a></li>
+						<li><a href="#">Mypage</a></li>
 					</c:when>
 				</c:choose>
 				
