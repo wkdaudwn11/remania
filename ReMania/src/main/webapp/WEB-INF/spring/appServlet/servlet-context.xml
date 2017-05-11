@@ -43,6 +43,9 @@
 	<mvc:view-controller path="findPwdForEmailUI" view-name="member/find/findPwdForEmailUI"/>
 	<mvc:view-controller path="findPwdForTelUI" view-name="member/find/findPwdForTelUI"/>
 	
+	<!-- MyPage 화면 -->
+	<mvc:view-controller path="myPageIndex" view-name="member/myPage/myPageIndex"/>
+	
 	<!-- 자유 게시판 -->
 	<mvc:view-controller path="freeBoardList" view-name="board/free/freeBoardList"/>
 	<mvc:view-controller path="freeWrite" view-name="board/free/freeBoardWrite"/>
