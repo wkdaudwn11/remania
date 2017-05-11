@@ -19,6 +19,14 @@
 		<mvc:jsp prefix="/WEB-INF/views/" />
 	</mvc:view-resolvers>
 	
+	<!-- Interceptor -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/freeWrite"/>
+			<bean class="com.interceptor.RemaniaInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<!-- 화면 보여주기 시작 -->
 	<!-- index화면 -->
 	<mvc:view-controller path="/" view-name="index"/>
@@ -37,7 +45,7 @@
 	
 	<!-- 자유 게시판 -->
 	<mvc:view-controller path="freeBoardList" view-name="board/free/freeBoardList"/>
-	<mvc:view-controller path="freeBoardWrite" view-name="board/free/freeBoardWrite"/>
+	<mvc:view-controller path="freeWrite" view-name="board/free/freeBoardWrite"/>
 	<mvc:view-controller path="freeBoardDetail" view-name="board/free/freeBoardDetail"/>
 	
 	<!-- 질문과답변 게시판 -->

@@ -35,10 +35,16 @@
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 	
+	<!-- dao -->
+	<bean id="boardDao" class="com.dao.board.BoardDAO"/>
+	
 	<bean id="loginDao" class="com.dao.member.LoginDAO">
 		<property name="template" ref="sqlSession" />
 	</bean>
 
+	<!-- Service -->
+	<bean id="boardService" class="com.service.board.FreeBoardService"/>
+	
 	<bean id="loginService" class="com.service.member.LoginService">
 		<property name="dao" ref="loginDao" />
 	</bean>
