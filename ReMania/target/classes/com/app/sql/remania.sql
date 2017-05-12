@@ -37,4 +37,5 @@ create table freeBoard(
 );
 create sequence freeBoard_seq minvalue 1;
         
+
 commit;
