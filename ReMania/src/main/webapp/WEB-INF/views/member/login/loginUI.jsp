@@ -14,34 +14,23 @@
 
 	$(document).ready(function(){
 		
-		if(${loginFail != null}){ 
-			alert('${loginFail}');
+		console.log(${prevPage});
+	
+		/* 로그인 체크 함수 */
+		function login(form){
 			
-			if(${email != null}){ 
-				document.getElementById('email').value = '${email}';
-				document.getElementById('pwd').focus();
+			var email = form.email.value;
+			var pwd = form.pwd.value;
+			
+			if(email == null || email.trim() == ""){
+				alert("이메일을 입력해주세요.");
+			}else if(pwd == null || pwd.trim() == ""){
+				alert("비밀번호를 입력해주세요.");
 			}else{
-				document.getElementById('email').focus();
+				form.submit();
 			}
 		}
-		
-	});
-	
-	/* 로그인 체크 함수 */
-	function login(form){
-		
-		var email = form.email.value;
-		var pwd = form.pwd.value;
-		
-		if(email == null || email.trim() == ""){
-			alert("이메일을 입력해주세요.");
-		}else if(pwd == null || pwd.trim() == ""){
-			alert("비밀번호를 입력해주세요.");
-		}else{
-			form.submit();
-		}
-		
-	}
+	});// end $(document).ready(function()
 			
 </script>
 

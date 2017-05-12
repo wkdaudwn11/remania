@@ -10,6 +10,7 @@
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
 	
+	<mvc:resources location="/WEB-INF/views/" mapping="/views/**"/>
 	<mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
 	<mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
 	<mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
@@ -23,7 +24,15 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/freeWrite"/>
-			<bean class="com.interceptor.RemaniaInterceptor"/>
+			<bean class="com.interceptor.LoginValidInterceptor"/> <!-- session 에 로그인 체크 interceptor -->
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/login"/>
+			<bean class="com.interceptor.PrevPageSupportInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/loginCheck"/>
+			<bean class="com.interceptor.PrevPageInterceptor" /> <!-- 로그인후 이전페이지로 보내주는 interceptor -->
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
@@ -33,7 +42,7 @@
 	<mvc:view-controller path="home" view-name="index"/>
 	
 	<!-- 로그인 화면 -->
-	<mvc:view-controller path="login" view-name="member/login/loginUI"/>
+	<mvc:view-controller path="login" view-name="member/login/loginUI" />
 	
 	<!-- 회원가입 화면 -->
 	<mvc:view-controller path="join" view-name="member/join/joinUI"/>
@@ -67,8 +76,9 @@
 	<context:component-scan base-package="com.controller.*" />
 	<!-- package 등록 끝 -->
 	
+	<bean id="redirectAttributes" class="org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap" />	
+	
 	<!-- 유효성 검사 등록 시작 -->
-	<mvc:annotation-driven validator="validator" />
 	<bean id="validator" class="com.controller.validator.GlobalValidator" />
 	<!-- 유효성 검사 등록 끝 -->
 		
