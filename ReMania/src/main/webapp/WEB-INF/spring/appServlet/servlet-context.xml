@@ -44,7 +44,16 @@
 	<mvc:view-controller path="findPwdForTelUI" view-name="member/find/findPwdForTelUI"/>
 	
 	<!-- MyPage 화면 -->
+	<mvc:view-controller path="buyEndHistory" view-name="member/myPage/buyEndHistory"/>
+	<mvc:view-controller path="buyTrading" view-name="member/myPage/buyTrading"/>
+	<mvc:view-controller path="buyWriteHistory" view-name="member/myPage/buyWriteHistory"/>
+	
 	<mvc:view-controller path="myPageIndex" view-name="member/myPage/myPageIndex"/>
+	<mvc:view-controller path="pwdCheck" view-name="member/myPage/pwdCheck"/>
+	
+	<mvc:view-controller path="sellEndHistory" view-name="member/myPage/sellEndHistory"/>
+	<mvc:view-controller path="sellTrading" view-name="member/myPage/sellTrading"/>
+	<mvc:view-controller path="sellWriteHistory" view-name="member/myPage/sellWriteHistory"/>
 	
 	<!-- 자유 게시판 -->
 	<mvc:view-controller path="freeBoardList" view-name="board/free/freeBoardList"/>

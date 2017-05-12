@@ -42,7 +42,7 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
-
+	
 	<jsp:include page="include/footer.jsp" flush="true" />
 
 </body>

@@ -45,11 +45,11 @@
 		<!-- 게시판 리스트 -->
 		<table width="100%" cellpadding="0" cellspacing="0" border="0" class="boardList">
 			<tr height="30"> 
-				<th width="50">번 호</td> 
-				<th width="250">제   목</td> 
-			    <th width="100">작성자</td>
-			    <th width="150">작성일</td> 
-			    <th width="50">조 회</td>
+				<th width="50">번 호</th> 
+				<th width="250">제   목</th> 
+			    <th width="100">작성자</th>
+			    <th width="150">작성일</th> 
+			    <th width="50">조 회</th>
 			</tr>
 			<tr height="30">
 				<td  width="50" align="center" >10</td>
