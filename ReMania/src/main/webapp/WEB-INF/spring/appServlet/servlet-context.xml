@@ -36,9 +36,7 @@
 	<mvc:view-controller path="findPwdForTelUI" view-name="member/find/findPwdForTelUI"/>
 	
 	<!-- 자유 게시판 -->
-	<mvc:view-controller path="freeBoardList" view-name="board/free/freeBoardList"/>
 	<mvc:view-controller path="freeBoardWrite" view-name="board/free/freeBoardWrite"/>
-	<mvc:view-controller path="freeBoardDetail" view-name="board/free/freeBoardDetail"/>
 	
 	<!-- 질문과답변 게시판 -->
 	<mvc:view-controller path="questionList" view-name="board/question/questionList"/>

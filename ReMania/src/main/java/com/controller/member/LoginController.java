@@ -18,11 +18,12 @@ public class LoginController {
 	@Autowired
 	private LoginService service;
 	
+	/*
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public String login(@ModelAttribute("login") MemberDTO dto){
 		return "member/login/loginUI";
 	}
-	/*
+	
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(@Valid @ModelAttribute("login") MemberDTO dto, BindingResult error){
 		
@@ -33,7 +34,7 @@ public class LoginController {
 		return "index";
 	}*/
 	
-	/** 로그인 폼에서 로그인을 하면 이 메소드로 온다. */
+	/** 로그인 폼에서 로그인을 하면 이 메소드로 온다.*/
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
 		

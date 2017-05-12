@@ -11,7 +11,7 @@ public class LoginService {
 	@Autowired
 	private LoginDAO loginDao;
 
-	public void setDao(LoginDAO loginDao) {
+	public void setLoginDao(LoginDAO loginDao) {
 		this.loginDao = loginDao;
 	}
 

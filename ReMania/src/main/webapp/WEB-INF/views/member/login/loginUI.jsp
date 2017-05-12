@@ -12,20 +12,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-	$(document).ready(function(){
+$(document).ready(function(){
+	
+	if(${loginFail != null}){ 
+		alert('${loginFail}');
 		
-		if(${loginFail != null}){ 
-			alert('${loginFail}');
-			
-			if(${email != null}){ 
-				document.getElementById('email').value = '${email}';
-				document.getElementById('pwd').focus();
-			}else{
-				document.getElementById('email').focus();
-			}
+		if(${email != null}){ 
+			document.getElementById('email').value = '${email}';
+			document.getElementById('pwd').focus();
+		}else{
+			document.getElementById('email').focus();
 		}
-		
-	});
+	}
+	
+});
 	
 	/* 로그인 체크 함수 */
 	function login(form){
@@ -62,7 +62,7 @@
 				</p>
 				<br /><br />
 				
-				<form id="loginForm" method="post" action="loginCheck" modelAttribute="login">
+				<form id="loginForm" method="post" action="loginCheck">
 				
 					<div style="background-color:#478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
 						<span style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;" >Email</span>

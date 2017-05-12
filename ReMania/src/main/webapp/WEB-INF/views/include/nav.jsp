@@ -54,7 +54,7 @@
 						Board<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="freeBoardList">Free</a></li>
+						<li><a href="freeBoardList">FreeBoard</a></li>
 						<li><a href="questionList">Question</a></li>
 					</ul>
 				</li>

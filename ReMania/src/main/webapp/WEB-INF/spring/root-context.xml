@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
@@ -35,21 +35,36 @@
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 	
+	<bean id="joinDao" class="com.dao.member.JoinDAO">
+		<property name="template" ref="sqlSession" />
+	</bean>
+	
+	<bean id="joinService" class="com.service.member.JoinService">
+		<property name="joinDao" ref="joinDao" />
+	</bean>
+	
 	<bean id="loginDao" class="com.dao.member.LoginDAO">
 		<property name="template" ref="sqlSession" />
 	</bean>
-
 	<bean id="loginService" class="com.service.member.LoginService">
-		<property name="dao" ref="loginDao" />
+		<property name="loginDao" ref="loginDao" />
+	</bean>
+	
+	<bean id="freeBoardDao" class="com.dao.board.FreeBoardDAO">
+		<property name="template" ref="sqlSession" />
+	</bean>
+	
+	<bean id="freeBoardService" class="com.service.board.FreeBoardService">
+		<property name="freeBoardDao" ref="freeBoardDao" />
 	</bean>
 	<!-- Mybatis 연동 끝 -->
 	
 	<!-- transaction 설정 시작-->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<tx:annotation-driven />
+	<tx:annotation-driven /> -->
 	<!-- transaction 설정 끝-->
 	
 </beans>
