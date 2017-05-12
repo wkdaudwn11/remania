@@ -10,7 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public class PrevPageSupportInterceptor extends HandlerInterceptorAdapter {
 
-	/*@Autowired
+	@Autowired
 	private RedirectAttributes redirectAttributes;
 	
 	private String prevPage;
@@ -18,9 +18,10 @@ public class PrevPageSupportInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		prevPage = (String)redirectAttributes.getFlashAttributes().get("prevPage");
+		prevPage = (String)(redirectAttributes.getFlashAttributes().get("prevPage"));
+		System.out.println(prevPage);
 		System.out.println(handler+ "  preSupInter"); ///////////////////////////////
-		redirectAttributes.addFlashAttribute("prevPage",prevPage);
+		//redirectAttributes.addFlashAttribute("prevPage",prevPage);
 	}// end postHandle
-*/	
+	
 }// end Class

@@ -164,7 +164,18 @@
 			<version>5.4.1.Final</version>
 		</dependency>
 		<!-- validator 관련 디펜던시 등록 끝 -->
-
+		
+		<!-- Spring Security -->
+	    <!-- <dependency>
+	        <groupId>org.springframework.security</groupId>
+	        <artifactId>spring-security-web</artifactId>
+	        <version>4.2.2.RELEASE</version>
+	    </dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>4.2.2.RELEASE</version>
+		</dependency> -->
 	</dependencies>
 	<build>
 		<plugins>

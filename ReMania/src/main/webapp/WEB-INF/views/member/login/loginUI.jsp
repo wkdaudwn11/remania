@@ -15,7 +15,9 @@
 	$(document).ready(function(){
 		
 		console.log(${prevPage});
-	
+		if(${!empty prevPage}){
+			
+		}
 		/* 로그인 체크 함수 */
 		function login(form){
 			

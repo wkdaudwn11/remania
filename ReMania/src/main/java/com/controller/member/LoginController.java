@@ -1,5 +1,9 @@
 package com.controller.member;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.entity.member.MemberDTO;
 import com.service.member.LoginService;
@@ -33,6 +38,15 @@ public class LoginController {
 		
 		return "index";
 	}*/
+	/***/
+	@RequestMapping("/loginAuthentication")
+	public String loginAuthentication(HttpServletRequest request,HttpServletResponse response,RedirectAttributes redirectAttributes){
+		Map<String,?> map = redirectAttributes.getFlashAttributes();
+		redirectAttributes.addFlashAttribute("prevPage",request.getHeader("Referer"));
+		System.out.println(map.get("prevPage") + " ////////////////////");
+		System.out.println(request.getAttribute("prevPage")+"         Controller");
+		return "redirect:/login";
+	}
 	
 	/** 로그인 폼에서 로그인을 하면 이 메소드로 온다. */
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
