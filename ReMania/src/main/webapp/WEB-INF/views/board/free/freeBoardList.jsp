@@ -16,14 +16,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-	$(document).ready(function(){
-		
-		$("#writeBtn").on("click", function(){
-			location.replace('freeBoardWrite');
-		})
-		
-	});
-
 </script>
 
 </head>
@@ -167,7 +159,7 @@
 			<br />
 		</div>
 		<p style="text-align: right;">
-			<button type="button" class="btn btn-success" id="writeBtn">
+			<button type="button" class="btn btn-success" onclick="location.href='freeWrite'">
 				글작성
 			</button>
 		</p>
