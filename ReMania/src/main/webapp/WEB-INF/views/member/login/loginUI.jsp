@@ -15,11 +15,8 @@
 	$(document).ready(function(){
 		
 		console.log(${prevPage});
-		if(${!empty prevPage}){
-			
-		}
 		/* 로그인 체크 함수 */
-		function login(form){
+	/* 	function login(form){
 			
 			var email = form.email.value;
 			var pwd = form.pwd.value;
@@ -31,8 +28,16 @@
 			}else{
 				form.submit();
 			}
-		}
+		} */
+		
 	});// end $(document).ready(function()
+			
+	/** Sign in 누르면 호출되는 함수
+		입력값체크 또는  Validator 로 유효성체크*/
+	function aaa(myform){
+		console.log("ffffffffff"); ///////////////////////
+		myform.submit();
+	};
 			
 </script>
 
@@ -53,7 +58,7 @@
 				</p>
 				<br /><br />
 				
-				<form id="loginForm" method="post" action="loginCheck" modelAttribute="login">
+				<form id="loginForm" method="post" action="signIn" > <!-- action = loginCheck -->
 				
 					<div style="background-color:#478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
 						<span style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;" >Email</span>
@@ -73,8 +78,8 @@
 					
 				</form>
 				
-				<button type="button" class="btn btn-default" onclick="login(loginForm)"
-					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.7;">
+				<button type="button" class="btn btn-default" onclick="aaa(loginForm)"
+					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.7;"> <!-- "login(loginForm)"  -->
 					Sign in
 				</button>
 				

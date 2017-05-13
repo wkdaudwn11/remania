@@ -41,11 +41,19 @@ public class LoginController {
 	/***/
 	@RequestMapping("/loginAuthentication")
 	public String loginAuthentication(HttpServletRequest request,HttpServletResponse response,RedirectAttributes redirectAttributes){
-		Map<String,?> map = redirectAttributes.getFlashAttributes();
 		redirectAttributes.addFlashAttribute("prevPage",request.getHeader("Referer"));
-		System.out.println(map.get("prevPage") + " ////////////////////");
-		System.out.println(request.getAttribute("prevPage")+"         Controller");
-		return "redirect:/login";
+		System.out.println(redirectAttributes.getFlashAttributes().get("prevPage")); /////////////////// 
+		System.out.println("22222222222222222"); ///////////////////////////////
+		return "redirect:/login";  //"redirect:/login"
+	}
+	
+	/** 로그인 버튼 눌렀을때 요청되는 메서드
+	 *  DB 에서 비밀번호 와 입력값이 일치하나 확인 등 작업.*/
+	@RequestMapping("/signIn")
+	public String signIn(HttpServletRequest request,HttpServletResponse response,RedirectAttributes redirectAttributes){
+		System.out.println(redirectAttributes.getFlashAttributes()); ///////////////////////// 
+		System.out.println("33333333333333333333"); //////////////////////////
+		return "index";
 	}
 	
 	/** 로그인 폼에서 로그인을 하면 이 메소드로 온다. */
@@ -67,7 +75,7 @@ public class LoginController {
 			model.addAttribute("loginFail", "비밀번호가 틀립니다.");
 		}
 		
-		return target;
+		return target; 
 	}//loginCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
 	
 	/** 로그아웃 메소드 */

@@ -24,48 +24,21 @@ import com.entity.member.MemberDTO;
 
 public class LoginValidInterceptor extends HandlerInterceptorAdapter {
 
-	@Autowired
-	private RedirectAttributes redirectAttributes;
-	@Autowired
-	private ViewResolverComposite viewResolver;
-	private final String LOGINVIEW = "member/login/loginUI";
-	
-	boolean result = true;
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
 		MemberDTO login = (MemberDTO)session.getAttribute("login");
 
-		
+		boolean result = true;
 		if(login == null){ 
 			result = false;
-			redirectAttributes.addFlashAttribute("prevPage", request.getHeader("Referer"));
-			System.out.println(handler + "  LoVaInter"); //////////////////////////////
-			
-			/*ParameterizableViewController viewController = (ParameterizableViewController)handler;
-			ModelAndView mav = viewController.handleRequest(request, response);
-			System.out.println(mav);*/
-			//viewController.setViewName("/member/login/loginUI");
+			System.out.println("111111111111111111"); ///////////////////////////////
 			RequestDispatcher dis = request.getRequestDispatcher("/loginAuthentication");
 			dis.forward(request, response);
 		}
 		return result;
 	}// end preHandle
 
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		if(!result){
-			System.out.println(modelAndView); ////////////////////////////////
-			System.out.println(handler);////////////////////////////
-
-			ParameterizableViewController viewController = (ParameterizableViewController)handler;
-			//viewController.setViewName(LOGINVIEW);
-			//modelAndView.setViewName(LOGINVIEW);
-			System.out.println(viewController.getViewName());
-			//modelAndView.setViewName("redirect:/"+LOGINVIEW);
-		}
-	}
 	
 }// end RemaniaInterceptor
