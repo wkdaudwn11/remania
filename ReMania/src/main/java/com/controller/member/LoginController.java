@@ -38,8 +38,9 @@ public class LoginController {
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
 		
-		MemberDTO login = service.loginCheck(dto);
 		String target = "member/login/loginUI";
+		
+		MemberDTO login = service.loginCheck(dto);
 		
 		if(login != null){
 			if(login.getEmail().equals("-1")){
@@ -58,7 +59,7 @@ public class LoginController {
 	
 	/** 로그아웃 메소드 */
 	@RequestMapping(value="logout", method=RequestMethod.GET)
-	public String login(HttpSession session){
+	public String logout(HttpSession session){
 		session.invalidate();
 		return "index";
 	}//login(HttpSession session)

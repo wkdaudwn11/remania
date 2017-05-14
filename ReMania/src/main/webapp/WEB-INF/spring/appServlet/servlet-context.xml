@@ -14,6 +14,7 @@
 	<mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
 	<mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
 	<mvc:resources location="/WEB-INF/views/include/" mapping="/include/**" />
+	<mvc:resources location="/WEB-INF/views/include/sns/" mapping="/sns/**" />
 	
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/views/" />
@@ -50,6 +51,7 @@
 	
 	<mvc:view-controller path="myPageIndex" view-name="member/myPage/myPageIndex"/>
 	<mvc:view-controller path="pwdCheck" view-name="member/myPage/pwdCheck"/>
+	<mvc:view-controller path="updateMemberUI" view-name="member/myPage/updateMemberUI"/>
 	
 	<mvc:view-controller path="sellEndHistory" view-name="member/myPage/sellEndHistory"/>
 	<mvc:view-controller path="sellTrading" view-name="member/myPage/sellTrading"/>

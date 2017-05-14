@@ -29,5 +29,19 @@ public class LoginDAO {
 	public MemberDTO loginCheck2(MemberDTO dto) {
 		return template.selectOne(namespace+"loginCheck2", dto);
 	}
+
+	/** sns로그인을 하는 메소드 */
+	public void snsLogin(MemberDTO dto) {
+		
+		// sns로 처음 로그인하는 것인지 알기위한 select
+		int n = template.selectOne(namespace+"existSns", dto.getEmail());
+		
+		// 0이라는 것은 처음 로그인하는 경우다. 이럴 경우엔 일단 회원가입을 시켜주자.
+		if(n == 0) {
+			System.out.println("처음 로그인");
+			template.insert(namespace+"snsJoin", dto);
+		}
+		
+	}//snsLogin(MemberDTO dto)
 	
 }
