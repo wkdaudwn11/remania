@@ -34,12 +34,13 @@
 		var pwdCheckForm = document.getElementById('pwdCheckForm');
 		
 		if(value == 'submit'){
-			pwdCheckForm.action="PwdCheckServlet";
-			pwdCheckForm.submit;
+			location.href="updateMemberUI";
+			/* pwdCheckForm.action="updateMemberUI";
+			pwdCheckForm.submit; */
 		}else{
 			var result = confirm('정말로 취소하시겠습니까?');
 			if(result == true){
-				pwdCheckForm.action="MyPageUIServlet";
+				pwdCheckForm.action="myPageIndex";
 				pwdCheckForm.submit;
 			}
 		}	
@@ -56,7 +57,7 @@
 			<br /><br />
 			<center><img src="images/pwdCheck.jpg"></center>
 			
-			<form method="post" name="pwdCheckForm" id="pwdCheckForm">		
+			<form name="pwdCheckForm" id="pwdCheckForm">		
 				<div id="inputPwdTable">
 					<table>
 						<tr>

@@ -51,7 +51,7 @@
 				<br />
 				
 				<button type="button" class="btn btn-default" 
-					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.7;">
+					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.8;">
 					Find Password
 				</button> 
 				

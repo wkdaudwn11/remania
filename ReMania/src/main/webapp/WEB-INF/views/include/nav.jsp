@@ -12,6 +12,22 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <link href="css/style.css" rel="stylesheet" type="text/css" />
+<!-- 페이스북 -->
+<jsp:include page="sns/facebook.jsp" flush="true"></jsp:include>
+
+
+<script>
+	function logout(){
+		var sns = '${sessionScope.login.sns}';
+		if(sns == 'facebook'){
+			logoutFB();
+		}/* else if(sns == 'kakaotalk'){
+			alert('kakaotalk');
+			kakaoLogOut();
+		} */
+		location.replace("logout");
+	}
+</script>
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
@@ -44,7 +60,7 @@
 						</li>
 					</c:when>
 					<c:when test="${!empty login}">
-						<li><a href="logout">Logout</a></li>
+						<li><a href="javascript:logout()">Logout</a></li>
 						<li><a href="myPageIndex">Mypage</a></li>
 					</c:when>
 				</c:choose>

@@ -37,9 +37,9 @@
 					<img src="images/zzz.jpg">
 					<font color="#7777ca" size="5">[장명주]</font>
 					<font size="4">님의 Mypage 간단 정보입니다.</font>　　
-					<button type="button" class="btn btn-default">
-						회원정보수정
-					</button>　　　　　　　　　　　　　　　　　　　　<!-- 공백 건들지 말 것! -->
+					<a href="pwdCheck">
+						<button type="button" class="btn btn-default">회원정보수정</button>
+					</a>　　　　　　　　　　　　　　　　　　　　<!-- 공백 건들지 말 것! -->
 					<button type="button" class="btn btn-danger">
 						회원탈퇴
 					</button>
@@ -111,7 +111,7 @@
 								<img src="images/yyy.jpg">&nbsp;삽니다에 등록한 게시글
 							</td>
 							<td>
-								<a href="buyHistory">0건</a>
+								<a href="buyEndHistory">0건</a>
 							</td>
 						</tr>
 						<tr>

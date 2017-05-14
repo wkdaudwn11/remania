@@ -64,12 +64,16 @@
 				
 				<form id="loginForm" method="post" action="loginCheck" modelAttribute="login">
 				
+					<!-- name과 sns는 facebook으로 로그인 했을 때만 값이 존재한다. -->
+					<input type="hidden" name="name">
+					<input type="hidden" name="sns">
+				
 					<div style="background-color:#478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
-						<span style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;" >Email</span>
+						<span style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;">Email</span>
 						<input type="text" name="email" id="email"
 							style="width: 70%; height: 3em; color: black;
 								border-bottom-right-radius: 3em; border-top-right-radius: 3em;" />
-					</div>
+					</div>	
 					<br />
 					
 					<div style="background-color:#db6450; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
@@ -83,10 +87,21 @@
 				</form>
 				
 				<button type="button" class="btn btn-default" onclick="login(loginForm)"
-					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.7;">
+					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.8;">
 					Sign in
-				</button>
+				</button><br /><br />
 				
+				<div style="margin: 0 auto; width: 35em;">
+					<div style="float: left;">
+						<a id="kakao-login-btn"></a>
+						<jsp:include page="../../include/sns/kakaotalk.jsp" flush="true"></jsp:include>
+					</div>
+					<div>
+						<a href="javascript:loginFB()">
+							<img src="images/facebookLoginBtn.jpg" style="width: 16em; height: 3.7em; border-radius: 1em;">
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
