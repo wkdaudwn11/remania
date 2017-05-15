@@ -1,5 +1,8 @@
 package com.entity.board;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("FreeBoardDTO")
 public class FreeBoardDTO {
 	
 	private int freeboardnum;	//게시판번호

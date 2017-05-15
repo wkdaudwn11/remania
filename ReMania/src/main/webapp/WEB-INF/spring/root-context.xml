@@ -26,6 +26,7 @@
 		<property name="typeAliases">
 			<list>
 				<value>com.entity.member.MemberDTO</value>
+				<value>com.entity.board.FreeBoardDTO</value>
 			</list>
 		</property>
 	</bean>
@@ -36,7 +37,6 @@
 	</bean>
 	
 	<!-- dao 시작-->
-	<bean id="boardDao" class="com.dao.board.BoardDAO" />
 	
 	<bean id="loginDao" class="com.dao.member.LoginDAO">
 		<property name="template" ref="sqlSession" />
@@ -45,7 +45,7 @@
 	<bean id="joinDao" class="com.dao.member.JoinDAO">
 		<property name="template" ref="sqlSession" />
 	</bean>
-	<!-- dao 끝-->
+	<!-- dao 끝 -->
 
 	<!-- Service 시작 -->
 	<bean id="boardService" class="com.service.board.FreeBoardService"/>
