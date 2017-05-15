@@ -11,10 +11,16 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-
+<%
+	String prev = (String)request.getAttribute("prevPage");
+	String a = request.getParameter("prevPage");
+	
+	System.out.println(prev + " ////////////");
+	System.out.println(a + " ////////////");
+%>
 	$(document).ready(function(){
 		
-		console.log(${prevPage});
+		//console.log(${prevPage});
 		/* 로그인 체크 함수 */
 	/* 	function login(form){
 			
@@ -78,8 +84,9 @@
 					
 				</form>
 				
+				<!-- "login(loginForm)"  -->
 				<button type="button" class="btn btn-default" onclick="aaa(loginForm)"
-					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.7;"> <!-- "login(loginForm)"  -->
+					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.7;"> 
 					Sign in
 				</button>
 				
