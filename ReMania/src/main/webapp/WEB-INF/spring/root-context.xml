@@ -22,7 +22,12 @@
 	<!-- Mybatis의 SqlSessionFactory 역할의 빈 등록 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:mapper/MemberMapper.xml" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:mapper/MemberMapper.xml</value>
+				<value>classpath:mapper/BuyMapper.xml</value>
+			</list>
+		</property>
 		<property name="typeAliases">
 			<list>
 				<value>com.entity.member.MemberDTO</value>

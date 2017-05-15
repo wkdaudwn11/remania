@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.remania.BuyMapper">
+
+	<!-- 일단 테스트용 buyList -->
+	<!-- 상품별로 상품을 가져오는 쿼리 (최신순)-->
+	<select id="buyList" resultType="BuyDTO" parameterType="hashmap">
+   		select *
+   		  from buy
+   		<if test="category != null">
+   		 where category=#{category}
+		</if>
+   		 order by buynum desc
+	</select>
+	
+	<!-- 전체 상품 갯수를 반환해주는 쿼리-->
+	<select id="totalRecordAll" resultType="int">
+		select count(*) from buy
+	</select>
+	
+</mapper>

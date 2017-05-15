@@ -12,7 +12,7 @@ public class LoginService {
 
 	@Autowired
 	private LoginDAO loginDao;
-
+	
 	public void setDao(LoginDAO loginDao) {
 		this.loginDao = loginDao;
 	}

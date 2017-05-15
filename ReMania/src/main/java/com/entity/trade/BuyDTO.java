@@ -6,6 +6,7 @@ import org.apache.ibatis.type.Alias;
 public class BuyDTO {
 
 	private int buynum;			//삽니다번호
+	private String category;	//분류
 	private String email; 		//작성자의 이메일
 	private String author;		//작성자 이름
 	private String title;		//제목
@@ -19,10 +20,11 @@ public class BuyDTO {
 		super();
 	}
 
-	public BuyDTO(int buynum, String email, String author, String title, String content, String writeday, int readcnt,
-			int replecnt, String images) {
+	public BuyDTO(int buynum, String category, String email, String author, String title, String content,
+			String writeday, int readcnt, int replecnt, String images) {
 		super();
 		this.buynum = buynum;
+		this.category = category;
 		this.email = email;
 		this.author = author;
 		this.title = title;
@@ -35,9 +37,9 @@ public class BuyDTO {
 
 	@Override
 	public String toString() {
-		return "BuyDTO [buynum=" + buynum + ", email=" + email + ", author=" + author + ", title=" + title
-				+ ", content=" + content + ", writeday=" + writeday + ", readcnt=" + readcnt + ", replecnt=" + replecnt
-				+ ", images=" + images + "]";
+		return "BuyDTO [buynum=" + buynum + ", category=" + category + ", email=" + email + ", author=" + author
+				+ ", title=" + title + ", content=" + content + ", writeday=" + writeday + ", readcnt=" + readcnt
+				+ ", replecnt=" + replecnt + ", images=" + images + "]";
 	}
 
 	public int getBuynum() {
@@ -46,6 +48,14 @@ public class BuyDTO {
 
 	public void setBuynum(int buynum) {
 		this.buynum = buynum;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getEmail() {
@@ -111,5 +121,5 @@ public class BuyDTO {
 	public void setImages(String images) {
 		this.images = images;
 	}
-
+	
 }
