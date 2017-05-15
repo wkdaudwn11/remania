@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BoardDAO {
+public class FreeBoardDAO {
 
 	@Autowired
-	private SqlSessionTemplate temp;
+	private SqlSessionTemplate template;
 	
 	
 }// end Repository
