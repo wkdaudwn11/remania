@@ -64,7 +64,6 @@
 					error:function(error){
 						alert('사용 가능한 이메일');
 					
-					if(true){
 						//휴대폰 인증
 						$.ajax({
 							type:"post",
@@ -74,14 +73,14 @@
 								usertel : tel
 							},
 							success:function(responseData,status,xhr){
-								alert('인증번호 불러오기 성공!11');
+								alert('인증번호를 전송하였습니다.');
 								$("confirm").focus();
 							},//success
 							error:function(error){
-								alert('인증번호 불러오기 실패!11');
+								alert('인증번호 불러오기 실패');
 							}//휴대폰 인증 error
-						});//휴대폰 인증 ajax				
-					}
+						});//휴대폰 인증 ajax
+						
 						$(document).ready(function(){
 							$("#confirm").css("display","");
 							$("#checkNumber").css("display","none");

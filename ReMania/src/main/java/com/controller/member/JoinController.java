@@ -44,11 +44,9 @@ public class JoinController {
 	/** 인증번호를 생성하고, 문자로 발송해주는 메소드. (인증번호는 세션에 저장)*/
 	@RequestMapping(value="randomNumberAjax")
 	public @ResponseBody void randomNumberAjax(String usertel, HttpSession session){
-		
 		randomNumberAjax util = new randomNumberAjax();
 		String confirmNumber = util.getConfirmNum(usertel);
 		session.setAttribute("confirmNumber", confirmNumber);
-		
 	}//randomNumberAjax(String usertel, HttpSession session)
 	
 }

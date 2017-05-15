@@ -27,6 +27,7 @@
 			<list>
 				<value>com.entity.member.MemberDTO</value>
 				<value>com.entity.board.FreeBoardDTO</value>
+				<value>com.entity.trade.BuyDTO</value>
 			</list>
 		</property>
 	</bean>
@@ -45,6 +46,10 @@
 	<bean id="joinDao" class="com.dao.member.JoinDAO">
 		<property name="template" ref="sqlSession" />
 	</bean>
+	
+	<bean id="buyDao" class="com.dao.trade.BuyDAO">
+		<property name="template" ref="sqlSession" />
+	</bean>
 	<!-- dao 끝 -->
 
 	<!-- Service 시작 -->
@@ -56,6 +61,10 @@
 	
 	<bean id="joinService" class="com.service.member.JoinService">
 		<property name="dao" ref="joinDao" />
+	</bean>
+	
+	<bean id="buyService" class="com.service.trade.BuyService">
+		<property name="dao" ref="buyDao" />
 	</bean>
 	<!-- Service 끝 -->
 	<!-- Mybatis 연동 끝 -->

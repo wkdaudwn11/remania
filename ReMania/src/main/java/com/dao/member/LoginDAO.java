@@ -1,9 +1,11 @@
 package com.dao.member;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.entity.member.MemberDTO;
 
+@Repository
 public class LoginDAO {
 
 	private String namespace = "com.remania.MemberMapper.";
