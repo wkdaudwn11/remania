@@ -20,14 +20,6 @@
 		<mvc:jsp prefix="/WEB-INF/views/" />
 	</mvc:view-resolvers>
 	
-	<!-- Interceptor -->
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/freeWrite"/>
-			<bean class="com.interceptor.RemaniaInterceptor"/>
-		</mvc:interceptor>
-	</mvc:interceptors>
-	
 	<!-- 화면 보여주기 시작 -->
 	<!-- index화면 -->
 	<mvc:view-controller path="/" view-name="index"/>
