@@ -2,6 +2,8 @@ package com.entity.trade;
 
 import java.util.List;
 
+import org.apache.ibatis.type.Alias;
+
 public class BuyPageDTO {
 	
 	private List<BuyDTO> buyList;

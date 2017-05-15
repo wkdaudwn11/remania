@@ -58,7 +58,6 @@
 	<mvc:view-controller path="questionList" view-name="board/question/questionList"/>
 	
 	<!-- 삽니다  화면 -->
-	<mvc:view-controller path="buyList" view-name="trade/buy/buyList"/>
 	<mvc:view-controller path="buyWrite" view-name="trade/buy/buyWrite"/>
 	<mvc:view-controller path="buyDetail" view-name="trade/buy/buyDetail"/>
 	
