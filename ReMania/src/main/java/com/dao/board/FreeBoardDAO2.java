@@ -11,15 +11,11 @@ import com.entity.board.FreeBoardDTO;
 import com.entity.board.FreeBoardPage;
 
 @Repository
-public class FreeBoardDAO {
+public class FreeBoardDAO2 {
 
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public void setTemplate(SqlSessionTemplate template) {
-		this.template = template;
-	}
-
 	private final String namespace = "com.remania.BoardMapper.";
 	
 	public void freeBoardWrite(FreeBoardDTO board){
@@ -31,9 +27,10 @@ public class FreeBoardDAO {
 		int skip = (boardPage.getCurPage()-1)*boardPage.getPERPAGE();
 		
 		List<FreeBoardDTO> boardList = template.selectList(namespace+"freeBoardList", null,new RowBounds(skip, boardPage.getPERPAGE()));
-		
 		boardPage.setBoardList(boardList);
 		boardPage.setTotalRecord(totalRecord());
+		
+		System.out.println("FreeBoardDAO.boardPage.getCurPage(): "+boardPage.getCurPage());
 		
 		return boardPage;
 	}// end public void freeBoardList

@@ -46,7 +46,7 @@
 				
 				<strong>내　　용</strong><br />
 				<font color="black">
-					<textarea rows="20" cols="84" style="outline: none; resize: none;"></textarea>
+					<textarea rows="20" cols="84" name="content" style="outline: none; resize: none;"></textarea>
 				<font color="black">
 				
 			</div>
