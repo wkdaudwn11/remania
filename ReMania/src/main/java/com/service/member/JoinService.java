@@ -10,24 +10,15 @@ import com.entity.member.MemberDTO;
 public class JoinService {
 
 	@Autowired
-	private JoinDAO dao;
-
-	public void setDao(JoinDAO dao) {
-		this.dao = dao;
-	}
-
+	private JoinDAO joinDao;
 	
 	public MemberDTO joinCheck(MemberDTO dto) {
-
-		//MemberDTO dto2 = dao.joinCheck(dto);
-		
-		return dao.joinCheck(dto);
-		
+		return joinDao.joinCheck(dto);
 	}//joinCheck(MemberDTO dto)
 
 
 	public MemberDTO emailCheck(String email) {
-		return dao.emailCheck(email);
+		return joinDao.emailCheck(email);
 	}
 	
 }

@@ -19,7 +19,7 @@ import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-public final class randomNumberAjax {
+public final class RandomNumberAjax {
 	
 	public static final String appid = "remania";
 	public static final String apikey = "123"; //8552150a38e711e786d20cc47a1fcfae
@@ -84,6 +84,12 @@ public final class randomNumberAjax {
 	    }
 	    
 	    return confirmNumber;
+	}//getConfirmNum(String usertel)
+	
+	public boolean telConfirmAjax(String usertel){
+		
+	return false;
+	
 	}
 
 }/////////////////////////////////////////////////////////////
