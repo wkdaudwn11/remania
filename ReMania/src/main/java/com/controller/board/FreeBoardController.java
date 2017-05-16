@@ -30,7 +30,7 @@ public class FreeBoardController {
 		if(boardPage.getCurPage() == 0){
 			boardPage.setCurPage(1);
 		}
-		boardPage = service.freeBoardList(boardPage);
+		boardPage = service.freeBoardList(boardPage); 
 		
 		return "board/free/freeBoardList";
 	}// end public String freeBoardList
