@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,6 +24,11 @@
 
 </head>
 <body>
+	<c:set var="totalRecord" value="${FreeBoardPage.totalRecord}" scope="page"/>
+	<c:set var="INDICATEPAGE" value="${FreeBoardPage.INDICATEPAGE}" scope="page"/>
+	<%-- <c:set var="pageBlock" value="${Math.ceil(totalRecord/INDICATEPAGE)}"/> --%>
+	<fmt:formatNumber var="pageBlock" minIntegerDigits="1" value="${Math.ceil(totalRecord/INDICATEPAGE)}"/>
+	${pageBlock}
 	<jsp:include page="../../include/nav.jsp" flush="true" />
 	
 	<br /><br /><br /><br /><br /><br />
@@ -40,7 +49,7 @@
 		
 	<div class="container">
 	
-		<p>글목록(전체 글: 999)</p>
+		<p>글목록(전체 글: ${FreeBoardPage.totalRecord})</p>
 				
 		<!-- 게시판 리스트 -->
 		<table width="100%" cellpadding="0" cellspacing="0" border="0" class="boardList">
@@ -51,103 +60,28 @@
 			    <th width="150">작성일</th> 
 			    <th width="50">조 회</th>
 			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >10</td>
-			    <td  width="250" align="center">
-			    	<a href="freeBoardDetail">제목</a>
-			    </td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >9</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >8</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >7</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >6</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >5</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >4</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >2</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >3</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >2</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >1</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
+			<c:forEach var="board" items="${FreeBoardPage.boardList}" varStatus="status">
+				<tr height="30">
+					<td  width="50" align="center" >????????????</td>
+				    <td  width="250" align="center">
+				    	<a href="freeBoardDetail">${board.title}</a>
+				    </td>
+					<td width="100" align="center">${board.author}</td>			    
+				    <td width="150" align="center">${board.writeday}</td>
+				    <td width="50" align="center">${board.readCnt}</td>
+				</tr>
+			</c:forEach>
 		</table> <!-- boardList -->
 	
 		<div id="paging" style="width: 44em; margin: 0 auto;">
 			<ul class="pager" style="float: left;">
-				<li><a href="#">처음</a></li>
+				<li><a href="/freeBoardList">처음</a></li>
 				<li><a href="#"><</a></li>
 			</ul>
 			<ul class="pagination" style="float: left;">
+			<c:forEach begin="" end="">
 				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">10</a></li>
+			</c:forEach>
 			</ul>
 			<ul class="pager" style="float: left;">
 				<li><a href="#">></a></li>

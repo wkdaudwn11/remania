@@ -22,7 +22,12 @@
 	<!-- Mybatis의 SqlSessionFactory 역할의 빈 등록 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:mapper/MemberMapper.xml" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:mapper/MemberMapper.xml</value>
+				<value>classpath:mapper/BoardMapper.xml</value>
+			</list>
+		</property>
 		<property name="typeAliases">
 			<list>
 				<value>com.entity.member.MemberDTO</value>
@@ -38,8 +43,9 @@
 	</bean>
 	
 	<!-- dao 시작-->
+	<context:component-scan base-package="com.dao.*" />
 	
-	<bean id="loginDao" class="com.dao.member.LoginDAO">
+	<!-- <bean id="loginDao" class="com.dao.member.LoginDAO">
 		<property name="template" ref="sqlSession" />
 	</bean>
 	
@@ -49,23 +55,17 @@
 	
 	<bean id="buyDao" class="com.dao.trade.BuyDAO">
 		<property name="template" ref="sqlSession" />
-	</bean>
+	</bean> -->
 	<!-- dao 끝 -->
 
 	<!-- Service 시작 -->
 	<bean id="boardService" class="com.service.board.FreeBoardService"/>
 	
-	<bean id="loginService" class="com.service.member.LoginService">
-		<property name="dao" ref="loginDao" />
-	</bean>
+	<bean id="loginService" class="com.service.member.LoginService" />
 	
-	<bean id="joinService" class="com.service.member.JoinService">
-		<property name="dao" ref="joinDao" />
-	</bean>
+	<bean id="joinService" class="com.service.member.JoinService" />
 	
-	<bean id="buyService" class="com.service.trade.BuyService">
-		<property name="dao" ref="buyDao" />
-	</bean>
+	<bean id="buyService" class="com.service.trade.BuyService" />
 	<!-- Service 끝 -->
 	<!-- Mybatis 연동 끝 -->
 	

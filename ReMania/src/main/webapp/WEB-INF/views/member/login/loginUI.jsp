@@ -14,6 +14,10 @@
 
 	$(document).ready(function(){
 		
+		if(${prevPage != null}){
+			alert("로그인이 필요한 서비스 입니다.");
+		}
+		
 		if(${loginFail != null}){ 
 			alert('${loginFail}');
 			
@@ -63,7 +67,8 @@
 				<br /><br />
 				
 				<form id="loginForm" method="post" action="loginCheck" modelAttribute="login">
-				
+					<!-- 로그인이 필요한 서비스에서 온 경우 -->
+					<input type="hidden" name="prevPage">
 					<!-- name과 sns는 facebook으로 로그인 했을 때만 값이 존재한다. -->
 					<input type="hidden" name="name">
 					<input type="hidden" name="sns">

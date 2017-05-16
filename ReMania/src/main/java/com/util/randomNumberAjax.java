@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.Credentials;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.AuthCache;
 import org.apache.http.client.CredentialsProvider;
@@ -81,7 +80,7 @@ public final class randomNumberAjax {
 	        System.err.println("Error: "+e.getLocalizedMessage());
 	    } finally {
 	        client.getConnectionManager().shutdown();
-	    }
+	    } 
 	    
 	    return confirmNumber;
 	}

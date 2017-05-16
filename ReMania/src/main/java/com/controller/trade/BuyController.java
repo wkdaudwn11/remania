@@ -10,7 +10,7 @@ public class BuyController {
 	
 	@RequestMapping(value="buyList")
 	public BuyPageDTO buyList(){
-		
+		return null;
 	}
 
 }

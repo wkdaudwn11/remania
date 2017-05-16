@@ -20,6 +20,17 @@
 		<mvc:jsp prefix="/WEB-INF/views/" />
 	</mvc:view-resolvers>
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/freeWrite"/>
+			<bean class="com.util.LoginValidInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/loginCheck"/>
+			<bean class="com.util.PrevPageInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<!-- 화면 보여주기 시작 -->
 	<!-- index화면 -->
 	<mvc:view-controller path="/" view-name="index"/>
@@ -50,7 +61,7 @@
 	<mvc:view-controller path="sellWriteHistory" view-name="member/myPage/sellWriteHistory"/>
 	
 	<!-- 자유 게시판 -->
-	<mvc:view-controller path="freeBoardList" view-name="board/free/freeBoardList"/>
+	<!-- <mvc:view-controller path="freeBoardList" view-name="board/free/freeBoardList" /> -->
 	<mvc:view-controller path="freeWrite" view-name="board/free/freeBoardWrite"/>
 	<mvc:view-controller path="freeBoardDetail" view-name="board/free/freeBoardDetail"/>
 	
