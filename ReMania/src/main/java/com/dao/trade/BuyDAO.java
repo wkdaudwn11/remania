@@ -32,7 +32,8 @@ public class BuyDAO {
 		
 		int count = -1;
 		
-		if(category == null){
+		//category가 null이거나 ""라는 것은 전체 검색이라는 것이니까 전체 갯수를 가져옴.
+		if(category == null || category.equals("")){
 			count = template.selectOne(namespace+"totalRecordAll");
 		}
 		
