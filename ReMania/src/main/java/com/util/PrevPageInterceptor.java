@@ -18,7 +18,8 @@ public class PrevPageInterceptor extends HandlerInterceptorAdapter {
 		if(modelAndView.getModel().get("loginFail") == null){
 			String prevPage = (String)session.getAttribute("prevPage");
 			session.removeAttribute("prevPage");
-			modelAndView.setViewName("redirect:"+prevPage);
+			if(prevPage != null)
+				modelAndView.setViewName("redirect:"+prevPage);
 		}
 		
 	}// end postHandle

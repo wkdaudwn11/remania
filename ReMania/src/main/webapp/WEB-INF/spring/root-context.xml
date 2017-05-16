@@ -43,42 +43,8 @@
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 	
-	<!-- dao 시작-->
-	<bean id="loginDao" class="com.dao.member.LoginDAO">
-		<property name="template" ref="sqlSession" />
-	</bean>
+	<context:component-scan base-package="com.service.*, com.dao.*" />
 	
-	<bean id="joinDao" class="com.dao.member.JoinDAO">
-		<property name="template" ref="sqlSession" />
-	</bean>
-	
-	<bean id="buyDao" class="com.dao.trade.BuyDAO">
-		<property name="template" ref="sqlSession" />
-	</bean>
-	
-	<bean id="freeBoardDao" class="com.dao.board.FreeBoardDAO">
-		<property name="template" ref="sqlSession" />
-	</bean>
-		
-	<!-- dao 끝 -->
-
-	<!-- Service 시작 -->
-	<bean id="freeBoardService" class="com.service.board.FreeBoardService">
-		<property name="dao" ref="freeBoardDao" />
-	</bean>
-	
-	<bean id="loginService" class="com.service.member.LoginService">
-		<property name="dao" ref="loginDao" />
-	</bean>
-	
-	<bean id="joinService" class="com.service.member.JoinService">
-		<property name="dao" ref="joinDao" />
-	</bean>
-	
-	<bean id="buyService" class="com.service.trade.BuyService">
-		<property name="dao" ref="buyDao" />
-	</bean>
-	<!-- Service 끝 -->
 	<!-- Mybatis 연동 끝 -->
 	
 	<!-- transaction 설정 시작-->

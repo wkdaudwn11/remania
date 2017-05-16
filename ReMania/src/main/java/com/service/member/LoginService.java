@@ -13,10 +13,6 @@ public class LoginService {
 	@Autowired
 	private LoginDAO loginDao;
 	
-	public void setDao(LoginDAO loginDao) {
-		this.loginDao = loginDao;
-	}
-
 	/** 존재하지 않는 이메일이면 -1을 리턴하고
 	 *  존재하는 이메일이면 일단 dto를 리턴한다.
 	 *  dto에는 비밀번호가 맞으면 제대로 된 값이 들어가있을 것이고
