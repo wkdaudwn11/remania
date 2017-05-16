@@ -38,7 +38,7 @@ public class LoginController {
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
 		
-		String target = "member/login/loginUI";
+		String target = "redirect:login";
 		
 		MemberDTO login = service.loginCheck(dto);
 		

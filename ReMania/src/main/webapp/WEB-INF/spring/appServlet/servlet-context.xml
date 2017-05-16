@@ -29,6 +29,10 @@
 			<mvc:mapping path="/loginCheck"/>
 			<bean class="com.util.PrevPageInterceptor" />
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/buyWrite"/>
+			<bean class="com.util.LoginValidInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 	
 	<!-- 화면 보여주기 시작 -->
@@ -78,9 +82,8 @@
 	
 	<!-- 화면 보여주기 끝 -->
 	
-	<!-- package 등록 시작 -->
+	<!-- 패키지 등록 -->
 	<context:component-scan base-package="com.controller.*" />
-	<!-- package 등록 끝 -->
 	
 	<!-- 유효성 검사 등록 시작 -->
 	<bean id="validator" class="com.controller.validator.GlobalValidator" />

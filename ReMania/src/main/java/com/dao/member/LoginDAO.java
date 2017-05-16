@@ -13,10 +13,6 @@ public class LoginDAO {
 	
 	@Autowired
 	private SqlSessionTemplate template;
-
-	public void setTemplate(SqlSessionTemplate template) {
-		this.template = template;
-	}
 	
 	/** 입력한 email를 DB에 조회해보는 메소드 */
 	public MemberDTO loginCheck1(MemberDTO dto) {
