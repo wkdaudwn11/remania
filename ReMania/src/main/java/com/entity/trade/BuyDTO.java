@@ -7,6 +7,11 @@ public class BuyDTO {
 
 	private int buynum;			//삽니다번호
 	private String category;	//분류
+	private String tradeWay;	//거래방법
+	private String location;	//거래지역
+	private String priceChoice;	//가격선택 (합의 후 결정, 범위 설정)
+	private int price1;			//최소가격
+	private int price2;			//최대가격
 	private String email; 		//작성자의 이메일
 	private String author;		//작성자 이름
 	private String title;		//제목
@@ -20,11 +25,17 @@ public class BuyDTO {
 		super();
 	}
 
-	public BuyDTO(int buynum, String category, String email, String author, String title, String content,
-			String writeday, int readcnt, int replecnt, String images) {
+	public BuyDTO(int buynum, String category, String tradeWay, String location, String priceChoice, int price1,
+			int price2, String email, String author, String title, String content, String writeday, int readcnt,
+			int replecnt, String images) {
 		super();
 		this.buynum = buynum;
 		this.category = category;
+		this.tradeWay = tradeWay;
+		this.location = location;
+		this.priceChoice = priceChoice;
+		this.price1 = price1;
+		this.price2 = price2;
 		this.email = email;
 		this.author = author;
 		this.title = title;
@@ -37,9 +48,10 @@ public class BuyDTO {
 
 	@Override
 	public String toString() {
-		return "BuyDTO [buynum=" + buynum + ", category=" + category + ", email=" + email + ", author=" + author
-				+ ", title=" + title + ", content=" + content + ", writeday=" + writeday + ", readcnt=" + readcnt
-				+ ", replecnt=" + replecnt + ", images=" + images + "]";
+		return "BuyDTO [buynum=" + buynum + ", category=" + category + ", tradeWay=" + tradeWay + ", location="
+				+ location + ", priceChoice=" + priceChoice + ", price1=" + price1 + ", price2=" + price2 + ", email="
+				+ email + ", author=" + author + ", title=" + title + ", content=" + content + ", writeday=" + writeday
+				+ ", readcnt=" + readcnt + ", replecnt=" + replecnt + ", images=" + images + "]";
 	}
 
 	public int getBuynum() {
@@ -56,6 +68,46 @@ public class BuyDTO {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public String getTradeWay() {
+		return tradeWay;
+	}
+
+	public void setTradeWay(String tradeWay) {
+		this.tradeWay = tradeWay;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getPriceChoice() {
+		return priceChoice;
+	}
+
+	public void setPriceChoice(String priceChoice) {
+		this.priceChoice = priceChoice;
+	}
+
+	public int getPrice1() {
+		return price1;
+	}
+
+	public void setPrice1(int price1) {
+		this.price1 = price1;
+	}
+
+	public int getPrice2() {
+		return price2;
+	}
+
+	public void setPrice2(int price2) {
+		this.price2 = price2;
 	}
 
 	public String getEmail() {
@@ -121,5 +173,5 @@ public class BuyDTO {
 	public void setImages(String images) {
 		this.images = images;
 	}
-	
+		
 }
