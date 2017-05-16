@@ -8,9 +8,7 @@
 	    	if (response.status === 'connected') {
 	    		console.log('페이스북에 정상적으로 로그인 완료했습니다.');
 			} else if (response.status === 'not_authorized') {
-	    		console.log('페이스북에는 로그인 되어있으나, 앱에는 로그인 되어있지 않다.');
 	    	} else {
-	    		console.log('페이스북에 로그인이 되어있지 않아서, 앱에 로그인 되어있는지 불명확하다.');
 	    	}
 		}//statusChangeCallback(response)
 	

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -9,12 +10,16 @@
 <title>Remania Sign up</title>
 
 <style>
-	.display{display: none;}
+.display {
+	display: none;
+}
 </style>
 
 </head>
 <body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
 	<script type="text/javascript">
 		function check(form) {
 
@@ -62,10 +67,8 @@
 						alert('이미 존재하는 이메일입니다.\n다른 이메일을 입력해주세요.');
 					},//success
 					error:function(error){
-						alert('사용 가능한 이메일');
-					
-					if(true){
 						//휴대폰 인증
+					
 						$.ajax({
 							type:"post",
 							url:"randomNumberAjax",
@@ -74,14 +77,15 @@
 								usertel : tel
 							},
 							success:function(responseData,status,xhr){
-								alert('인증번호 불러오기 성공!11');
+								alert('인증번호가 발송되었습니다.');	
 								$("confirm").focus();
+								form.randomNumber.value = responseData;
 							},//success
 							error:function(error){
-								alert('인증번호 불러오기 실패!11');
+								alert('인증번호 불러오기 실패!');
 							}//휴대폰 인증 error
-						});//휴대폰 인증 ajax				
-					}
+						});//휴대폰 인증 ajax		
+						
 						$(document).ready(function(){
 							$("#confirm").css("display","");
 							$("#checkNumber").css("display","none");
@@ -92,33 +96,39 @@
 				});//이메일 인증ajax
 			}		
 		}//check End
+		 
+		function check2(form){
 		
-		function check2(confirm){
-		
-			$.ajax({
-				type:"post",
-				url:"telConfirmAjax.jsp",
-				dataType:"text",
-				data:{
-					inputNum : confirm.value
-				},
-				success:function(responseData,status,xhr){
-					if(document.getElementById("telConfrimResult").innerText=responseData.trim()=="인증번호가 일치합니다."){
-	    				document.getElementById('isTelConfirm').value = "o";
-	    				$("#telConfrimResult").css("color","green");
-	    			}else if(document.getElementById("telConfrimResult").innerText=responseData.trim()=="인증번호가 불일치합니다."){
-	    				document.getElementById('isTelConfirm').value = null;
-	    				$("#telConfrimResult").css("color","red");
-	    			}
-					$("#telConfrimResult").text(responseData.trim());
-				},//success
-				error:function(error){
-					alert('인증번호 불러오기 실패!');
-				}//error
-			});//ajax
+			var result = false;
+			var confirm2 = form.confirm2;
+			var randomNumber = form.randomNumber.value;
 			
-		}
+			if(confirm2.value == randomNumber){
+				form.submit();
+			}else{
+				alert("실패");
+				document.getElementById("confirm2").value="";
+				document.getElementById("confirm2").focus();
+			}	
+			
+		}//check2(form)
 		
+		 
+		 /* $(document).ready(function check2(form){
+			$("#joinForm").submit(function(event){
+				var confirmNumber ='${sessionScope.confirmNumber}';
+				var confirm = form.confirm.value;
+				if($(":confirm").val==confirmNumber){ 
+					alert("성공");
+				}else{
+					alert("실패");
+					confirm="";
+					confirm.form.focus();
+				}
+				
+			}); 
+		 }); */
+		 
 	</script>
 
 	<jsp:include page="../../include/nav.jsp" flush="true" />
@@ -136,7 +146,9 @@
 				<br /> <br />
 
 				<form id="joinForm" method="post" action="joinCheck">
-
+					
+					<input type="hidden" name="randomNumber">
+					
 					<div
 						style="background-color: #478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
 						<span
@@ -175,10 +187,10 @@
 
 					<!-- confirm -->
 					<div id="confirm"
-						style="background-color: #478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em; display:none;">
+						style="background-color: #478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em; display: none;">
 						<span
 							style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;">Confirm</span>
-						<input type="text" name="confirm" 
+						<input type="text" name="confirm2" id="confirm2"
 							style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;">
 						<br />
 					</div>
@@ -190,9 +202,9 @@
 					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.7;">
 					인증번호 받기</button>
 
-				<button type="button" id="sign" class="btn btn-default"
-					onclick="check2(confirm)"
-					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.7; display:none;">
+				<button type="button" id="sign" class="btn btn-default" 
+					onclick="check2(joinForm)"
+					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.7; display: none;">
 					Sign up</button>
 			</div>
 		</div>

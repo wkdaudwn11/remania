@@ -77,5 +77,8 @@
 	<mvc:annotation-driven validator="validator" />
 	<bean id="validator" class="com.controller.validator.GlobalValidator" />
 	<!-- 유효성 검사 등록 끝 -->
-		
+	
+	<!-- com.text.RandomNumberAjax 등록 -->
+	<bean id="randomNumberAjax" class="com.util.RandomNumberAjax" />
+	
 </beans>

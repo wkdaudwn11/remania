@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entity.member.MemberDTO;
 import com.service.member.JoinService;
-import com.util.randomNumberAjax;
+import com.util.RandomNumberAjax;
 
 @Controller
 public class JoinController {
 	
 	@Autowired
 	private JoinService service;
+	
+	@Autowired
+	RandomNumberAjax util;
 	
 	/** 회원가입 메소드 */
 	@RequestMapping(value="joinCheck", method=RequestMethod.POST)
@@ -28,7 +31,7 @@ public class JoinController {
 		String target = "member/join/JoinUI";
 		
 		if(true){
-			target = "index";
+			target = "redirect:login";
 		}
 		
 		return target;
@@ -43,12 +46,10 @@ public class JoinController {
 	
 	/** 인증번호를 생성하고, 문자로 발송해주는 메소드. (인증번호는 세션에 저장)*/
 	@RequestMapping(value="randomNumberAjax")
-	public @ResponseBody void randomNumberAjax(String usertel, HttpSession session){
-		
-		randomNumberAjax util = new randomNumberAjax();
+	public @ResponseBody String randomNumberAjax(String usertel, HttpSession session){
 		String confirmNumber = util.getConfirmNum(usertel);
-		session.setAttribute("confirmNumber", confirmNumber);
-		
+		//session.setAttribute("confirmNumber", confirmNumber);
+		return confirmNumber;
 	}//randomNumberAjax(String usertel, HttpSession session)
 	
 }
