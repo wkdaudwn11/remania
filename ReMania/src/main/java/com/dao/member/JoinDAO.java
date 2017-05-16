@@ -1,6 +1,7 @@
 package com.dao.member;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.entity.member.MemberDTO;
@@ -9,11 +10,9 @@ import com.entity.member.MemberDTO;
 public class JoinDAO {
 
 	private String namespace = "com.remania.MemberMapper.";
+	
+	@Autowired
 	private SqlSessionTemplate template;
-
-	public void setTemplate(SqlSessionTemplate template) {
-		this.template = template;
-	}
 
 	/**  DB에 회원정보를 추가하는 메소드 */
 	public void AddMember(MemberDTO dto) {

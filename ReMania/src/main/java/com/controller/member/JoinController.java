@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entity.member.MemberDTO;
 import com.service.member.JoinService;
-import com.util.randomNumberAjax;
+import com.service.member.LoginService;
+import com.util.RandomNumberAjax;
 
 @Controller
 public class JoinController {
@@ -20,18 +21,14 @@ public class JoinController {
 	@Autowired
 	private JoinService service;
 	
+	@Autowired
+	RandomNumberAjax util;
+	
 	/** 회원가입 메소드 */
 	@RequestMapping(value="joinCheck", method=RequestMethod.POST)
 	public String JoinCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
-		
-		MemberDTO Join = service.joinCheck(dto);
-		String target = "member/join/JoinUI";
-		
-		if(true){
-			target = "index";
-		}
-		
-		return target;
+		service.joinCheck(dto);
+		return "redirect:login";
 	}//JoinCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
 	
 	/** 이메일 중복검사 */
@@ -43,10 +40,9 @@ public class JoinController {
 	
 	/** 인증번호를 생성하고, 문자로 발송해주는 메소드. (인증번호는 세션에 저장)*/
 	@RequestMapping(value="randomNumberAjax")
-	public @ResponseBody void randomNumberAjax(String usertel, HttpSession session){
-		randomNumberAjax util = new randomNumberAjax();
+	public @ResponseBody String randomNumberAjax(String usertel, HttpSession session){
 		String confirmNumber = util.getConfirmNum(usertel);
-		session.setAttribute("confirmNumber", confirmNumber);
+		return confirmNumber;
 	}//randomNumberAjax(String usertel, HttpSession session)
 	
 }
