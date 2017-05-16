@@ -63,16 +63,22 @@ create sequence freeBoardReple_seq minvalue 1;
 
 --삽니다
 create table buy(
-  buynum    number(4)       constraint buy_buynum_pk primary key,--삽니다번호
-  email     varchar2(16)    not null,			  --작성자의 이메일
-  author		varchar2(16)	  not null,		    --작성자 이름
-  title	  	varchar2(50)	  not null,		    --제목
-  content	  varchar2(4000)  not null,		    --내용
-  writeday  date		        default sysdate,--작성일
-  readcnt	  number(4)		    default 0,		  --조회
-  replecnt 	number(4)       default 0,      --댓글수
-  images    varchar2(4000)  default null,   --등록한 이미지
-  constraint   buy_email_fk foreign key(email) references member(email) on delete cascade
+  buynum      	number(4)       constraint buy_buynum_pk primary key,--삽니다번호
+  category    	varchar2(20)    not null,     	--분류
+  tradeWay    	varchar2(20)    not null,     	--거래방법
+  location    	varchar2(20)    default null, 	--거래지역
+  priceChoice	varchar2(20)    not null,     	--가격선택 (합의 후 결정, 범위 설정)
+  price1      	number(9)       default 0,    	--최소가격
+  price2      	number(9)       default 0,    	--최대가격
+  email     	varchar2(16)    not null,		--작성자의 이메일
+  author		varchar2(16)	not null,		--작성자 이름
+  title	  		varchar2(50)	not null,		--제목
+  content	  	varchar2(4000)	not null,		--내용
+  writeday  	date		    default sysdate,--작성일
+  readcnt	  	number(4)		default 0,		--조회
+  replecnt 		number(4)       default 0,      --댓글수
+  images    	varchar2(4000)  default null,   --등록한 이미지
+  constraint buy_email_fk foreign key(email) references member(email) on delete cascade
 );
 create sequence buy_seq minvalue 1;
 
