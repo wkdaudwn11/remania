@@ -27,9 +27,9 @@
 	
 	<!-- sns 회원가입 -->
 	<insert id="snsJoin" parameterType="MemberDTO">
-		insert into member(memnum, email, name, pwd, tel, sns)
+		insert into member(membernum, email, name, pwd, tel, sns)
 		values(member_seq.nextval, #{email}, #{name}, 'pwd', 'tel', #{sns})
-	</insert>
+	</insert> 
 	<!-- 로그인 관련 쿼리 끝 -->
 	
 	<!-- 회원가입 관련 쿼리 시작-->

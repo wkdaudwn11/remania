@@ -14,7 +14,7 @@
 
 	$(document).ready(function(){
 		
-		$("#writeBtn").on("click", function(){
+		$("#buyWriteBtn").on("click", function(){
 			location.replace('buyWrite');
 		})
 		
@@ -74,103 +74,26 @@
 		<br />
 		
 		<div class="row">
-			<a href="buyDetail">
-				<div class="col-sm-4">
-					<div class="panel panel-danger">
-						<div class="panel-heading">품목</div>
-						<div class="panel-body">
-							<img src="images/test/sample1.jpg" class="img-responsive"
-								style="width: 100%; height: 15em;" alt="Image">
+			<c:forEach var="buyDTO" items="${buyList}" varStatus="status">
+				<a href="buyDetail">
+					<div class="col-sm-4">
+						<div class="panel panel-danger">
+							<div class="panel-heading">${buyDTO.category}</div>
+							<div class="panel-body">
+								<img src="images/test/sample1.jpg" class="img-responsive"
+									style="width: 100%; height: 15em;" alt="Image">
+							</div>
+							<div class="panel-footer">${buyDTO.title}</div>
 						</div>
-						<div class="panel-footer">제목</div>
 					</div>
-				</div>
-			</a>
-			<div class="col-sm-4">
-				<div class="panel panel-danger">
-					<div class="panel-heading">품목</div>
-					<div class="panel-body">
-						<img src="images/test/sample1.jpg" class="img-responsive"
-							style="width: 100%; height: 15em;" alt="Image">
+				</a>
+				<c:if test="${status.count % 3 == 0}">
 					</div>
-					<div class="panel-footer">제목</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="panel panel-danger">
-					<div class="panel-heading">품목</div>
-					<div class="panel-body">
-						<img src="images/test/sample1.jpg" class="img-responsive"
-							style="width: 100%; height: 15em;" alt="Image">
-					</div>
-					<div class="panel-footer">제목</div>
-				</div>
-			</div>
-		</div> <!-- row -->
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="panel panel-danger">
-					<div class="panel-heading">품목</div>
-					<div class="panel-body">
-						<img src="images/test/sample1.jpg" class="img-responsive"
-							style="width: 100%; height: 15em;" alt="Image">
-					</div>
-					<div class="panel-footer">제목</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="panel panel-danger">
-					<div class="panel-heading">품목</div>
-					<div class="panel-body">
-						<img src="images/test/sample1.jpg" class="img-responsive"
-							style="width: 100%; height: 15em;" alt="Image">
-					</div>
-					<div class="panel-footer">제목</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="panel panel-danger">
-					<div class="panel-heading">품목</div>
-					<div class="panel-body">
-						<img src="images/test/sample1.jpg" class="img-responsive"
-							style="width: 100%; height: 15em;" alt="Image">
-					</div>
-					<div class="panel-footer">제목</div>
-				</div>
-			</div>
-		</div><!-- row -->
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="panel panel-danger">
-					<div class="panel-heading">품목</div>
-					<div class="panel-body">
-						<img src="images/test/sample1.jpg" class="img-responsive"
-							style="width: 100%; height: 15em;" alt="Image">
-					</div>
-					<div class="panel-footer">제목</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="panel panel-danger">
-					<div class="panel-heading">품목</div>
-					<div class="panel-body">
-						<img src="images/test/sample1.jpg" class="img-responsive"
-							style="width: 100%; height: 15em;" alt="Image">
-					</div>
-					<div class="panel-footer">제목</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="panel panel-danger">
-					<div class="panel-heading">품목</div>
-					<div class="panel-body">
-						<img src="images/test/sample1.jpg" class="img-responsive"
-							style="width: 100%; height: 15em;" alt="Image">
-					</div>
-					<div class="panel-footer">제목</div>
-				</div>
-			</div>
-		</div><!-- row -->
+					<div class="row">
+				</c:if>
+			</c:forEach>
+		</div>
+		
 		<br />
 		
 		<!-- 페이징처리 -->
@@ -200,7 +123,6 @@
 			</c:if>
 			
 			<ul class="pagination" style="float: left;">
-			
 				<c:forEach var="i" begin="${(pageblock*page)-(page-1)}" end="${endPage}" >
 					<c:choose>
 						<c:when test="${curPage == i}">
@@ -214,22 +136,20 @@
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
-				
-				<!-- <li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">10</a></li> -->
 			</ul>
 			
 			<ul class="pager" style="float: left;">
-				<li><a href="#">></a></li>
-				<li><a href="#">맨끝</a></li>
+				<c:if test="${pageblock != Math.ceil((totalRecord/perPage+1)/page)}">
+					<li><a href="buyList?curPage=${Math.round((pageblock*page)+1)}&category=${category}&sortName=${sortName}&sortValue=${sortValue}">
+						>
+					</a></li>
+				</c:if>
+				
+				<c:if test="${curPage != Math.ceil(totalRecord/perPage)}">
+					<li><a href="buyList?curPage=${Math.ceil(totalRecord/perPage)}&category=${category}&sortName=${sortName}&sortValue=${sortValue}">
+						맨끝
+					</a></li>
+				</c:if>
 			</ul>
 			<br />
 			<br />
@@ -237,7 +157,7 @@
 			<br />
 		</div>
 		<p style="text-align: right;">
-			<button type="button" class="btn btn-danger" id="writeBtn">
+			<button type="button" class="btn btn-danger" id="buyWriteBtn">
 				삽니다 등록
 			</button>
 		</p>

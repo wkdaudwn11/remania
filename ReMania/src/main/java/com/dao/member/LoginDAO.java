@@ -43,7 +43,6 @@ public class LoginDAO {
 		
 		// 0이라는 것은 처음 로그인하는 경우다. 이럴 경우엔 일단 회원가입을 시켜주자.
 		if(n == 0) {
-			System.out.println("처음 로그인");
 			template.insert(namespace+"snsJoin", dto);
 		}
 		
