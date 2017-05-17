@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.entity.board.FreeBoardDTO;
 import com.entity.board.FreeBoardPage;
@@ -25,7 +26,7 @@ public class FreeBoardController {
 		return "redirect:freeBoardList";
 	}// end freeBoardWrite()
 	
-	@RequestMapping("/freeBoardList")
+	@RequestMapping(value="/freeBoardList*")
 	public String freeBoardList(@ModelAttribute("FreeBoardPage")FreeBoardPage boardPage){
 		if(boardPage.getCurPage() == 0){
 			boardPage.setCurPage(1);

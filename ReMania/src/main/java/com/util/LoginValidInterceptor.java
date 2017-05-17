@@ -33,7 +33,7 @@ public class LoginValidInterceptor extends HandlerInterceptorAdapter {
 		boolean result = true;
 		if(login == null){ 
 			result = false;
-			String prevPage = request.getHeader("Referer");
+			String prevPage = request.getHeader("Referer"); 
 			session.setAttribute("prevPage", prevPage.substring(prevPage.lastIndexOf("/")));
 			response.sendRedirect("login");
 		}

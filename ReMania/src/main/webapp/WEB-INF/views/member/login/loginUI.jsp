@@ -14,6 +14,10 @@
 
 	$(document).ready(function(){
 		
+		if(${prevPage != null}){
+			alert("로그인이 필요한 서비스 입니다.");
+		}
+		
 		if(${loginFail != null}){ 
 			alert('${loginFail}');
 			
@@ -23,8 +27,7 @@
 			}else{
 				document.getElementById('email').focus();
 			}
-		}
-		
+		} 
 	});
 	
 	/* 로그인 체크 함수 */
