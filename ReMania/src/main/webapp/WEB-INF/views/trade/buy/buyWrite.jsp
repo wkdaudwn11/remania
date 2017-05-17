@@ -12,12 +12,17 @@
 
 </style>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		
 	});
+	
+	function buyWrite(buyWriteForm){
+		alert('zzz123');
+	}
+	
+	
 </script>
 
 </head>
@@ -32,7 +37,7 @@
 
 	<div class="container">
 		<div class="alert alert-danger">
-			<form method="post" action="" enctype="multipart/form-data">
+			<form name="buyWriteForm" method="post" action="" enctype="multipart/form-data">
 			
 				<input type="hidden" name="name" value="${login.name}">
 			
@@ -74,8 +79,8 @@
 				<strong>가　　격</strong>&nbsp;&nbsp;
 				<font color="black">
 					<select name="priceChoice" style="width: 10em; height: 1.5em;">
-						<option selected="selected">합의 후 결정</option>
-						<option>범위 설정</option>
+						<option value="합의 후 결정" selected="selected">합의 후 결정</option>
+						<option value="범위 설정">범위 설정</option>
 					</select>
 				</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				
@@ -111,7 +116,7 @@
 		</div>
 		
 		<p style="text-align: right;">
-			<button type="button" class="btn btn-danger" id="writeBtn">
+			<button type="button" class="btn btn-danger" onclick="buyWrite(buyWriteForm)">
 				등록하기
 			</button>
 		</p>

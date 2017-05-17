@@ -146,10 +146,12 @@
 				</c:if>
 				
 				<c:if test="${curPage != Math.ceil(totalRecord/perPage)}">
-					<li><a href="buyList?curPage=${Math.ceil(totalRecord/perPage)}&category=${category}&sortName=${sortName}&sortValue=${sortValue}">
+					<c:set var="lastPage" value="${Math.ceil(totalRecord/perPage)}" />
+					<li><a href="buyList?curPage=${Math.round(Math.ceil(totalRecord/perPage))}&sortName=${sortName}&sortValue=${sortValue}">
 						맨끝
 					</a></li>
 				</c:if>
+				
 			</ul>
 			<br />
 			<br />
