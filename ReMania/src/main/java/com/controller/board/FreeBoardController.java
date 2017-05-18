@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,14 +26,20 @@ public class FreeBoardController {
 		return "redirect:freeBoardList";
 	}// end freeBoardWrite()
 	
-	@RequestMapping("/freeBoardList*")
+	@RequestMapping("/freeBoardList")
 	public String freeBoardList(@ModelAttribute("FreeBoardPage")FreeBoardPage boardPage){
 		if(boardPage.getCurPage() == 0){
 			boardPage.setCurPage(1);
 		}
 		boardPage = service.freeBoardList(boardPage);
-		
 		return "board/free/freeBoardList";
 	}// end public String freeBoardList
+	
+	@RequestMapping("/freeBoardDetail")
+	public String freeBoardDetail(FreeBoardDTO board,Model m){ 
+		board = service.freeBoardDetail(board);
+		m.addAttribute("board", board);
+		return "board/free/freeBoardDetail"; 
+ 	}// end public String freeBoardDetail()
 	
 }//end Controller

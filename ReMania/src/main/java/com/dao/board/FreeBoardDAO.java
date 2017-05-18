@@ -16,16 +16,14 @@ public class FreeBoardDAO {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public void setTemplate(SqlSessionTemplate template) {
-		this.template = template;
-	}
-
 	private final String namespace = "com.remania.BoardMapper.";
 	
+	/** write 레코드 추가*/
 	public void freeBoardWrite(FreeBoardDTO board){
 		template.insert(namespace+"freeBoardWrite",board);
 	}// end public void freeBoardWrite
 
+	/** list 전체 레코드 가져오기*/
 	public FreeBoardPage freeBoardList(FreeBoardPage boardPage){
 		
 		int skip = (boardPage.getCurPage()-1)*boardPage.getPERPAGE();
@@ -38,8 +36,14 @@ public class FreeBoardDAO {
 		return boardPage;
 	}// end public void freeBoardList
 	
+	/** totalRecord 전체 레코드 수*/
 	private int totalRecord(){
 		return template.selectOne(namespace+"totalRecord",null);
-	}
+	}// end private int totalRecord()
+	
+	/** Detail 레코드 하나 가져오기*/
+	public FreeBoardDTO freeBoardDetail(FreeBoardDTO board){
+		return template.selectOne(namespace+"freeBoardDetail",board);
+	}// end public FreeBoardDTO freeBoardDetail
 }// end Repository
 

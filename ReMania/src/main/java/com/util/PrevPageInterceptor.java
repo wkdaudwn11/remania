@@ -14,7 +14,6 @@ public class PrevPageInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		HttpSession session = request.getSession();
-		
 		if(modelAndView.getModel().get("loginFail") == null){
 			String prevPage = (String)session.getAttribute("prevPage");
 			session.removeAttribute("prevPage");

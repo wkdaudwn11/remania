@@ -35,6 +35,7 @@ create table freeBoard(
 	replecnt 		number(4)       default 0,      --댓글수
 	constraint freeboard_email_fk foreign key(email) references member(email) on delete cascade
 );
+drop sequence freeBoard_seq;
 create sequence freeBoard_seq minvalue 1;
 
 --자유게시판 댓글 테이블 (댓글의 댓글 추가)

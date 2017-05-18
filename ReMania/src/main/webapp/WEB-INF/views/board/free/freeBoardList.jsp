@@ -30,6 +30,7 @@
 	<c:set var="curPage" value="${FreeBoardPage.curPage}" scope="page" />
 	<fmt:formatNumber var="totalPage" minIntegerDigits="1" value="${Math.ceil(totalRecord/PERPAGE)}"/>
 	<fmt:formatNumber var="pageBlock" minIntegerDigits="1" value="${Math.ceil(curPage/INDICATEPAGE)}"/>
+	<fmt:formatNumber var="endPageBlock" minIntegerDigits="1" value="${Math.ceil(totalPage/INDICATEPAGE)}"/>
 	<c:if test="${pageBlock*INDICATEPAGE > totalPage}">
 		<c:set var="endPage" value="${totalPage}"/>
 	</c:if>
@@ -71,7 +72,7 @@
 				<tr height="30">
 					<td  width="50" align="center" >${totalRecord-status.index}</td>
 				    <td  width="250" align="center">
-				    	<a href="freeBoardDetail">${board.title}</a>
+				    	<a href="freeBoardDetail?freeboardnum=${board.freeboardnum}">${board.title}</a>
 				    </td>
 					<td width="100" align="center">${board.author}</td>			    
 				    <td width="150" align="center">${board.writeday}</td>
@@ -82,17 +83,25 @@
 	
 		<div id="paging" style="width: 44em; margin: 0 auto;">
 			<ul class="pager" style="float: left;">
-				<li><a href="freeBoardList">처음</a></li>
-				<li><a href="freeBoardList?curPage=${(pageBlock-1)*INDICATEPAGE}"><</a></li>
+				<c:if test="${curPage != 1}">
+					<li><a href="freeBoardList">처음</a></li>
+				</c:if>
+				<c:if test="${pageBlock != 1}">
+					<li><a href="freeBoardList?curPage=${(pageBlock-1)*INDICATEPAGE}"><</a></li>
+				</c:if>
 			</ul>
 			<ul class="pagination" style="float: left;">
 			<c:forEach var="pageIndex" begin="${(pageBlock*INDICATEPAGE)-(INDICATEPAGE-1)}" end="${endPage}">
-				<li <c:if test="${curPage == pageIndex}">class="active"</c:if>><a href="/freeBoardList?curPage=${pageIndex}">${pageIndex}</a></li>
+				<li <c:if test="${curPage == pageIndex}">class="active"</c:if>><a href="freeBoardList?curPage=${pageIndex}">${pageIndex}</a></li>
 			</c:forEach>
 			</ul>
 			<ul class="pager" style="float: left;">
-				<li><a href="freeBoardList?curPage=${(pageBlock+1)*INDICATEPAGE}">></a></li>
-				<li><a href="freeBoardList?curPage=${totalPage}">맨끝</a></li>
+				<c:if test="${pageBlock != endPageBlock}">
+					<li><a href="freeBoardList?curPage=${(pageBlock+1)*INDICATEPAGE}">></a></li>
+				</c:if>
+				<c:if test="${curPage != totalPage}">
+					<li><a href="freeBoardList?curPage=${totalPage}">맨끝</a></li>
+				</c:if>
 			</ul>
 			<br />
 			<br />

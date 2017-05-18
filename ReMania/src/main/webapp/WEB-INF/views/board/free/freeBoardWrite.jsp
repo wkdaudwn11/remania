@@ -18,6 +18,10 @@
 	$(document).ready(function() {
 
 	});
+	
+	function writeForm(write){
+		write.submit();
+	}
 </script>
 
 </head>
@@ -28,10 +32,11 @@
 	<center><font size="100"><b>글작성</b></font></center>
 
 	<div class="container">
-		<form action="freeBoardWrite" method="post">
+	
+		<form name="freeBoardWrite" action="freeBoardWrite" method="post">
 			<div class="alert alert-success">
 				<strong>작&nbsp;&nbsp;성&nbsp;&nbsp;자</strong>&nbsp;&nbsp;
-				<input type="text" name="author" value="장명주" readonly style="color:black; border: none; background-color: transparent;"><br /><br />
+				<input type="text" name="author" value="${login.name}" readonly style="color:black; border: none; background-color: transparent;"><br /><br />
 				
 				<strong>제　　목</strong>&nbsp;&nbsp;
 				<font color="black">
@@ -46,13 +51,14 @@
 				
 				<strong>내　　용</strong><br />
 				<font color="black">
-					<textarea rows="20" cols="84" name="content" style="outline: none; resize: none;"></textarea>
+					<textarea rows="20" cols="79" name="content" style="outline: none; resize: none;"></textarea>
 				<font color="black">
 				
+		
 			</div>
 			
 			<p style="text-align: right;">
-				<button type="button" class="btn btn-success">
+				<button type="button" class="btn btn-success" onclick="writeForm(freeBoardWrite);">
 					등록하기
 				</button>
 			</p>

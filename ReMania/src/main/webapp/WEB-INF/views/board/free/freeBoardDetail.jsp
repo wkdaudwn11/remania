@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,36 +41,38 @@
 	<div class="container">
 		<div class="alert alert-success">
 			<strong>작&nbsp;&nbsp;성&nbsp;&nbsp;자</strong>&nbsp;&nbsp;
-			<font color="black">장명주</font>　　　　　　　　　　　　　　　　<!-- 공백 건들지 말 것. -->
+			<font color="black">${board.author}</font>　　　　　　　　　　　　　　<!-- 공백 건들지 말 것. -->
 			
 			<small>
 				<strong>날　　짜</strong>&nbsp;&nbsp;
-				<font color="black">2017-05-10</font>
+				<font color="black">${board.writeday}</font>
 			</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			
 			<small>
 				<strong>조&nbsp;&nbsp;회&nbsp;&nbsp;수</strong>&nbsp;&nbsp;&nbsp;
-				<font color="black">26</font>
+				<font color="black">${board.readcnt}</font>
 			</small>
 			
 			<br /><br />
 			
 			<strong>제　　목</strong>&nbsp;&nbsp;
-			<font color="black">제목</font>
+			<font color="black">${board.title}</font>
 			<br /><br />
 		
 			<strong>내　　용</strong><br />
-			<pre style="width: 100%; height: 40em; background-color: white; color: black;"></pre>
+			<pre style="width: 100%; height: 40em; background-color: white; color: black;">${board.content}</pre>
 			<br /><br />
 		</div>
 				
 		<p style="text-align: left; float: left;">
-			<button type="button" class="btn btn-success">
-				수정하기
-			</button>
-			<button type="button" class="btn btn-success">
-				삭제하기
-			</button>
+			<c:if test="${login.name == board.author || login.email == 'admin'}">
+				<button type="button" class="btn btn-success">
+					수정하기
+				</button>
+				<button type="button" class="btn btn-success">
+					삭제하기
+				</button>
+			</c:if>
 		</p>
 		
 		<br /><br /><hr /><br />

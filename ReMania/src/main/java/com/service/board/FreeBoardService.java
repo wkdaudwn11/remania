@@ -13,15 +13,16 @@ public class FreeBoardService {
 	@Autowired
 	private FreeBoardDAO dao;
 	
-	public void setDao(FreeBoardDAO dao) {
-		this.dao = dao;
-	}
 
 	public void freeBoardWrite(FreeBoardDTO board){
 		dao.freeBoardWrite(board);
-	}
+	}// end public void freeBoardWrite
 	
 	public FreeBoardPage freeBoardList(FreeBoardPage boardPage){
 		return dao.freeBoardList(boardPage);
-	}
+	}// end public FreeBoardPage freeBoardList
+	
+	public FreeBoardDTO freeBoardDetail(FreeBoardDTO board){
+		return dao.freeBoardDetail(board);
+	}// end public FreeBoardDTO freeBoardDetail
 }//end Service
