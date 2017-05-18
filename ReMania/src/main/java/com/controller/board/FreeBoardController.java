@@ -25,7 +25,7 @@ public class FreeBoardController {
 		return "redirect:freeBoardList";
 	}// end freeBoardWrite()
 	
-	@RequestMapping("/freeBoardList")
+	@RequestMapping("/freeBoardList*")
 	public String freeBoardList(@ModelAttribute("FreeBoardPage")FreeBoardPage boardPage){
 		if(boardPage.getCurPage() == 0){
 			boardPage.setCurPage(1);

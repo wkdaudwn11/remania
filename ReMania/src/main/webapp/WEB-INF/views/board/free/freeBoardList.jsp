@@ -26,9 +26,17 @@
 <body>
 	<c:set var="totalRecord" value="${FreeBoardPage.totalRecord}" scope="page"/>
 	<c:set var="INDICATEPAGE" value="${FreeBoardPage.INDICATEPAGE}" scope="page"/>
-	<%-- <c:set var="pageBlock" value="${Math.ceil(totalRecord/INDICATEPAGE)}"/> --%>
-	<fmt:formatNumber var="pageBlock" minIntegerDigits="1" value="${Math.ceil(totalRecord/INDICATEPAGE)}"/>
-	${pageBlock}
+	<c:set var="PERPAGE" value="${FreeBoardPage.PERPAGE}" scope="page"/>
+	<c:set var="curPage" value="${FreeBoardPage.curPage}" scope="page" />
+	<fmt:formatNumber var="totalPage" minIntegerDigits="1" value="${Math.ceil(totalRecord/PERPAGE)}"/>
+	<fmt:formatNumber var="pageBlock" minIntegerDigits="1" value="${Math.ceil(curPage/INDICATEPAGE)}"/>
+	<c:if test="${pageBlock*INDICATEPAGE > totalPage}">
+		<c:set var="endPage" value="${totalPage}"/>
+	</c:if>
+	<c:if test="${pageBlock*INDICATEPAGE <= totalPage}">
+		<c:set var="endPage" value="${pageBlock*INDICATEPAGE}"/>
+	</c:if>
+	
 	<jsp:include page="../../include/nav.jsp" flush="true" />
 	
 	<br /><br /><br /><br /><br /><br />
@@ -50,7 +58,6 @@
 	<div class="container">
 	
 		<p>글목록(전체 글: ${FreeBoardPage.totalRecord})</p>
-				
 		<!-- 게시판 리스트 -->
 		<table width="100%" cellpadding="0" cellspacing="0" border="0" class="boardList">
 			<tr height="30"> 
@@ -62,7 +69,7 @@
 			</tr>
 			<c:forEach var="board" items="${FreeBoardPage.boardList}" varStatus="status">
 				<tr height="30">
-					<td  width="50" align="center" >????????????</td>
+					<td  width="50" align="center" >${totalRecord-status.index}</td>
 				    <td  width="250" align="center">
 				    	<a href="freeBoardDetail">${board.title}</a>
 				    </td>
@@ -75,17 +82,17 @@
 	
 		<div id="paging" style="width: 44em; margin: 0 auto;">
 			<ul class="pager" style="float: left;">
-				<li><a href="/freeBoardList">처음</a></li>
-				<li><a href="#"><</a></li>
+				<li><a href="freeBoardList">처음</a></li>
+				<li><a href="freeBoardList?curPage=${(pageBlock-1)*INDICATEPAGE}"><</a></li>
 			</ul>
 			<ul class="pagination" style="float: left;">
-			<c:forEach begin="" end="">
-				<li class="active"><a href="#">1</a></li>
+			<c:forEach var="pageIndex" begin="${(pageBlock*INDICATEPAGE)-(INDICATEPAGE-1)}" end="${endPage}">
+				<li <c:if test="${curPage == pageIndex}">class="active"</c:if>><a href="/freeBoardList?curPage=${pageIndex}">${pageIndex}</a></li>
 			</c:forEach>
 			</ul>
 			<ul class="pager" style="float: left;">
-				<li><a href="#">></a></li>
-				<li><a href="#">맨끝</a></li>
+				<li><a href="freeBoardList?curPage=${(pageBlock+1)*INDICATEPAGE}">></a></li>
+				<li><a href="freeBoardList?curPage=${totalPage}">맨끝</a></li>
 			</ul>
 			<br />
 			<br />
