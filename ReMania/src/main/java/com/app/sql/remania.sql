@@ -78,7 +78,8 @@ create table buy(
   writeday  	date		    default sysdate,--작성일
   readcnt	  	number(4)		default 0,		--조회
   replecnt 		number(4)       default 0,      --댓글수
-  images    	varchar2(4000)  default null,   --등록한 이미지
+  image1    	varchar2(4000)  default null,   --대표사진
+  image2    	varchar2(4000)  default null,   --내용에뿌려지는사진들
   constraint buy_email_fk foreign key(email) references member(email) on delete cascade
 );
 create sequence buy_seq minvalue 1;
