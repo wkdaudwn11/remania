@@ -9,6 +9,7 @@
 <style>
 
 	.alert{font-size: 1.5em;}
+	.displayNone{display: none;}
 
 </style>
 
@@ -16,10 +17,144 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
+		$("#image_preview").addClass("displayNone");
+		var form = document.getElementById("buyWriteForm");		
+		
+		//거래방법이 바꼈을 때
+		$("#tradeway").on("change",function(){
+			let tradeway = form.tradeway;
+			if(tradeway.value == '택배'){
+				$("#locationSpan").removeClass("displayNone");
+			}else{
+				$("#locationSpan").addClass("displayNone");
+			}
+		});//tradeway on change
+		
+		//가격 결정하는 Select가 바꼈을 때
+		$("#pricechoice").on("change",function(){
+			let pricechoice = form.pricechoice;
+			if(pricechoice.value == '합의 후 결정'){
+				$("#priceSpan").addClass("displayNone");
+			}else{
+				$("#priceSpan").removeClass("displayNone");
+			}
+		});//tradeway on change
+		
+		$("#upfile").on("change", function(e) {
+			readURL(this, e);
+		});//upfile
+		
+		//대표사진 미리보기
+		function readURL(input, e) {
+			var file = e.target.files;
+			
+			$("#image_preview").addClass("displayNone");
+			
+			if(file.length == 1){
+				if(file[0].type.match(/image/g) == null){
+		        	alert('이미지 파일만 올릴 수 있습니다.');
+		        }else{
+					var reader = new FileReader();
+	
+					reader.onload = function(e) {
+						$('#blah').attr('src', e.target.result);
+					}
+	
+					reader.readAsDataURL(input.files[0]);
+					
+					$("#image_preview").removeClass("displayNone");
+		        }
+			}else if(file.length > 1){
+				alert('image 파일을 한개만 올릴 수 있습니다.');
+			}
+		}//readURL(input, e)
+		
+		upfileContentClickCount = 0; // #upfileContent 클릭 횟수를 나타내는 변수
+		
+		$("#fileDiv").on("change", ".upfileContent", function(e){
+			readURLContent(this, e);
+		});
+
+		//content에 업로드한 사진 미리보기
+		function readURLContent(input, e) {
+			var files = e.target.files;
+			var fileCheck = true;
+			
+			$("#image_preview_content").addClass("displayNone");
+			
+			if(files.length > 0){
+				
+				//업로드한 파일들의 타입을 검사해서 image가 아니면 fileCheck를 false로 바꿈
+				for(var i=0; i<files.length; i++){
+					if(files[i].type.match(/image/g) == null){
+						fileCheck = false;
+						break;
+					}
+				}
+				
+				if(fileCheck == true){
+					
+					upfileContentClickCount++; // 사진을 올렸으면 +1 증가시켜준다.
+					
+					if(upfileContentClickCount > 1){
+						$(".image_preview_content").remove();
+					}
+					
+					$.each(files, function(i, value){
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$("<span class='image_preview_content'><center><img src="+e.target.result+" width='800'></center><input type='hidden' class='imageName' value='"+value.name+"'></span>").prependTo("#contentDiv");
+						}
+						reader.readAsDataURL(input.files[i]);
+						$("#image_preview_content").removeClass("display");
+					});//$.each(files, function(i, value)
+							
+				}else{
+					alert('이미지 파일만 올릴 수 있습니다.');
+				}//if(fileCheck == true)
+					
+			}else{
+				$(".image_preview_content").remove();
+			}//if(files.length > 0)
+				
+		}//readURLContent(input, e)
+		
 	});
 	
-	function buyWrite(buyWriteForm){
-		alert('zzz123');
+	//글작성 유효성검사
+	function buyWrite(form){
+		let result = true;
+		
+		if(form.tradeway.value == "택배"){
+			if(form.location.value == "지역선택"){
+				alert("지역을 선택해주세요.");
+				result = false;
+			}
+		}
+		
+		if((form.pricechoice.value == "범위 설정") && (result == true)){
+			if(form.price1.value == null || form.price1.value == "" || form.price2.value == null || form.price2.value == ""){
+				alert("원하시는 가격 범위를 정해주세요.");
+				result = false;
+			}
+			if((form.price1.value > form.price2.value || form.price1.value == form.price2.value) && (result == true)){
+				alert("최대금액은 최소금액보다 큰 금액이어야 합니다.");
+				result = false;
+			}
+		}
+		
+		if(result == true){
+			if(form.title.value == null || form.title.value == ""){
+				alert("제목을 입력해주세요.");
+				result = false;
+			}else if(form.content.value == null || form.content.value == ""){
+				alert("내용을 입력해주세요.");
+				result = false;
+			}
+		}
+		
+		if(result == true) form.submit();
+		
 	}
 	
 	
@@ -37,9 +172,10 @@
 
 	<div class="container">
 		<div class="alert alert-danger">
-			<form name="buyWriteForm" method="post" action="" enctype="multipart/form-data">
-			
-				<input type="hidden" name="name" value="${login.name}">
+		
+			<form id="buyWriteForm" name="buyWriteForm" method="post" action="buyWrite" enctype="multipart/form-data">
+				<input type="hidden" name="email" value="${login.email}">
+				<input type="hidden" name="author" value="${login.name}">
 			
 				<strong>구&nbsp;&nbsp;매&nbsp;&nbsp;자</strong>&nbsp;&nbsp;
 				<font color="black">${login.name}</font><br /><br />
@@ -55,7 +191,7 @@
 				
 				<strong>거래방법</strong>&nbsp;&nbsp;
 				<font color="black">
-					<select name="tradeWay" style="width: 10em; height: 1.5em;">
+					<select id="tradeway" name="tradeway" style="width: 10em; height: 1.5em;">
 						<option value="택배" selected="selected">택배</option>
 						<option value="직거래">직거래</option>
 						<option value="합의 후 결정">합의 후 결정</option>
@@ -63,13 +199,14 @@
 				</font>
 				
 				<!-- 위의 거래방법에서 '택배'를 제외한 나머지 경우를 선택하면 나타나야함. -->
-				<span>
+				<span id="locationSpan">
 					<small>
 						<strong>지　　역</strong>&nbsp;&nbsp;&nbsp;
 						<font color="black">
 							<select name="location" style="width: 10em; height: 1.5em;">
-								<option value="지역선택" selected="selected">지역서택</option>
-								<option>인천</option>
+								<option value="지역선택" selected="selected">지역선택</option>
+								<option value="서울">서울</option>
+								<option value="인천">인천</option>
 							</select>
 						</font>
 					</small>
@@ -78,20 +215,22 @@
 				
 				<strong>가　　격</strong>&nbsp;&nbsp;
 				<font color="black">
-					<select name="priceChoice" style="width: 10em; height: 1.5em;">
-						<option value="합의 후 결정" selected="selected">합의 후 결정</option>
-						<option value="범위 설정">범위 설정</option>
+					<select id="pricechoice" name="pricechoice" style="width: 10em; height: 1.5em;">
+					<option value="범위 설정" selected="selected">범위 설정</option>
+						<option value="합의 후 결정">합의 후 결정</option>
 					</select>
 				</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				
 				<!-- 위의 가격에서 '범위 설정'을 선택하면 나타나야함. -->
-				<small>
-					<strong>범　　위</strong>&nbsp;&nbsp;&nbsp;
-					<font color="black">
-						<input type="text" name="price1" style="width: 6em;"> ~ 
-						<input type="text" name="price2" style="width: 6em;">원
-					</font>
-				</small>
+				<span id="priceSpan">
+					<small>
+						<strong>범　　위</strong>&nbsp;&nbsp;&nbsp;
+						<font color="black">
+							<input type="text" name="price1" style="width: 6em;"> ~ 
+							<input type="text" name="price2" style="width: 6em;">원
+						</font>
+					</small>
+				</span>
 				<br /><br />
 				
 				<strong>제　　목</strong>&nbsp;&nbsp;
@@ -100,18 +239,30 @@
 				</font>
 				<br /><br />
 				
-				<input type="file" id="upfile" name="upfile" accept="image/*" multiple>
-				<small><font color="black">
-					* 첫번 째 사진을 대표사진으로 합니다. <br />
-					* 사진은 올리셔도 되고, 안올리셔도 됩니다.
-				</font></small>
-				<br /><br />
+				<div>
+					<p style="float: left;">
+						<strong>대표사진</strong>&nbsp;&nbsp;
+					</p>
+					<p>
+						<input type="file" id="upfile" name="upfile" accept="image/*">
+					</p>
+				</div>
 				
-				<strong>내　　용</strong><br />
-				<font color="black">
-					<textarea name="content" rows="20" cols="84"></textarea>
-				<font color="black">
-			
+				<p id="image_preview">
+					<strong>미리보기</strong>
+					<img id="blah" src="#" alt="your image" width="100" height="100" />
+				</p>
+				
+				<div>
+					<div id="fileDiv">
+						<strong>내　　용</strong>&nbsp;&nbsp;
+						<input type="file" class="upfileContent" name="upfileContent" accept="image/*" multiple>
+					</div> <!-- #fileDiv -->
+					
+					<div id="contentDiv" style="width: 100%; border: 1px solid black; background-color: white; color: black;">
+						<textarea class="content" name="content" rows="20" cols="87" style="border-style: none;"></textarea>
+					</div> <!-- #contentDiv -->
+				</div>
 			</form>
 		</div>
 		
