@@ -138,8 +138,16 @@
 								
 							</c:if>
 							<strong>${buyDTO2.title}</strong><br />
-							<small>희망가격: <fmt:formatNumber value="${buyDTO2.price1}" type="currency" />
-							 ~ <fmt:formatNumber value="${buyDTO2.price2}" type="currency" /></small>
+							<small>희망가격:
+							<c:choose>
+								<c:when test="${buyDTO2.pricechoice == '범위 설정'}">
+									<fmt:formatNumber value="${buyDTO2.price1}" type="currency" /> ~ <fmt:formatNumber value="${buyDTO2.price2}" type="currency" />
+								</c:when>
+								<c:otherwise>
+									합의 후 결정
+								</c:otherwise>
+							</c:choose>
+							</small>
 							
 						</div>
 					</div>
