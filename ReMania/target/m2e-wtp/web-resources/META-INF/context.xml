@@ -25,10 +25,6 @@
 			className="org.apache.catalina.webresources.DirResourceSet" 
 			base="c:/project/images/trade/sell/" webAppMount="/sell" 
 		/>
-		<PreResources 
-			className="org.apache.catalina.webresources.DirResourceSet" 
-			base="c:/project/images/board/freeBoard/" webAppMount="/freeBoard" 
-		/>
 	</Resources>
 
 </Context>

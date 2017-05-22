@@ -54,7 +54,8 @@ public class BuyDAO {
 	public BuyDTO buyDetail(int buynum) {
 		return template.selectOne(namespace+"buyDetail", buynum);
 	}
-
+	
+	/** 게시글 삭제 */
 	public void buyDelete(int buynum) {
 		template.delete(namespace+"buyDelete", buynum);
 	}

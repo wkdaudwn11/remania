@@ -43,6 +43,10 @@
 			<mvc:mapping path="/buyDelete"/>
 			<bean class="com.util.LoginValidInterceptor" />
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/buyUpdate"/>
+			<bean class="com.util.LoginValidInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 	
 	<!-- 화면 보여주기 시작 -->

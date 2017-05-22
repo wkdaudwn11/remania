@@ -15,7 +15,9 @@ import org.apache.http.params.HttpParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,22 +28,12 @@ import com.service.trade.BuyService;
 @Controller
 public class BuyController {
 	
-	//HttpRequest request = new 
-	//request.set
-	
 	@Autowired
 	private BuyService service;
 	
 	/** 삽니다 리스트를 뿌려주는 메소드 */
 	@RequestMapping(value="buyList")
 	public ModelAndView buyList(String curPage, String category, String sort, String searchType, String searchValue){
-		
-		System.out.println("\nbuyList!!!\n");
-		System.out.println("curPage: "+curPage);
-		System.out.println("category: "+category);
-		System.out.println("sort: "+sort);
-		System.out.println("searchType: "+searchType);
-		System.out.println("searchValue: "+searchValue);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("trade/buy/buyList");
@@ -138,6 +130,22 @@ public class BuyController {
 		return "redirect:buyList";
 	}//buyWrite(BuyDTO dto)
 	
+	/** 넘겨받은 buynum으로 해당 게시글의 정보를 가지고 글 수정 폼으로 넘김 */
+	@RequestMapping(value="buyUpdate", method=RequestMethod.POST)
+	public String buyUpdate(BuyDTO buyDTO, String curPage, String category, String sort, String searchType, String searchValue){
+		
+		if(category.equals(",자전거")){
+			category="자전거";
+		}else if(category.equals(",카메라")){
+			category="카메라";
+		}
+		
+		//2017.05.23 05:08
+		
+		//여기서도 buyDetail로 넘겨야 하지만 get방식으로 넘길 때 한글처리가 안되므로 그냥 list로 넘어감
+		return "redirect:buyList";
+	}//buyDelete(String buynum) GET
+	
 	/**게시글을 클릭하면 이 메소드가 DB에서 해당 게시글에 대한 정보를 가지고 buyDetail.jsp로 넘김*/
 	@RequestMapping(value="buyDetail")
 	public String buyDetail(String buynum, String curPage, String category, String sort, String searchType, String searchValue, Model m){
@@ -173,6 +181,7 @@ public class BuyController {
 		return "trade/buy/buyDetail";
 	}//buyDetail(String buynum)
 	
+	/** 글 삭제 후, 게시물 목록으로 넘어감. */
 	@RequestMapping(value="buyDelete")
 	public String buyDelete(String buynum, String curPage, String category, String sort, String searchType, String searchValue) {
 		
@@ -182,6 +191,31 @@ public class BuyController {
 		//그러므로 그냥  buyList로 넘기는 걸로.
 		//return "redirect:buyList?curPage="+curPage+"&category="+category+"&sort="+sort+"&searchType="+searchType+"&searchValue="+searchValue;
 		return "redirect:buyList";
-	}
-
+	}//buyDelete(String buynum, String curPage, String category, String sort, String searchType, String searchValue)
+	
+	/** 넘겨받은 buynum으로 해당 게시글의 정보를 가지고 글 수정 폼으로 넘김 */
+	@RequestMapping(value="buyUpdate", method=RequestMethod.GET)
+	public String buyUpdateUI(String buynum, String curPage, String category, String sort, String searchType, String searchValue, Model m){
+		
+		BuyDTO buyDTO = service.buyDetail(Integer.parseInt(buynum));
+		
+		if(buyDTO.getImage2() != null){
+			ArrayList<String> image2List = new ArrayList<>();
+			StringTokenizer image2 = new StringTokenizer(buyDTO.getImage2(), ",");
+			
+			while(image2.hasMoreElements()){
+				image2List.add(image2.nextToken());
+			}
+			m.addAttribute("image2List", image2List);
+		}
+		
+		m.addAttribute("buyDTO", buyDTO);
+		m.addAttribute("curPage", curPage);
+		m.addAttribute("category", category);
+		m.addAttribute("sort", sort);
+		m.addAttribute("searchType", searchType);
+		m.addAttribute("searchValue", searchValue);
+		
+		return "trade/buy/buyUpdate";
+	}//buyUpdate(String buynum, Model m) GET
 }

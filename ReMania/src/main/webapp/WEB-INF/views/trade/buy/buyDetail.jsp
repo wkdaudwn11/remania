@@ -102,21 +102,24 @@
 	
 	//게시글 삭제 함수
 	function buyDelete(loginEmail, memberEmail, buynum, curPage, category, sort, searchType, searchValue){
-		
-		alert("memberEmail: "+memberEmail);
-		alert("loginEmail: "+loginEmail);
-		
-		if(loginEmail == ''){ // 로그인 안했으면 일단 buyDelete로 넘김. (buyDelete에서 interceptor로 인해서 로그인 화면으로 넘어감.)
-			location.replace("buyDelete?buynum="+buynum+"&curPage="+curPage+"&category="+category+"&sort="+sort+"&searchType="+searchType+"&searchValue="+searchValue);
-		}else if(loginEmail != memberEmail){ // 로그인 한 계정과 작성자가 틀리면 경고창을 띄어줌.
+		if(loginEmail != memberEmail){ // 로그인 한 계정과 작성자가 틀리면 경고창을 띄어줌.
 			alert('작성자만 삭제 할 수 있습니다.');
 		}else{ // 나머지의 경우에는 삭제 할 것인지 다시 한 번 물어봄.
 			if(confirm("게시글을 정말로 삭제하시겠습니까?")){
 				location.replace("buyDelete?buynum="+buynum+"&curPage="+curPage+"&category="+category+"&sort="+sort+"&searchType="+searchType+"&searchValue="+searchValue);
 			}
 		}
-		
-	}
+	}//buyDelete(loginEmail, memberEmail, buynum, curPage, category, sort, searchType, searchValue)
+	
+	//글 수정
+	function buyUpdate(loginEmail, memberEmail, buynum, curPage, category, sort, searchType, searchValue){
+		if(loginEmail != memberEmail){ // 로그인 한 계정과 작성자가 틀리면 경고창을 띄어줌.
+			alert('작성자만 수정 할 수 있습니다.');
+		}else{ // 나머지의 경우에는 삭제 할 것인지 다시 한 번 물어봄.
+			location.replace("buyUpdate?buynum="+buynum+"&curPage="+curPage+"&category="+category+"&sort="+sort+"&searchType="+searchType+"&searchValue="+searchValue);
+		}
+	}//buyUpdate(loginEmail, memberEmail, buynum)
+	
 </script>
 
 </head>
@@ -170,20 +173,30 @@
 						<hr />
 						<table class="visualRightTable" width="40%">
 							<tr>
-								<td>상품</td>
+								<td style="width: 30%">상품</td>
 								<td>${buyDTO.category}</font>
 								</td>
 							</tr>
-							<tr>
-								<td>최소</td>
-								<td><fmt:formatNumber value="${buyDTO.price1}"
-										type="currency" /></td>
-							</tr>
-							<tr>
-								<td>최대</td>
-								<td><fmt:formatNumber value="${buyDTO.price2}"
-										type="currency" /></td>
-							</tr>
+							<c:choose>
+								<c:when test="${buyDTO.pricechoice == '범위 설정'}">
+									<tr>
+										<td>최소</td>
+										<td><fmt:formatNumber value="${buyDTO.price1}"
+												type="currency" /></td>
+									</tr>
+									<tr>
+										<td>최대</td>
+										<td><fmt:formatNumber value="${buyDTO.price2}"
+												type="currency" /></td>
+									</tr>
+								</c:when>
+								<c:when test="${buyDTO.pricechoice == '합의 후 결정'}">
+									<tr>
+										<td class="productName">가격</td>
+										<td>합의 후 결정</td>
+									</tr>
+								</c:when>
+							</c:choose>
 						</table>
 						<hr>
 						<table class="visualRightTable" width="40%">
@@ -223,7 +236,7 @@
 			<br />
 
 			<p style="text-align: left;">
-				<button type="button" class="btn btn-danger">수정하기</button>
+				<button type="button" class="btn btn-danger" onclick="buyUpdate('${login.email}', '${buyDTO.email}', '${buyDTO.buynum}','${buyPageDTO.curPage}','${category}', '${sort}', '${searchType}', '${searchValue}')">수정하기</button>
 				<button type="button" class="btn btn-danger" onclick="buyDelete('${login.email}', '${buyDTO.email}', '${buyDTO.buynum}','${buyPageDTO.curPage}','${category}', '${sort}', '${searchType}', '${searchValue}')">삭제하기</button>
 			</p>
 
