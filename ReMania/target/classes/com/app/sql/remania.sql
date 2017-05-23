@@ -38,6 +38,27 @@ create table freeBoard(
 drop sequence freeBoard_seq;
 create sequence freeBoard_seq minvalue 1;
 
+-- 댓 글
+create table remania_comment(
+	comment_level number(1) default 0,		--댓글 깊이 
+	ref number(5)	not null,			-- root 댓글 = 최상위 댓글 고유번호
+	step number(5)	not null,			--댓글 출력 순서 구분
+	parentComment number(5),			-- 상위 댓글  고유번호
+	num number(5) constraint comment_num_pk primary key,		--댓글 고유번호 (pk)
+	boardnum number(4),	--파라미터 넘길 필요 없이 그냥 게시물 삭제시 지우게 게시물번호 (fk) -> 게시글 삭제되면 댓글도 같이 삭제 (cascade)
+	category varchar2(10), -- 그냥 table 하나로 댓 글 관리하려고 넣었어요.
+	email varchar2(50),
+	author varchar2(10),
+	usercomment varchar2(4000),
+	writeday date default sysdate,
+	constraint comment_boardnum_fk foreign key(boardnum) references freeBoard(freeboardnum) on delete cascade,
+	constraint comment_parentComment_fk foreign key(parentComment) references remania_comment(num) on delete cascade,
+	constraint comment_email_fk foreign key(email) references member(email) on delete cascade
+);
+
+drop sequence comment_seq;
+create sequence comment_seq minvalue 1;
+
 --자유게시판 댓글 테이블 (댓글의 댓글 추가)
 Create table freeBoardReple(  
  relevel	number(4) 		default 0,		-- 댓글의 깊이  현재 달고있는 댓글의 레벨 +1 

@@ -23,6 +23,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/freeWrite"/>
+			<mvc:mapping path="/comment"/>
 			<mvc:mapping path="/buyWrite"/>
 			<bean class="com.util.LoginValidInterceptor" />
 		</mvc:interceptor>

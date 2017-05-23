@@ -1,12 +1,17 @@
 package com.dao.board;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.entity.board.Comment;
 import com.entity.board.FreeBoardDTO;
 import com.entity.board.FreeBoardPage;
 
@@ -43,7 +48,30 @@ public class FreeBoardDAO {
 	
 	/** Detail 레코드 하나 가져오기*/
 	public FreeBoardDTO freeBoardDetail(FreeBoardDTO board){
+		template.update(namespace+"readcnt",board.getFreeboardnum());
 		return template.selectOne(namespace+"freeBoardDetail",board);
 	}// end public FreeBoardDTO freeBoardDetail
+	
+	/** comment 레코드 가져오기 */
+	public List<Comment> commentList(int num,Integer skip){
+		if(skip == null){
+			skip = 0;
+		}
+		return template.selectList(namespace+"commentList",num,new RowBounds(skip,5));
+	}
+	
+	/** comment 추가*/
+	public void comment(Comment comment){
+		template.insert(namespace+"comment",comment);
+	}
+	
+	/** recomment */
+	public void recomment(Comment recomment){
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("category", recomment.getCategory());
+		map.put("step",recomment.getStep());
+		template.update(namespace+"stepManager",map);
+		template.insert(namespace+"recomment",recomment);
+	}
 }// end Repository
 
