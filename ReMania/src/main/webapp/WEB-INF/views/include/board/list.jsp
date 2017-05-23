@@ -48,10 +48,10 @@
 		<div id="paging" style="width: 44em; margin: 0 auto;">
 			<ul class="pager" style="float: left;"> <!-- style="float: left;" -->
 				<c:if test="${curPage != 1}">
-					<li><a href="freeBoardList">처음</a></li>
+					<li><a href="freeBoardList?type=${FreeBoardPage.type}&value=${FreeBoardPage.value}">처음</a></li>
 				</c:if>
 				<c:if test="${pageBlock != 1}">
-					<li><a href="freeBoardList?curPage=${(pageBlock-1)*INDICATEPAGE}"><</a></li>
+					<li><a href="freeBoardList?curPage=${(pageBlock-1)*INDICATEPAGE}&type=${FreeBoardPage.type}&value=${FreeBoardPage.value}"><</a></li>
 				</c:if>
 			</ul>
 			<ul class="pagination" style="float: left;"> <!-- style="float: left;" -->
@@ -60,16 +60,16 @@
 					<li class="active"><a>${pageIndex}</a></li>
 				</c:if>
 				<c:if test="${curPage != pageIndex}">
-					<li><a href="freeBoardList?curPage=${pageIndex}">${pageIndex}</a></li>
+					<li><a href="freeBoardList?curPage=${pageIndex}&type=${FreeBoardPage.type}&value=${FreeBoardPage.value}">${pageIndex}</a></li>
 				</c:if>
 			</c:forEach>
 			</ul>
 			<ul class="pager" style="float: left;"> <!-- style="float: left;" -->
 				<c:if test="${pageBlock != endPageBlock}">
-					<li><a href="freeBoardList?curPage=${(pageBlock+1)*INDICATEPAGE}">></a></li>
+					<li><a href="freeBoardList?curPage=${(pageBlock+1)*INDICATEPAGE}&type=${FreeBoardPage.type}&value=${FreeBoardPage.value}">></a></li>
 				</c:if>
 				<c:if test="${curPage != totalPage}">
-					<li><a href="freeBoardList?curPage=${totalPage}">맨끝</a></li>
+					<li><a href="freeBoardList?curPage=${totalPage}&type=${FreeBoardPage.type}&value=${FreeBoardPage.value}">맨끝</a></li>
 				</c:if>
 			</ul>
 			<br />
