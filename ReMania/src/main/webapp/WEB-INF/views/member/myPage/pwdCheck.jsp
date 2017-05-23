@@ -31,19 +31,22 @@
 
 	function pwdCheking(value){
 		
-		var pwdCheckForm = document.getElementById('pwdCheckForm');
-		
+		var pwdCheckForm = document.getElementById('pwdCheckForm');	
+		if(pwdCheckForm.pwd.value =='${login.pwd}'){
 		if(value == 'submit'){
 			location.href="updateMemberUI";
 			/* pwdCheckForm.action="updateMemberUI";
 			pwdCheckForm.submit; */
+		
+		}
 		}else{
 			var result = confirm('정말로 취소하시겠습니까?');
 			if(result == true){
 				pwdCheckForm.action="myPageIndex";
 				pwdCheckForm.submit;
 			}
-		}	
+		}
+				
 	}
 	
 </script>

@@ -12,13 +12,23 @@ public class JoinService {
 	@Autowired
 	private JoinDAO joinDao;
 	
-	public MemberDTO joinCheck(MemberDTO dto) {
-		return joinDao.joinCheck(dto);
-	}//joinCheck(MemberDTO dto)
-
+	
 
 	public MemberDTO emailCheck(String email) {
 		return joinDao.emailCheck(email);
 	}
-	
+
+
+	public MemberDTO updateCheck(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return joinDao.updateCheck(dto);
+	}
+
+
+	public MemberDTO joinCheck(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return joinDao.joinCheck(dto);
+	}
+
+
 }

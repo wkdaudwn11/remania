@@ -24,6 +24,14 @@ public class JoinController {
 	@Autowired
 	RandomNumberAjax util;
 	
+	/** 회원정보 업데이트 메소드 */
+	@RequestMapping(value="updateCheck", method=RequestMethod.POST)
+	public String updateCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
+		service.updateCheck(dto);
+		return "redirect:login";
+	}//updateCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
+	
+	
 	/** 회원가입 메소드 */
 	@RequestMapping(value="joinCheck", method=RequestMethod.POST)
 	public String JoinCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){

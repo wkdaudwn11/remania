@@ -32,6 +32,16 @@
 	</insert> 
 	<!-- 로그인 관련 쿼리 끝 -->
 	
+	<!-- 회원정보 업데이트 관련 쿼리 시작-->
+	<!-- 회원정보 -->
+	<update id="updateMember" parameterType="MemberDTO">
+		update member
+		   set pwd=#{pwd}, tel=#{tel},
+		   		post1=#{post1}, post2=#{post2}, addr1=#{addr1}, addr2=#{addr2}
+		 where email=#{email}
+	</update>
+	<!-- 회원정보 -->
+	
 	<!-- 회원가입 관련 쿼리 시작-->
 	<!-- 회원가입 -->
 	<insert id="AddMember" parameterType="MemberDTO">
@@ -44,5 +54,14 @@
 		select email from member where email=#{value}
 	</select>
 	<!-- 회원가입 관련 쿼리 끝 -->
+	
+	
+	<!-- 아이디 찾기 관련 쿼리 시작 -->
+	<!-- tel체크를 하기 위한 쿼리 -->
+	<select id="findIdCheck" parameterType="string" resultType="MemberDTO">
+		select *
+		  from member
+		 where tel=#{tel}
+	</select>
 	
 </mapper>
