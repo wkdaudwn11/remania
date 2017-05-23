@@ -11,34 +11,34 @@
 	</insert>
 	
 	<!-- 게시판 리스트 쿼리 -->
-	<select id="freeBoardList" resultType="FreeBoardDTO">
+	<select id="freeBoardList" resultType="FreeBoardDTO" parameterType="FreeBoardPage">
 		select freeboardnum,email,author,title,content,writeday,readcnt,replecnt
 		from freeBoard
+		<where>
 		<if test="value != null">
-			<where>
-				<if test="type == title">
-					title like '%||#{value}||%'
+				<if test="type == 'title'">
+					upper(title) like '%'||upper(#{value})||'%'
 				</if>
-				<if test="type == content">
-					content like '%||#{value}||%'
+				<if test="type == 'content'">
+					upper(content) like '%'||upper(#{value})||'%'
 				</if>
-			</where>
 		</if>
+		</where>
 	</select>
 	
 	<!-- 전체 게시물 갯수 -->
 	<select id="totalRecord" resultType="int" parameterType="FreeBoardPage">
 		select count(*) from freeBoard
+		<where>
 		<if test="value != null">
-			<where>
-				<if test="type == title">
-					title like '%||#{value}||%'
+				<if test="type == 'title'">
+					upper(title) like '%'||upper(#{value})||'%'
 				</if>
-				<if test="type == content">
-					content like '%||#{value}||%'
+				<if test="type == 'content'">
+					upper(content) like '%'||upper(#{value})||'%'
 				</if>
-			</where>
 		</if>
+		</where>
 	</select>
 	
 	<!-- 디테일 쿼리 -->

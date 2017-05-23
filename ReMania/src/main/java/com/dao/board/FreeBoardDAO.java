@@ -32,12 +32,10 @@ public class FreeBoardDAO {
 	public FreeBoardPage freeBoardList(FreeBoardPage boardPage){
 		
 		int skip = (boardPage.getCurPage()-1)*boardPage.getPERPAGE();
-		
-		List<FreeBoardDTO> boardList = template.selectList(namespace+"freeBoardList", null,new RowBounds(skip, boardPage.getPERPAGE()));
+		List<FreeBoardDTO> boardList = template.selectList(namespace+"freeBoardList", boardPage,new RowBounds(skip, boardPage.getPERPAGE()));
 		
 		boardPage.setBoardList(boardList);
 		boardPage.setTotalRecord(totalRecord(boardPage));
-		
 		return boardPage;
 	}// end public void freeBoardList
 	

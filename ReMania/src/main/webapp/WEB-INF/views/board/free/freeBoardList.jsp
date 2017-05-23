@@ -22,7 +22,7 @@
 	$(document).ready(function(){
 		$("#search").on("click",function(){
 			var type = $("[name='type']").val();
-			var value = $("[name='value']").val();
+			var value = $("[name='value']").val().trim();
 			location.href="freeBoardList?type="+type+"&value="+value+"&curPage=${FreeBoardPage.curPage}";//
 		});// end $("#search").on("click");
 	});// end $.ready();
@@ -39,8 +39,8 @@
 		<form class="form-inline">
 			<div class="form-group">
 				<select class="form-control" name="type">
-					<option value="title" <c:if test="${FreeBoardPage.type == title}">selected</c:if>>제목</option>
-					<option value="content" <c:if test="${FreeBoardPage.type == content}">selected</c:if>>내용</option>
+					<option value="title" <c:if test="${FreeBoardPage.type eq 'title'}">selected</c:if>>제목</option>
+					<option value="content" <c:if test="${FreeBoardPage.type eq 'content'}">selected</c:if>>내용</option>
 				</select>
 			</div>
 			<input type="text" name="value" class="form-control" size="50" value="${FreeBoardPage.value}"

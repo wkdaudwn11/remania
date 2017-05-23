@@ -19,6 +19,7 @@ import com.entity.board.Comment;
 import com.entity.board.FreeBoardDTO;
 import com.entity.board.FreeBoardPage;
 import com.entity.member.MemberDTO;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
 import com.service.board.FreeBoardService;
 
 @Controller

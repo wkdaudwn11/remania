@@ -229,6 +229,8 @@
 		<jsp:include page="../../include/board/list.jsp" flush="true">
 			<jsp:param name="FreeBoardPage" value="${FreeBoardPage}"/>
 		</jsp:include>
+		
+		</div>
 	<jsp:include page="../../include/footer.jsp" flush="true" />
 </body>
 </html>
