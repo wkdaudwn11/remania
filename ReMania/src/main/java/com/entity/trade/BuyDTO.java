@@ -1,15 +1,18 @@
 package com.entity.trade;
 
+import java.util.Arrays;
+
 import org.apache.ibatis.type.Alias;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Alias("BuyDTO")
 public class BuyDTO {
 
 	private int buynum;			//삽니다번호
 	private String category;	//분류
-	private String tradeWay;	//거래방법
+	private String tradeway;	//거래방법
 	private String location;	//거래지역
-	private String priceChoice;	//가격선택 (합의 후 결정, 범위 설정)
+	private String pricechoice;	//가격선택 (합의 후 결정, 범위 설정)
 	private int price1;			//최소가격
 	private int price2;			//최대가격
 	private String email; 		//작성자의 이메일
@@ -19,21 +22,25 @@ public class BuyDTO {
 	private String writeday;	//작성날짜
 	private int readcnt;		//조회수
 	private int replecnt;		//댓글수
-	private String images;		//등록한 사진들
+	private CommonsMultipartFile upfile;
+	private CommonsMultipartFile[] upfileContent;
+	private String image1;	//대표사진
+	private String image2;	//등록된 사진
 	
 	public BuyDTO() {
 		super();
 	}
 
-	public BuyDTO(int buynum, String category, String tradeWay, String location, String priceChoice, int price1,
+	public BuyDTO(int buynum, String category, String tradeway, String location, String pricechoice, int price1,
 			int price2, String email, String author, String title, String content, String writeday, int readcnt,
-			int replecnt, String images) {
+			int replecnt, CommonsMultipartFile upfile, CommonsMultipartFile[] upfileContent, String image1,
+			String image2) {
 		super();
 		this.buynum = buynum;
 		this.category = category;
-		this.tradeWay = tradeWay;
+		this.tradeway = tradeway;
 		this.location = location;
-		this.priceChoice = priceChoice;
+		this.pricechoice = pricechoice;
 		this.price1 = price1;
 		this.price2 = price2;
 		this.email = email;
@@ -43,15 +50,19 @@ public class BuyDTO {
 		this.writeday = writeday;
 		this.readcnt = readcnt;
 		this.replecnt = replecnt;
-		this.images = images;
+		this.upfile = upfile;
+		this.upfileContent = upfileContent;
+		this.image1 = image1;
+		this.image2 = image2;
 	}
 
 	@Override
 	public String toString() {
-		return "BuyDTO [buynum=" + buynum + ", category=" + category + ", tradeWay=" + tradeWay + ", location="
-				+ location + ", priceChoice=" + priceChoice + ", price1=" + price1 + ", price2=" + price2 + ", email="
+		return "BuyDTO [buynum=" + buynum + ", category=" + category + ", tradeway=" + tradeway + ", location="
+				+ location + ", pricechoice=" + pricechoice + ", price1=" + price1 + ", price2=" + price2 + ", email="
 				+ email + ", author=" + author + ", title=" + title + ", content=" + content + ", writeday=" + writeday
-				+ ", readcnt=" + readcnt + ", replecnt=" + replecnt + ", images=" + images + "]";
+				+ ", readcnt=" + readcnt + ", replecnt=" + replecnt + ", upfile=" + upfile + ", upfileContent="
+				+ Arrays.toString(upfileContent) + ", image1=" + image1 + ", image2=" + image2 + "]";
 	}
 
 	public int getBuynum() {
@@ -70,12 +81,12 @@ public class BuyDTO {
 		this.category = category;
 	}
 
-	public String getTradeWay() {
-		return tradeWay;
+	public String getTradeway() {
+		return tradeway;
 	}
 
-	public void setTradeWay(String tradeWay) {
-		this.tradeWay = tradeWay;
+	public void setTradeway(String tradeway) {
+		this.tradeway = tradeway;
 	}
 
 	public String getLocation() {
@@ -86,12 +97,12 @@ public class BuyDTO {
 		this.location = location;
 	}
 
-	public String getPriceChoice() {
-		return priceChoice;
+	public String getPricechoice() {
+		return pricechoice;
 	}
 
-	public void setPriceChoice(String priceChoice) {
-		this.priceChoice = priceChoice;
+	public void setPricechoice(String pricechoice) {
+		this.pricechoice = pricechoice;
 	}
 
 	public int getPrice1() {
@@ -166,12 +177,36 @@ public class BuyDTO {
 		this.replecnt = replecnt;
 	}
 
-	public String getImages() {
-		return images;
+	public CommonsMultipartFile getUpfile() {
+		return upfile;
 	}
 
-	public void setImages(String images) {
-		this.images = images;
+	public void setUpfile(CommonsMultipartFile upfile) {
+		this.upfile = upfile;
 	}
-		
+
+	public CommonsMultipartFile[] getUpfileContent() {
+		return upfileContent;
+	}
+
+	public void setUpfileContent(CommonsMultipartFile[] upfileContent) {
+		this.upfileContent = upfileContent;
+	}
+
+	public String getImage1() {
+		return image1;
+	}
+
+	public void setImage1(String image1) {
+		this.image1 = image1;
+	}
+
+	public String getImage2() {
+		return image2;
+	}
+
+	public void setImage2(String image2) {
+		this.image2 = image2;
+	}
+
 }

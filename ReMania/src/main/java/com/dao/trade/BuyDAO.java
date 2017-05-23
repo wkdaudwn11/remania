@@ -23,29 +23,41 @@ public class BuyDAO {
 		this.template = template;
 	}
 	
-	public BuyPageDTO buyList(int curPage, String category, HashMap<String, String> map) {
+	/** 글 리스트 */
+	public BuyPageDTO buyList(int curPage, HashMap<String, String> map) {
 		
 		BuyPageDTO buyPageDTO = new BuyPageDTO();
 		
 		int skip = (curPage-1) * buyPageDTO.getPerPage();
-		List<BuyDTO> buyList = null;
 		
-		int count = -1;
-		
-		//category가 null이거나 ""라는 것은 전체 검색이라는 것이니까 전체 갯수를 가져옴.
-		if(category == null || category.equals("")){
-			count = template.selectOne(namespace+"totalRecordAll");
-		}
-		
-		buyList = template.selectList(namespace+"buyList", map, new RowBounds(skip,buyPageDTO.getPerPage()));
+		int count = template.selectOne(namespace+"totalRecord", map);
+		List<BuyDTO> buyList = template.selectList(namespace+"buyList", map, new RowBounds(skip,buyPageDTO.getPerPage()));
 		
 		buyPageDTO.setBuyList(buyList);
 		buyPageDTO.setCurPage(curPage);
 		buyPageDTO.setTotalRecord(count);
 		
-		
 		return buyPageDTO;
-		
+	}
+	
+	/** 현재 buy테이블의 가장 최신 글의 글 번호를 가져오는 메소드 */
+	public int getCurval() {
+		return template.selectOne(namespace+"getCurval");
+	}
+
+	/** 글작성 */
+	public void buyInsert(BuyDTO dto) {
+		template.insert(namespace+"buyInsert", dto);
+	}
+
+	/**넘겨받은 buynum에 대한 상세 정보를 반환하는 메소드 (buyDetail)*/
+	public BuyDTO buyDetail(int buynum) {
+		return template.selectOne(namespace+"buyDetail", buynum);
+	}
+	
+	/** 게시글 삭제 */
+	public void buyDelete(int buynum) {
+		template.delete(namespace+"buyDelete", buynum);
 	}
 	
 }// end Repository

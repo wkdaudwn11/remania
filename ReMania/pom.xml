@@ -8,7 +8,7 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<org.springframework-version>4.3.7.RELEASE</org.springframework-version>
+		<org.springframework-version>4.3.8.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
@@ -164,7 +164,7 @@
 			<version>5.4.1.Final</version>
 		</dependency>
 		<!-- validator 관련 디펜던시 등록 끝 -->
-		
+
 		<!-- @ResponseBody (Ajax) 관련 디펜던시 등록 시작 -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
@@ -180,6 +180,24 @@
 			<version>2.8.8</version>
 		</dependency>
 		<!-- @ResponseBody (Ajax) 관련 디펜던시 등록 끝 -->
+
+		<!-- fileUpload 관련 디펜던시 등록 시작 -->
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
+		<!-- fileUpload 관련 디펜던시 등록 끝 -->
+
 
 	</dependencies>
 	<build>

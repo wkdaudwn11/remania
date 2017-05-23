@@ -1,4 +1,4 @@
-package com.controller.validator;
+package com.util;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 

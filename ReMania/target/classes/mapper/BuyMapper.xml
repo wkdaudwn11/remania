@@ -4,20 +4,81 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.remania.BuyMapper">
 
-	<!-- 일단 테스트용 buyList -->
-	<!-- 상품별로 상품을 가져오는 쿼리 (최신순)-->
+	<!-- 상품별로 상품을 정렬해서 가져오는 쿼리-->
 	<select id="buyList" resultType="BuyDTO" parameterType="hashmap">
    		select *
    		  from buy
-   		<if test="category != null">
-   		 where category=#{category}
-		</if>
-   		 order by buynum desc
+		<choose>
+			<when test="category != null">
+				where category=#{category}
+				<if test="searchType =='title' ">
+					and title Like '%'||#{searchValue}||'%'
+				</if>
+				<if test="searchType =='content' ">
+					and content Like '%'||#{searchValue}||'%'
+				</if>
+			</when>
+			<otherwise>
+				<if test="searchType =='title' ">
+					where title Like '%'||#{searchValue}||'%'
+				</if>
+				<if test="searchType =='content' ">
+					where content Like '%'||#{searchValue}||'%'
+				</if>
+			</otherwise>
+		</choose>
+   		 order by ${sort}
 	</select>
 	
 	<!-- 전체 상품 갯수를 반환해주는 쿼리-->
-	<select id="totalRecordAll" resultType="int">
-		select count(*) from buy
+	<select id="totalRecord" resultType="int" parameterType="hashmap">
+		select count(*) 
+		  from buy
+		<choose>
+			<when test="category != null">
+				where category=#{category}
+				<if test="searchType =='title' ">
+					and title Like '%'||#{searchValue}||'%'
+				</if>
+				<if test="searchType =='content' ">
+					and content Like '%'||#{searchValue}||'%'
+				</if>
+			</when>
+			<otherwise>
+				<if test="searchType =='title' ">
+					where title Like '%'||#{searchValue}||'%'
+				</if>
+				<if test="searchType =='content' ">
+					where content Like '%'||#{searchValue}||'%'
+				</if>
+			</otherwise>
+		</choose>
 	</select>
+	
+	<!-- 가장 최신의 글 번호를 가져오는 쿼리 -->
+	<select id="getCurval" resultType="int">
+		select buynum
+		  from buy
+		 where rownum = 1
+		order by buynum desc
+	</select>
+	
+	<!-- 글 작성 -->
+	<insert id="buyInsert" parameterType="BuyDTO">
+		insert into buy(buynum, category, tradeway, location, pricechoice, price1, price2,
+						email, author, title, content, writeday, readcnt, replecnt, image1, image2)
+		values(buy_seq.nextval, #{category}, #{tradeway}, #{location}, #{pricechoice}, #{price1}, #{price2},
+				#{email}, #{author}, #{title}, #{content}, sysdate, 0, 0, #{image1}, #{image2})
+	</insert>
+	
+	<!-- 넘겨받은 buynum에 대한 상세 정보를 반환하는 쿼리 -->
+	<select id="buyDetail" parameterType="int" resultType="BuyDTO">
+		select * from buy where buynum=#{value}
+	</select>
+	
+	<!-- 넘겨받은 buynum에 대한 정보를 삭제하는 쿼리 -->
+	<delete id="buyDelete" parameterType="int">
+		delete from buy where buynum=#{value}
+	</delete>
 	
 </mapper>

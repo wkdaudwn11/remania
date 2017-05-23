@@ -20,6 +20,11 @@
 		<mvc:jsp prefix="/WEB-INF/views/" />
 	</mvc:view-resolvers>
 	
+	<!-- 파일업로드 관련 bean -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/freeWrite"/>
@@ -30,6 +35,18 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/loginCheck"/>
 			<bean class="com.util.PrevPageInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/buyWriteUI"/>
+			<bean class="com.util.LoginValidInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/buyDelete"/>
+			<bean class="com.util.LoginValidInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/buyUpdate"/>
+			<bean class="com.util.LoginValidInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
@@ -69,8 +86,7 @@
 	<mvc:view-controller path="questionList" view-name="board/question/questionList"/>
 	
 	<!-- 삽니다  화면 -->
-	<mvc:view-controller path="buyDetail" view-name="trade/buy/buyDetail"/>
-	<mvc:view-controller path="buyWrite" view-name="trade/buy/buyWrite"/>
+	<mvc:view-controller path="buyWriteUI" view-name="trade/buy/buyWrite"/>
 	
 	<!-- 팝니다  화면 -->
 	<mvc:view-controller path="sellList" view-name="trade/sell/sellList"/>
@@ -83,7 +99,7 @@
 	<context:component-scan base-package="com.controller.*" />
 	
 	<!-- 유효성 검사 등록 시작 -->
-	<bean id="validator" class="com.controller.validator.GlobalValidator" />
+	<bean id="validator" class="com.util.GlobalValidator" />
 	<!-- 유효성 검사 등록 끝 -->
 	
 	<!-- com.text.RandomNumberAjax 등록 -->
