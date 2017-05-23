@@ -111,7 +111,7 @@
 
 	<br /><br /><br /><br /><br /><br />
 	<center><font size="100"><b>자유게시판</b></font></center>
-
+	
 	<div class="container">
 		<div class="alert alert-success">
 			<strong>작&nbsp;&nbsp;성&nbsp;&nbsp;자</strong>&nbsp;&nbsp;
@@ -214,7 +214,7 @@
 							<input type="hidden" name="comment_level" value="${comment.comment_level +1}"/>
 							<c:if test="${comment.comment_level <2}">
 								<span style="text-align: right; float: none;">
-									<textarea type="text" name="usercomment" class="recomment" style="float: left; margin-top: 0.5em; border-style: none; width:${100-(comment.comment_level+25)}%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: ${comment.comment_level*7.5}%;" placeholder="re: "></textarea>
+									<textarea type="text" name="usercomment" class="recomment" style="float: left; margin-top: 0.5em; border: 1px solid black; width:${100-(comment.comment_level+25)}%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: ${comment.comment_level*7.5}%;" placeholder="re: "></textarea>
 									<button type="button" class="btn btn-success" style="float: right;" onclick="reComment(${status.index});"> 
 										답변하기
 									</button>
@@ -226,133 +226,9 @@
 		</div>
 		<br /><br /><hr /><br /><br />
 		
-		<div>
-		<p>글목록(전체 글: 999)</p>
-				
-		<!-- 게시판 리스트 -->
-		<table width="100%" cellpadding="0" cellspacing="0" border="0" class="boardList">
-			<tr height="30"> 
-				<th width="50">번 호</td> 
-				<th width="250">제   목</td> 
-			    <th width="100">작성자</td>
-			    <th width="150">작성일</td> 
-			    <th width="50">조 회</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >10</td>
-			    <td  width="250" align="center">
-			    	<a href="freeBoardDetail">제목</a>
-			    </td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >9</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >8</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >7</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >6</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >5</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >4</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >2</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >3</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >2</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >1</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-		</table> <!-- boardList -->
-	
-		<div id="paging" style="width: 44em; margin: 0 auto;">
-			<ul class="pager" style="float: left;">
-				<li><a href="#">처음</a></li>
-				<li><a href="#"><</a></li>
-			</ul>
-			<ul class="pagination" style="float: left;">
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">10</a></li>
-			</ul>
-			<ul class="pager" style="float: left;">
-				<li><a href="#">></a></li>
-				<li><a href="#">맨끝</a></li>
-			</ul>
-			<br />
-			<br />
-			<br />
-			<br />
-		</div>
-		<p style="text-align: right;">
-			<button type="button" class="btn btn-success" id="writeBtn">
-				글작성
-			</button>
-		</p>
-		
-	</div>
-
+		<jsp:include page="../../include/board/list.jsp" flush="true">
+			<jsp:param name="FreeBoardPage" value="${FreeBoardPage}"/>
+		</jsp:include>
 	<jsp:include page="../../include/footer.jsp" flush="true" />
 </body>
 </html>

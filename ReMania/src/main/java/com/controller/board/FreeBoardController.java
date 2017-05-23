@@ -2,6 +2,8 @@ package com.controller.board;
 
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class FreeBoardController {
 	
 	@RequestMapping("/freeBoardList")
 	public String freeBoardList(@ModelAttribute("FreeBoardPage")FreeBoardPage boardPage){
+		if(boardPage.getValue() != null && boardPage.getValue().equals("")){
+			boardPage.setValue(null);
+		}
 		if(boardPage.getCurPage() == 0){
 			boardPage.setCurPage(1);
 		}
@@ -42,10 +47,11 @@ public class FreeBoardController {
 	}// end public String freeBoardList
 	
 	@RequestMapping("/freeBoardDetail")
-	public ModelAndView freeBoardDetail(FreeBoardDTO board){
+	public ModelAndView freeBoardDetail(FreeBoardDTO board,FreeBoardPage boardPage){
 		ModelAndView modelAndView = service.freeBoardDetail(board);
+		modelAndView.addObject("FreeBoardPage", service.freeBoardList(boardPage));
 		modelAndView.setViewName("board/free/freeBoardDetail");
-		return modelAndView; 
+		return modelAndView;
  	}// end public String freeBoardDetail()
 	
 	@RequestMapping("/comment")

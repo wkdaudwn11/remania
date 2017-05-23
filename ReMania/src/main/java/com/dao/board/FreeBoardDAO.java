@@ -36,14 +36,14 @@ public class FreeBoardDAO {
 		List<FreeBoardDTO> boardList = template.selectList(namespace+"freeBoardList", null,new RowBounds(skip, boardPage.getPERPAGE()));
 		
 		boardPage.setBoardList(boardList);
-		boardPage.setTotalRecord(totalRecord());
+		boardPage.setTotalRecord(totalRecord(boardPage));
 		
 		return boardPage;
 	}// end public void freeBoardList
 	
 	/** totalRecord 전체 레코드 수*/
-	private int totalRecord(){
-		return template.selectOne(namespace+"totalRecord",null);
+	private int totalRecord(FreeBoardPage boardPage){
+		return template.selectOne(namespace+"totalRecord",boardPage);
 	}// end private int totalRecord()
 	
 	/** Detail 레코드 하나 가져오기*/

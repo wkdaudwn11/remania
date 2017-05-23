@@ -10,7 +10,7 @@ public class Comment {
 	private int parentComment;			// 상위 댓글 = 부모 고유번호
 	private	Integer num;		//댓글 고유번호 (pk)
 	private	int boardnum;	// 파라미터 넘길 필요 없이 그냥 게시물 삭제시 지우게 게시물번호 (fk) -> 게시글 삭제되면 댓글도 같이 삭제 (cascade)
-	private String category; // 그냥 table 하나로 댓 글 관리하려고 넣었어요.
+	private String category; // 그냥 table 하나로 댓글 관리하려고 넣었어요.
 	private String email;
 	private String author;
 	private String usercomment;
