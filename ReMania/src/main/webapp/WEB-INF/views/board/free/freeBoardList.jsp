@@ -19,25 +19,18 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
+	$(document).ready(function(){
+		$("#search").on("click",function(){
+			var type = $("[name='type']").val();
+			var value = $("[name='value']").val().trim();
+			location.href="freeBoardList?type="+type+"&value="+value+"&curPage=${FreeBoardPage.curPage}";//
+		});// end $("#search").on("click");
+	});// end $.ready();
 
 </script>
 
 </head>
 <body>
-	<c:set var="totalRecord" value="${FreeBoardPage.totalRecord}" scope="page"/>
-	<c:set var="INDICATEPAGE" value="${FreeBoardPage.INDICATEPAGE}" scope="page"/>
-	<c:set var="PERPAGE" value="${FreeBoardPage.PERPAGE}" scope="page"/>
-	<c:set var="curPage" value="${FreeBoardPage.curPage}" scope="page" />
-	<fmt:formatNumber var="totalPage" minIntegerDigits="1" value="${Math.ceil(totalRecord/PERPAGE)}"/>
-	<fmt:formatNumber var="pageBlock" minIntegerDigits="1" value="${Math.ceil(curPage/INDICATEPAGE)}"/>
-	<fmt:formatNumber var="endPageBlock" minIntegerDigits="1" value="${Math.ceil(totalPage/INDICATEPAGE)}"/>
-	<c:if test="${pageBlock*INDICATEPAGE > totalPage}">
-		<c:set var="endPage" value="${totalPage}"/>
-	</c:if>
-	<c:if test="${pageBlock*INDICATEPAGE <= totalPage}">
-		<c:set var="endPage" value="${pageBlock*INDICATEPAGE}"/>
-	</c:if>
-	
 	<jsp:include page="../../include/nav.jsp" flush="true" />
 	
 	<br /><br /><br /><br /><br /><br />
@@ -45,69 +38,23 @@
 		<font size="100"><b>자유게시판</b></font><br /><br />
 		<form class="form-inline">
 			<div class="form-group">
-				<select class="form-control">
-					<option selected="selected">제목</option>
-					<option>내용</option>
+				<select class="form-control" name="type">
+					<option value="title" <c:if test="${FreeBoardPage.type eq 'title'}">selected</c:if>>제목</option>
+					<option value="content" <c:if test="${FreeBoardPage.type eq 'content'}">selected</c:if>>내용</option>
 				</select>
 			</div>
-			<input type="text" class="form-control" size="50"
+			<input type="text" name="value" class="form-control" size="50" value="${FreeBoardPage.value}"
 				placeholder="검색어를 입력하세요.">
-			<button type="button" class="btn btn-success">Search</button>
+			<button id="search" type="button" class="btn btn-success">Search</button>
 		</form>
 	</center>
 		
 	<div class="container">
 	
-		<p>글목록(전체 글: ${FreeBoardPage.totalRecord})</p>
-		<!-- 게시판 리스트 -->
-		<table width="100%" cellpadding="0" cellspacing="0" border="0" class="boardList">
-			<tr height="30"> 
-				<th width="50">번 호</th> 
-				<th width="250">제   목</th> 
-			    <th width="100">작성자</th>
-			    <th width="150">작성일</th> 
-			    <th width="50">조 회</th>
-			</tr>
-			<c:forEach var="board" items="${FreeBoardPage.boardList}" varStatus="status">
-				<tr height="30">
-					<td  width="50" align="center" >${totalRecord-status.index}</td>
-				    <td  width="250" align="center">
-				    	<a href="freeBoardDetail?freeboardnum=${board.freeboardnum}">${board.title}</a>
-				    </td>
-					<td width="100" align="center">${board.author}</td>			    
-				    <td width="150" align="center">${board.writeday}</td>
-				    <td width="50" align="center">${board.readcnt}</td>
-				</tr>
-			</c:forEach>
-		</table> <!-- boardList -->
-	
-		<div id="paging" style="width: 44em; margin: 0 auto;">
-			<ul class="pager" style="float: left;">
-				<c:if test="${curPage != 1}">
-					<li><a href="freeBoardList">처음</a></li>
-				</c:if>
-				<c:if test="${pageBlock != 1}">
-					<li><a href="freeBoardList?curPage=${(pageBlock-1)*INDICATEPAGE}"><</a></li>
-				</c:if>
-			</ul>
-			<ul class="pagination" style="float: left;">
-			<c:forEach var="pageIndex" begin="${(pageBlock*INDICATEPAGE)-(INDICATEPAGE-1)}" end="${endPage}">
-				<li <c:if test="${curPage == pageIndex}">class="active"</c:if>><a href="freeBoardList?curPage=${pageIndex}">${pageIndex}</a></li>
-			</c:forEach>
-			</ul>
-			<ul class="pager" style="float: left;">
-				<c:if test="${pageBlock != endPageBlock}">
-					<li><a href="freeBoardList?curPage=${(pageBlock+1)*INDICATEPAGE}">></a></li>
-				</c:if>
-				<c:if test="${curPage != totalPage}">
-					<li><a href="freeBoardList?curPage=${totalPage}">맨끝</a></li>
-				</c:if>
-			</ul>
-			<br />
-			<br />
-			<br />
-			<br />
-		</div>
+		<jsp:include page="../../include/board/list.jsp" flush="true">
+			<jsp:param name="FreeBoardPage" value="${FreeBoardPage}"/>
+		</jsp:include>
+
 		<p style="text-align: right;">
 			<button type="button" class="btn btn-success" onclick="location.href='freeWrite'">
 				글작성

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("FreeBoardDTO")
+@Alias("FreeBoardPage")
 public class FreeBoardPage {
 	
 	private final int PERPAGE = 10;
@@ -12,9 +12,30 @@ public class FreeBoardPage {
 	private int curPage;
 	private List<FreeBoardDTO> boardList;
 	private int totalRecord;
+	private String type;
+	private String value;
 	
 	public FreeBoardPage(){}
+	public FreeBoardPage(int curPage, List<FreeBoardDTO> boardList, int totalRecord, String type, String value) {
+		this.curPage = curPage;
+		this.boardList = boardList;
+		this.totalRecord = totalRecord;
+		this.type = type;
+		this.value = value;
+	}
 
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getValue() {
+		return value;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
 	public int getCurPage() {
 		return curPage;
 	}
@@ -46,11 +67,12 @@ public class FreeBoardPage {
 	public int getINDICATEPAGE() {
 		return INDICATEPAGE;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "FreeBoardPage [PERPAGE=" + PERPAGE + ", INDICATEPAGE=" + INDICATEPAGE + ", curPage=" + curPage
-				+ ", boardList=" + boardList + ", totalRecord=" + totalRecord + "]";
+				+ ", boardList=" + boardList + ", totalRecord=" + totalRecord + ", type=" + type + ", value=" + value
+				+ "]";
 	}
 	
 }// end Class

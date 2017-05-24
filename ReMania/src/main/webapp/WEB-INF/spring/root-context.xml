@@ -33,7 +33,9 @@
 			<list>
 				<value>com.entity.member.MemberDTO</value>
 				<value>com.entity.board.FreeBoardDTO</value>
+				<value>com.entity.board.FreeBoardPage</value>
 				<value>com.entity.trade.BuyDTO</value>
+				<value>com.entity.board.Comment</value>
 			</list>
 		</property>
 	</bean>
