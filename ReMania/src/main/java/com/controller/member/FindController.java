@@ -36,6 +36,14 @@ public class FindController {
 		
 		MemberDTO find = service.findIdCheck(dto);
 		
+		if(find != null){	
+				session.setAttribute("find", find);
+				System.out.println("1");
+				target = "redirect:login";
+			
+		}else{
+			System.out.println("2");
+		}
 		System.out.println(find.getTel());
 		System.out.println(find.getEmail());
 		

@@ -28,7 +28,7 @@ public class JoinController {
 	@RequestMapping(value="updateCheck", method=RequestMethod.POST)
 	public String updateCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
 		service.updateCheck(dto);
-		return "redirect:login";
+		return "redirect:myPageIndex";
 	}//updateCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
 	
 	

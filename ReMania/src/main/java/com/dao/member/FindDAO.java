@@ -15,17 +15,15 @@ public class FindDAO {
 	private SqlSessionTemplate template;
 	
 	
-	/** 입력한 tel를 DB에 조회해보는 메소드 */
+	/** 입력한  name, tel를 DB에 조회해보는 메소드 */
 	public MemberDTO findIdCheck(MemberDTO dto) {
 		
-		MemberDTO dto2 =template.selectOne(namespace+"findIdCheck", dto.getTel());
+		MemberDTO dto2= template.selectOne(namespace+"findIdCheck", dto);
 		
-		if(dto2 == null){
-			dto.setTel("-1");
-		}
-		
-		return dto;
+		return dto2;
 	}
+
+	
 	/** 입력한 email를 DB에 조회해보는 메소드 */
 	public MemberDTO findPwdCheck(MemberDTO dto) {
 		return template.selectOne(namespace+"findPwdCheck", dto);

@@ -19,15 +19,10 @@ public class FindService {
 	 *  dto에는 비밀번호가 맞으면 제대로 된 값이 들어가있을 것이고
 	 *  비밀번호가 틀리면 null이 들어가있다. */
 	public MemberDTO findIdCheck(MemberDTO dto) {
-		
-		
-		MemberDTO dto2 = finddao.findIdCheck(dto);
+				
+			MemberDTO dto2 = finddao.findIdCheck(dto);
 			
-			if(dto2.getTel().equals("-1")){
-				return dto2;
-			}else{
-				return dto2;
-			}
+		return dto2;
 		
 		
 	}//findIdCheck(MemberDTO dto)

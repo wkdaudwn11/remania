@@ -48,12 +48,11 @@ function check(form) {
 				alert('인증번호 불러오기 실패!');
 			}//휴대폰 인증 error
 		});//휴대폰 인증 ajax
-			$(document).ready(function(){
+		$(document).ready(function(){
 			$("#confirm").css("display","");
 			$("#checkNumber").css("display","none");
 			$("#sign").css("display","");
 		});
-		
 	}//else end	
 }//check End
 	
@@ -118,7 +117,7 @@ function check2(form){
 					<div id="confirm"
 						style="background-color: #478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em; display: none;">
 						<span
-							style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;">Confirm</span>
+							style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;">인증번호</span>
 						<input type="text" name="confirm2" id="confirm2"
 							style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;">
 						<br />

@@ -58,10 +58,11 @@
 	
 	<!-- 아이디 찾기 관련 쿼리 시작 -->
 	<!-- tel체크를 하기 위한 쿼리 -->
-	<select id="findIdCheck" parameterType="string" resultType="MemberDTO">
+	<select id="findIdCheck" parameterType="MemberDTO" resultType="MemberDTO">
 		select *
 		  from member
-		 where tel=#{tel}
+		where name=#{name}
+		and tel =#{tel}
 	</select>
 	
 </mapper>
