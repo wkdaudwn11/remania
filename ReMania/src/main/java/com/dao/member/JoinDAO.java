@@ -14,6 +14,20 @@ public class JoinDAO {
 	@Autowired
 	private SqlSessionTemplate template;
 
+	
+	
+	/**  DB에 회원정보를 업데이트하는 메소드 */
+	public void updateMember(MemberDTO dto) {
+		
+		int n = template.update(namespace+"updateMember", dto);
+		
+	}
+	
+	public MemberDTO updateCheck(MemberDTO dto) {
+		int n = template.update(namespace+"updateMember", dto);
+		return dto;
+	}
+	
 	/**  DB에 회원정보를 추가하는 메소드 */
 	public void AddMember(MemberDTO dto) {
 		
@@ -30,6 +44,9 @@ public class JoinDAO {
 	public MemberDTO emailCheck(String email) {
 		return template.selectOne(namespace+"emailCheck", email);
 	}
+	
+
+	
 	
 	
 }
