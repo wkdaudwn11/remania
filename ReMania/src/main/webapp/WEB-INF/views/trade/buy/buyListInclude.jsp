@@ -124,7 +124,7 @@
 						<div class="panel-body">
 						<c:choose>
 							<c:when test="${!(empty buyDTO2.image1)}">
-								<img src="buy/${buyDTO2.buynum}_${buyDTO2.title}/${buyDTO2.image1}.jpg" class="img-responsive"
+								<img src="buy/${buyDTO2.buynum}_${buyDTO2.email}/${buyDTO2.image1}.jpg" class="img-responsive"
 									style="width: 100%; height: 15em;" alt="Image">
 							</c:when>
 							<c:otherwise> <!-- 사진 등록을 안했을 경우는 기본 사진을 뿌려줌 -->

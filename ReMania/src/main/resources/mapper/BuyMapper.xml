@@ -81,4 +81,11 @@
 		delete from buy where buynum=#{value}
 	</delete>
 	
+	<update id="buyUpdate" parameterType="BuyDTO">
+		update buy 
+		   set category=#{category}, tradeway=#{tradeway}, location=#{location}, pricechoice=#{pricechoice},
+		   		price1=#{price1}, price2=#{price2}, title=#{title}, content=#{content}, image1=#{image1}, image2=#{image2}
+		 where buynum=#{buynum}
+	</update>
+	
 </mapper>

@@ -75,7 +75,7 @@ public class BuyController {
 		CommonsMultipartFile image2[] = dto.getUpfileContent(); // 내용에 있는 사진은 여러장 일 수도 있기 때문에 배열로 받는다.
 		
 		//사진을 저장할 경로 지정 (번호_글제목)
-		String filePath = "C:\\project\\images\\trade\\buy\\"+nextval+"_"+dto.getTitle();
+		String filePath = "C:\\project\\images\\trade\\buy\\"+nextval+"_"+dto.getEmail();
 		
 		//없는 경로라면(무조건 없겠지만), 해당 폴더(경로)를 새로 만듬
 		if(!new File(filePath).exists()){
@@ -91,6 +91,8 @@ public class BuyController {
 				StringTokenizer image1Token = new StringTokenizer(fileName1, ".");
 				dto.setImage1(image1Token.nextToken()); //dto에 사진이름을 저장 (.jpg를 뺀 순수한 이름)
 			}else{
+				File file1 = new File(filePath, "default");
+				image1.transferTo(file1);
 				dto.setImage1(""); // SQLException을 막기 위해서 빈문자열이라도 넣어준다. (값이 없는 상태에서 insert하니까 에러뜸)
 			}
 			
@@ -100,10 +102,12 @@ public class BuyController {
 			//image2는 여러장일 수도 있으므로 for문을 돌려서 사진을 저장한다.
 			for(int i=0; i<image2.length; i++){
 				fileName2 = image2[i].getOriginalFilename();
-				File file2 = new File(filePath, fileName2);
-				image2[i].transferTo(file2);
-				
-				contentImages[i] = fileName2; // 내용에 들어간 사진들의 이름을 저장. '.jpg'도 포함되어있어서 토크나이저로 짤라줘야함.
+				if(!fileName2.equals("")){
+					File file2 = new File(filePath, fileName2);
+					image2[i].transferTo(file2);
+					
+					contentImages[i] = fileName2; // 내용에 들어간 사진들의 이름을 저장. '.jpg'도 포함되어있어서 토크나이저로 짤라줘야함.
+				}
 			}
 			
 			if(!(fileName2.equals(""))){ // 내용사진도 마찬가지로 사진을 올렸을 경우에만 사진을 저장한다.
@@ -133,18 +137,76 @@ public class BuyController {
 	
 	/** 넘겨받은 buynum으로 해당 게시글의 정보를 가지고 글 수정 폼으로 넘김 */
 	@RequestMapping(value="buyUpdate", method=RequestMethod.POST)
-	public String buyUpdate(BuyDTO buyDTO, String curPage, String category, String sort, String searchType, String searchValue){
+	public String buyUpdate(BuyDTO buyDTO, String curPage, String category2, String sort, String searchType, String searchValue, RedirectAttributes redirectAttributes){
 		
-		if(category.equals(",자전거")){
-			category="자전거";
-		}else if(category.equals(",카메라")){
-			category="카메라";
+		if(buyDTO.getCategory().equals(",자전거")){
+			buyDTO.setCategory("자전거");
+		}else if(buyDTO.getCategory().equals(",카메라")){
+			buyDTO.setCategory("카메라");
 		}
 		
-		//2017.05.23 05:08
+		CommonsMultipartFile image1 = buyDTO.getUpfile(); // 대표사진
+		CommonsMultipartFile image2[] = buyDTO.getUpfileContent(); // 내용에 있는 사진은 여러장 일 수도 있기 때문에 배열로 받는다.
 		
-		//여기서도 buyDetail로 넘겨야 하지만 get방식으로 넘길 때 한글처리가 안되므로 그냥 list로 넘어감
-		return "redirect:buyList";
+		String filePath = "C:\\project\\images\\trade\\buy\\"+buyDTO.getBuynum()+"_"+buyDTO.getEmail();
+		
+		try{
+			//대표사진 저장
+			String fileName1 = image1.getOriginalFilename();
+			if(!(fileName1.equals(""))){ // 사진을 올렸을 경우에만 사진을 저장한다.
+				File file1 = new File(filePath, fileName1);
+				image1.transferTo(file1);
+				StringTokenizer image1Token = new StringTokenizer(fileName1, ".");
+				buyDTO.setImage1(image1Token.nextToken()); //dto에 사진이름을 저장 (.jpg를 뺀 순수한 이름)
+			}else{
+				buyDTO.setImage1("");
+			}
+			
+			//내용사진 저장
+			String contentImages[] = new String[image2.length];
+			String fileName2 = "";
+			//image2는 여러장일 수도 있으므로 for문을 돌려서 사진을 저장한다.
+			for(int i=0; i<image2.length; i++){
+				fileName2 = image2[i].getOriginalFilename();
+				if(!fileName2.equals("")){
+					File file2 = new File(filePath, fileName2);
+					image2[i].transferTo(file2);
+					
+					contentImages[i] = fileName2; // 내용에 들어간 사진들의 이름을 저장. '.jpg'도 포함되어있어서 토크나이저로 짤라줘야함.
+				}
+			}
+			
+			String imagesName = ""; // .jpg를 제외한 파일명을 x변수에다가 중첩시킬 것이다. (image1,image2,image3) 이런 식으로.
+			
+			if(!(fileName2.equals(""))){ // 내용사진도 마찬가지로 사진을 올렸을 경우에만 사진을 저장한다.
+				StringTokenizer image2Token = null;
+				
+				for(int i=0; i<contentImages.length; i++){
+					image2Token = new StringTokenizer(contentImages[i], ".");
+					imagesName += image2Token.nextToken()+",";
+					
+					image2Token.nextToken(); //.jpg는 필요없음.
+				}
+			}
+
+			buyDTO.setImage2(imagesName); //dto에 사진이름들을 저장 (.jpg를 뺀 순수한 이름)
+			
+		}catch(IllegalStateException e){
+			e.printStackTrace();
+		}catch(IOException e2){
+			e2.printStackTrace();
+		}
+		
+		service.buyUpdate(buyDTO);
+		
+		redirectAttributes.addAttribute("buynum", buyDTO.getBuynum());
+		redirectAttributes.addAttribute("curPage", curPage);
+		if(!(category2.equals(""))) redirectAttributes.addAttribute("category", category2);
+		redirectAttributes.addAttribute("sort", sort);
+		redirectAttributes.addAttribute("searchType", searchType);
+		redirectAttributes.addAttribute("searchValue", searchValue);
+		
+		return "redirect:buyDetail";
 	}//buyDelete(String buynum) GET
 	
 	/**게시글을 클릭하면 이 메소드가 DB에서 해당 게시글에 대한 정보를 가지고 buyDetail.jsp로 넘김*/
@@ -165,9 +227,9 @@ public class BuyController {
 		
 		if(curPage == null) curPage="1";
 		if(sort == null || sort.equals("")) sort="최신순";
-		if(category.equals("")) category=null;
+		//if(category.equals("")) category=null;
 		if(searchType.equals("") || searchType == null) searchType="제목";
-		if(searchValue.equals("")) searchValue=null;
+		//if(searchValue.equals("")) searchValue=null;
 		
 		m.addAttribute("sort", sort);
 		
@@ -184,7 +246,7 @@ public class BuyController {
 	
 	/** 글 삭제 후, 게시물 목록으로 넘어감. */
 	@RequestMapping(value="buyDelete")
-	public String buyDelete(String buynum, String curPage, String category, String sort, String searchType, String searchValue,RedirectAttributes redirectAttributes) {
+	public String buyDelete(String buynum, String curPage, String category, String sort, String searchType, String searchValue, RedirectAttributes redirectAttributes) {
 		
 		service.buyDelete(Integer.parseInt(buynum));
 		
@@ -222,4 +284,5 @@ public class BuyController {
 		
 		return "trade/buy/buyUpdate";
 	}//buyUpdate(String buynum, Model m) GET
+	
 }
