@@ -59,6 +59,10 @@ public class BuyDAO {
 	public void buyDelete(int buynum) {
 		template.delete(namespace+"buyDelete", buynum);
 	}
+
+	public void buyUpdate(BuyDTO buyDTO) {
+		template.update(namespace+"buyUpdate", buyDTO);
+	}
 	
 }// end Repository
 

@@ -125,7 +125,6 @@
 	
 	//글작성 유효성검사
 	function buyUpdate(form){
-		alert("buyWrite 입장");
 		let result = true;
 		
 		if(form.tradeway.value == "택배"){
@@ -160,7 +159,6 @@
 		
 	}
 	
-	
 </script>
 
 </head>
@@ -180,11 +178,12 @@
 			<form id="buyUpdateForm" name="buyUpdateForm" method="post" action="buyUpdate" enctype="multipart/form-data">
 				<input type="hidden" name="email" value="${buyDTO.email}">
 				<input type="hidden" name="author" value="${buyDTO.author}">
-				
+				<input type="hidden" name="buynum" value="${buyDTO.buynum}">
 				<input type="hidden" name="curPage" value="${curPage}">
-				<input type="hidden" name="category" value="${category}">
+				<input type="hidden" name="category2" value="${category}">
 				<input type="hidden" name="sort" value="${sort}">
 				<input type="hidden" name="searchType" value="${searchType}">
+				<input type="hidden" name="searchValue" value="${searchValue}">
 				<input type="hidden" name="author" value="${searchValue}">
 			
 				<strong>구&nbsp;&nbsp;매&nbsp;&nbsp;자</strong>&nbsp;&nbsp;
@@ -295,8 +294,8 @@
 						<font color="black">
 							<c:choose>
 								<c:when test="${buyDTO.pricechoice == '범위 설정'}">
-									<input type="text" name="price1" style="width: 6em;"> ~ 
-									<input type="text" name="price2" style="width: 6em;">원
+									<input type="text" name="price1" value="${buyDTO.price1}" style="width: 6em;"> ~ 
+									<input type="text" name="price2" value="${buyDTO.price2}" style="width: 6em;">원
 								</c:when>
 								<c:otherwise>
 									<input type="text" name="price1" value="0" style="width: 6em;"> ~ 
@@ -334,7 +333,7 @@
 					</c:otherwise>
 				</c:choose>
 					<strong>미리보기</strong>
-					<img id="blah" src="buy/${buyDTO.buynum}_${buyDTO.title}/${buyDTO.image1}.jpg" width="100" height="100" />
+					<img id="blah" src="buy/${buyDTO.buynum}_${buyDTO.email}/${buyDTO.image1}.jpg" width="100" height="100" />
 				</p>
 				
 				<div>
@@ -348,14 +347,14 @@
 							<c:if test="${image2List != null}">
 								<center>
 									<c:forEach var="image2Name" items="${image2List}">
-										<img src="buy/${buyDTO.buynum}_${buyDTO.title}/${image2Name}.jpg"
+										<img src="buy/${buyDTO.buynum}_${buyDTO.email}/${image2Name}.jpg"
 											width="80%" height="400px">
 										<br />
 									</c:forEach>
 								</center>
 							</c:if>
 						</span>
-						<textarea class="content" name="content" rows="20" cols="87" style="border-style: none;"></textarea>
+						<textarea class="content" name="content" rows="20" cols="87" style="border-style: none;">${buyDTO.content}</textarea>
 					</div> <!-- #contentDiv -->
 				</div>
 			</form>
