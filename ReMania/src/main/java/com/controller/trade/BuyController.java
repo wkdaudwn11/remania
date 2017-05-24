@@ -188,10 +188,12 @@ public class BuyController {
 		
 		service.buyDelete(Integer.parseInt(buynum));
 		
-		//지우고 난 다음에 list로 넘길 때, 현재 페이지, 검색결과, 분류를 그대로 유지할려고 했으나, get방식으로 넘길 땐 한글처리가 안되서 실패.
-		//그러므로 그냥  buyList로 넘기는 걸로.
-		//return "redirect:buyList?curPage="+curPage+"&category="+category+"&sort="+sort+"&searchType="+searchType+"&searchValue="+searchValue;
-		redirectAttributes.addAttribute("aa", curPage);
+		redirectAttributes.addAttribute("curPage", curPage);
+		if(!(category.equals(""))) redirectAttributes.addAttribute("category", category);
+		redirectAttributes.addAttribute("sort", sort);
+		redirectAttributes.addAttribute("searchType", searchType);
+		redirectAttributes.addAttribute("searchValue", searchValue);
+		
 		return "redirect:buyList";
 	}//buyDelete(String buynum, String curPage, String category, String sort, String searchType, String searchValue)
 	
