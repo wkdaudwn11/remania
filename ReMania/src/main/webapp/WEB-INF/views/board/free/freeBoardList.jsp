@@ -20,6 +20,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		if(${deleteBoard != null }){
+			alert('${deleteBoard}');
+		}
+		
 		$("#search").on("click",function(){
 			var type = $("[name='type']").val();
 			var value = $("[name='value']").val().trim();
