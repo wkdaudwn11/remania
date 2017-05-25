@@ -18,10 +18,17 @@ public class FreeBoardService {
 	@Autowired
 	private FreeBoardDAO dao;
 	
-
 	public void freeBoardWrite(FreeBoardDTO board){
 		dao.freeBoardWrite(board);
 	}// end public void freeBoardWrite
+	
+	public void boardUpdate(FreeBoardDTO board){
+		dao.boardUpdate(board);
+	}
+	
+	public void deleteBoard(int freeboardnum){
+		dao.deleteBoard(freeboardnum);
+	}
 	
 	public FreeBoardPage freeBoardList(FreeBoardPage boardPage){
 		return dao.freeBoardList(boardPage);
@@ -42,6 +49,14 @@ public class FreeBoardService {
 	public void comment(Comment comment){
 		dao.comment(comment);
 	}// end public void comment
+	
+	public void deleteComment(Comment comment){
+		dao.deleteComment(comment);
+	}
+	
+	public void updateComment(Comment comment){
+		dao.updateComment(comment);
+	}
 	
 	@Transactional
 	public void recomment(Comment recomment){

@@ -28,6 +28,16 @@ public class FreeBoardDAO {
 		template.insert(namespace+"freeBoardWrite",board);
 	}// end public void freeBoardWrite
 
+	/** update 레코드 */
+	public void boardUpdate(FreeBoardDTO board){
+		template.update(namespace+"boardUpdate",board);
+	}
+	
+	/** delete 레코드 */
+	public void deleteBoard(int freeboardnum){
+		template.delete(namespace+"deleteBoard",freeboardnum);
+	}
+	
 	/** list 전체 레코드 가져오기*/
 	public FreeBoardPage freeBoardList(FreeBoardPage boardPage){
 		
@@ -61,6 +71,17 @@ public class FreeBoardDAO {
 	/** comment 추가*/
 	public void comment(Comment comment){
 		template.insert(namespace+"comment",comment);
+	}
+	
+	/** comment 삭제*/
+	public void deleteComment(Comment comment){
+		template.update(namespace+"updateStep",comment);
+		template.delete(namespace+"deleteComment",comment);
+	}
+	
+	/** comment 업데이트*/
+	public void updateComment(Comment comment){
+		template.update(namespace+"updateComment",comment);
 	}
 	
 	/** recomment */

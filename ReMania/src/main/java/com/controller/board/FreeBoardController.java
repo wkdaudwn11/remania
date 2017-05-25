@@ -2,13 +2,15 @@ package com.controller.board;
 
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -19,7 +21,6 @@ import com.entity.board.Comment;
 import com.entity.board.FreeBoardDTO;
 import com.entity.board.FreeBoardPage;
 import com.entity.member.MemberDTO;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
 import com.service.board.FreeBoardService;
 
 @Controller
@@ -35,6 +36,24 @@ public class FreeBoardController {
 		return "redirect:freeBoardList";
 	}// end freeBoardWrite()
 	
+	@RequestMapping("/boardUpdate")
+	public String boardUpdate(FreeBoardDTO board,String curPage,RedirectAttributes redirectAttributes){
+		service.boardUpdate(board);
+		redirectAttributes.addAttribute("freeboardnum",board.getFreeboardnum());
+		redirectAttributes.addAttribute("curPage",curPage);
+		redirectAttributes.addFlashAttribute("update", "수정 완료");
+		return "redirect:freeBoardDetail";
+	}// end public void boardUpdate
+	
+	@RequestMapping("/deleteBoard")
+	public String deleteBoard(int freeboardnum,FreeBoardPage boardPage,RedirectAttributes redirectAttributes){
+		service.deleteBoard(freeboardnum);
+		redirectAttributes.addAttribute("curPage", boardPage.getCurPage());
+		redirectAttributes.addAttribute("type",boardPage.getType());
+		redirectAttributes.addAttribute("value", boardPage.getValue());
+		return "redirect:freeBoardList";
+	}
+	
 	@RequestMapping("/freeBoardList")
 	public String freeBoardList(@ModelAttribute("FreeBoardPage")FreeBoardPage boardPage){
 		if(boardPage.getValue() != null && boardPage.getValue().equals("")){
@@ -48,15 +67,16 @@ public class FreeBoardController {
 	}// end public String freeBoardList
 	
 	@RequestMapping("/freeBoardDetail")
-	public ModelAndView freeBoardDetail(FreeBoardDTO board,FreeBoardPage boardPage){
+	public ModelAndView freeBoardDetail(HttpServletRequest request,FreeBoardDTO board,FreeBoardPage boardPage){
 		ModelAndView modelAndView = service.freeBoardDetail(board);
 		modelAndView.addObject("FreeBoardPage", service.freeBoardList(boardPage));
 		modelAndView.setViewName("board/free/freeBoardDetail");
 		return modelAndView;
  	}// end public String freeBoardDetail()
 	
+	
 	@RequestMapping("/comment")
-	public String comment(@SessionAttribute("login")MemberDTO member,Comment comment,String call,RedirectAttributes redirectAttributes){
+	public String comment(@SessionAttribute("login")MemberDTO member,Comment comment,String call,String curPage,RedirectAttributes redirectAttributes){
 		comment.setEmail(member.getEmail());
 		comment.setAuthor(member.getName());
 		if(call.equals("comment")){
@@ -65,9 +85,29 @@ public class FreeBoardController {
 		}else if(call.equals("recomment")){
 			service.recomment(comment);
 		}
+		redirectAttributes.addAttribute("freeboardnum",comment.getBoardnum());
+		redirectAttributes.addAttribute("curPage",curPage);
 		redirectAttributes.addAttribute("commentWrite", "작성 완료");
-		return "redirect:freeBoardDetail?freeboardnum="+comment.getBoardnum();
+		return "redirect:freeBoardDetail";
 	}// end public String comment()
+	
+	@RequestMapping("/deleteComment")
+	public String deleteComment(Comment comment,String curPage,RedirectAttributes redirectAttributes){
+		service.deleteComment(comment);
+		redirectAttributes.addAttribute("freeboardnum",comment.getBoardnum());
+		redirectAttributes.addAttribute("curPage",curPage);
+		redirectAttributes.addFlashAttribute("deleteComment","삭제 완료");
+		return "redirect:freeBoardDetail";
+	}
+	
+	@RequestMapping("/updateComment")
+	public String updateComment(Comment comment,String curPage,RedirectAttributes redirectAttributes){
+		service.updateComment(comment);
+		redirectAttributes.addAttribute("freeboardnum", comment.getBoardnum());
+		redirectAttributes.addAttribute("curPage", curPage);
+		redirectAttributes.addFlashAttribute("update", "수정 완료");
+		return "redirect:freeBoardDetail";
+	}
 	
 	@RequestMapping("/commentList")
 	@ResponseBody
