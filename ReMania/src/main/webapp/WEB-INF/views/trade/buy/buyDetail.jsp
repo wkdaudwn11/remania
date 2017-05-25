@@ -152,7 +152,7 @@
 							<c:choose>
 								<c:when test="${!(empty buyDTO.image1)}">
 									<img
-										src="buy/${buyDTO.buynum}_${buyDTO.title}/${buyDTO.image1}.jpg"
+										src="buy/${buyDTO.buynum}_${buyDTO.email}/${buyDTO.image1}.jpg"
 										width="80%" height="300px">
 								</c:when>
 								<c:otherwise>
@@ -224,7 +224,7 @@
 				<c:if test="${image2List != null}">
 					<center>
 						<c:forEach var="image2Name" items="${image2List}">
-							<img src="buy/${buyDTO.buynum}_${buyDTO.title}/${image2Name}.jpg"
+							<img src="buy/${buyDTO.buynum}_${buyDTO.email}/${image2Name}.jpg"
 								width="80%" height="400px">
 							<br />
 						</c:forEach>

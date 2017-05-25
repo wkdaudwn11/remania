@@ -1,8 +1,9 @@
 package com.util;
 
-import java.io.BufferedReader;
+import java.io.BufferedReader; 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.IOException;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -18,7 +19,7 @@ import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultHttpClient;
-
+ 
 public final class RandomNumberAjax {
 	
 	public static final String appid = "remania";
@@ -87,9 +88,7 @@ public final class RandomNumberAjax {
 	}//getConfirmNum(String usertel)
 	
 	public boolean telConfirmAjax(String usertel){
-		
-	return false;
-	
+		return false;
 	}
 
 }/////////////////////////////////////////////////////////////

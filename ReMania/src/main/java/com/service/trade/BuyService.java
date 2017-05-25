@@ -62,5 +62,10 @@ public class BuyService {
 	public void buyDelete(int buynum) {
 		dao.buyDelete(buynum);
 	}
+
+	public void buyUpdate(BuyDTO buyDTO) {
+		dao.buyUpdate(buyDTO);
+		
+	}
 	
 }//end Service
