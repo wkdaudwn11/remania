@@ -19,13 +19,21 @@ public class MemberDTO {
 	private int buyCount;		//구매횟수
 	private int sellCount; 		//판매횟수
 	private String sns;			//sns로그인 여부
+	private int buywrite;		//삽니다에 등록한 게시글 갯수
+	private int buyprocess;		//구매중인 물품의 갯수
+	private int buyend;			//구매완료한 물품의 갯수
+	private int sellwrite;		//팝니다에 등록한 게시글 갯수
+	private int sellprocess;	//판매중인 물품의 갯수
+	private int sellend;		//판매완료한 물품의 갯수
+	private String grade;		//회원등급
 	
 	public MemberDTO() {
 		super();
 	}
 
 	public MemberDTO(int membernum, String email, String name, String pwd, String tel, String post1, String post2,
-			String addr1, String addr2, String joindate, String logindate, int buyCount, int sellCount, String sns) {
+			String addr1, String addr2, String joindate, String logindate, int buyCount, int sellCount, String sns,
+			int buywrite, int buyprocess, int buyend, int sellwrite, int sellprocess, int sellend, String grade) {
 		super();
 		this.membernum = membernum;
 		this.email = email;
@@ -41,14 +49,23 @@ public class MemberDTO {
 		this.buyCount = buyCount;
 		this.sellCount = sellCount;
 		this.sns = sns;
+		this.buywrite = buywrite;
+		this.buyprocess = buyprocess;
+		this.buyend = buyend;
+		this.sellwrite = sellwrite;
+		this.sellprocess = sellprocess;
+		this.sellend = sellend;
+		this.grade = grade;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberDTO [memnum=" + membernum + ", email=" + email + ", name=" + name + ", pwd=" + pwd + ", tel=" + tel
-				+ ", post1=" + post1 + ", post2=" + post2 + ", addr1=" + addr1 + ", addr2=" + addr2 + ", joindate="
-				+ joindate + ", logindate=" + logindate + ", buyCount=" + buyCount + ", sellCount=" + sellCount
-				+ ", sns=" + sns + "]";
+		return "MemberDTO [membernum=" + membernum + ", email=" + email + ", name=" + name + ", pwd=" + pwd + ", tel="
+				+ tel + ", post1=" + post1 + ", post2=" + post2 + ", addr1=" + addr1 + ", addr2=" + addr2
+				+ ", joindate=" + joindate + ", logindate=" + logindate + ", buyCount=" + buyCount + ", sellCount="
+				+ sellCount + ", sns=" + sns + ", buywrite=" + buywrite + ", buyprocess=" + buyprocess + ", buyend="
+				+ buyend + ", sellwrite=" + sellwrite + ", sellprocess=" + sellprocess + ", sellend=" + sellend
+				+ ", grade=" + grade + "]";
 	}
 
 	public int getMembernum() {
@@ -161,6 +178,62 @@ public class MemberDTO {
 
 	public void setSns(String sns) {
 		this.sns = sns;
+	}
+
+	public int getBuywrite() {
+		return buywrite;
+	}
+
+	public void setBuywrite(int buywrite) {
+		this.buywrite = buywrite;
+	}
+
+	public int getBuyprocess() {
+		return buyprocess;
+	}
+
+	public void setBuyprocess(int buyprocess) {
+		this.buyprocess = buyprocess;
+	}
+
+	public int getBuyend() {
+		return buyend;
+	}
+
+	public void setBuyend(int buyend) {
+		this.buyend = buyend;
+	}
+
+	public int getSellwrite() {
+		return sellwrite;
+	}
+
+	public void setSellwrite(int sellwrite) {
+		this.sellwrite = sellwrite;
+	}
+
+	public int getSellprocess() {
+		return sellprocess;
+	}
+
+	public void setSellprocess(int sellprocess) {
+		this.sellprocess = sellprocess;
+	}
+
+	public int getSellend() {
+		return sellend;
+	}
+
+	public void setSellend(int sellend) {
+		this.sellend = sellend;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 	
 }

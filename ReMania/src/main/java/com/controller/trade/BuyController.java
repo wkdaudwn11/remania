@@ -213,6 +213,8 @@ public class BuyController {
 	@RequestMapping(value="buyDetail")
 	public String buyDetail(String buynum, String curPage, String category, String sort, String searchType, String searchValue, Model m){
 		
+		service.buyReadcntUpdate(Integer.parseInt(buynum)); // 조회수 증가
+		
 		BuyDTO buyDTO = service.buyDetail(Integer.parseInt(buynum));
 		
 		if(buyDTO.getImage2() != null){
@@ -227,9 +229,7 @@ public class BuyController {
 		
 		if(curPage == null) curPage="1";
 		if(sort == null || sort.equals("")) sort="최신순";
-		//if(category.equals("")) category=null;
 		if(searchType.equals("") || searchType == null) searchType="제목";
-		//if(searchValue.equals("")) searchValue=null;
 		
 		m.addAttribute("sort", sort);
 		
@@ -248,7 +248,13 @@ public class BuyController {
 	@RequestMapping(value="buyDelete")
 	public String buyDelete(String buynum, String curPage, String category, String sort, String searchType, String searchValue, RedirectAttributes redirectAttributes) {
 		
-		service.buyDelete(Integer.parseInt(buynum));
+		BuyDTO buyDTO = service.buyDetail(Integer.parseInt(buynum));
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("email", buyDTO.getEmail());
+		map.put("buynum", buynum);
+		
+		service.buyDelete(map);
 		
 		redirectAttributes.addAttribute("curPage", curPage);
 		if(!(category.equals(""))) redirectAttributes.addAttribute("category", category);

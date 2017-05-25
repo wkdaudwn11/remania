@@ -109,7 +109,7 @@
 		
 		<p style="text-align: left; float: left;">
 			<button type="button" class="btn btn-danger" id="writeBtn">
-				팝니다에 등록한 게시글
+				삽니다에 등록한 게시글
 			</button>
 			<button type="button" class="btn btn-danger" id="writeBtn">
 				구매중인상품

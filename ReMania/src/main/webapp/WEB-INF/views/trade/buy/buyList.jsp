@@ -17,7 +17,7 @@
 	<c:set var="searchValue" value="${searchValue}" scope="request"/> <!-- 검색내용 -->
 
 	<jsp:include page="../../include/nav.jsp" flush="true" />
-	<jsp:include page="buyListInclude.jsp" flush="true" />
+	<jsp:include page="../../include/trade/buyListInclude.jsp" flush="true" />
 	<jsp:include page="../../include/footer.jsp" flush="true" />
 </body>
 </html>

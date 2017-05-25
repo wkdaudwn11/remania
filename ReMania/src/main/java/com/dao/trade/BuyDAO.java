@@ -48,6 +48,11 @@ public class BuyDAO {
 	/** 글작성 */
 	public void buyInsert(BuyDTO dto) {
 		template.insert(namespace+"buyInsert", dto);
+		
+		HashMap map = new HashMap();
+		map.put("sign", "plus");
+		map.put("email", dto.getEmail());
+		template.update(namespace+"buywriteUpdate", map);
 	}
 
 	/**넘겨받은 buynum에 대한 상세 정보를 반환하는 메소드 (buyDetail)*/
@@ -56,12 +61,23 @@ public class BuyDAO {
 	}
 	
 	/** 게시글 삭제 */
-	public void buyDelete(int buynum) {
+	public void buyDelete(int buynum, String email) {
 		template.delete(namespace+"buyDelete", buynum);
+		
+		HashMap map = new HashMap();
+		map.put("sign", "minus");
+		map.put("email", email);
+		template.update(namespace+"buywriteUpdate", map);
 	}
 
+	/** 게시글 수정 */
 	public void buyUpdate(BuyDTO buyDTO) {
 		template.update(namespace+"buyUpdate", buyDTO);
+	}
+
+	/** 게시글 조회수 증가 */
+	public void buyReadcntUpdate(int buynum) {
+		template.update(namespace+"buyReadcntUpdate", buynum);
 	}
 	
 }// end Repository
