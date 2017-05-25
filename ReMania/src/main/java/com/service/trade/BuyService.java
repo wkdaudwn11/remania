@@ -59,13 +59,19 @@ public class BuyService {
 		return dao.buyDetail(buynum);
 	}
 
-	public void buyDelete(int buynum) {
-		dao.buyDelete(buynum);
+	public void buyDelete(HashMap<String, String> map) {
+		int buynum = Integer.parseInt(map.get("buynum"));
+		String email = map.get("email");
+		dao.buyDelete(buynum, email);
 	}
 
 	public void buyUpdate(BuyDTO buyDTO) {
 		dao.buyUpdate(buyDTO);
 		
+	}
+
+	public void buyReadcntUpdate(int buynum) {
+		dao.buyReadcntUpdate(buynum);
 	}
 	
 }//end Service

@@ -53,14 +53,19 @@
 				<div class="panel-body">
 					<table style="width: 100%; font-size: 1.2em;">
 						<tr>
-							<c:if test="${sessionScope.login.sns == null}">
-								<td width="250"><img src="images/yyy.jpg">&nbsp;회원가입일</td>
-							</c:if>
-							<td><%-- ${sessionScope.login.joindate} --%>2017-05-12 15:27</td>
+							<c:choose>
+								<c:when test="${login.sns == 'remania'}">
+									<td width="250"><img src="images/yyy.jpg">&nbsp;회원가입일</td>
+								</c:when>
+								<c:otherwise>
+									<td width="250"><img src="images/yyy.jpg">&nbsp;최초로그인</td>
+								</c:otherwise>
+							</c:choose>
+							<td>${login.joindate}</td>
 						</tr>
 						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;로그인 한 시간</td>
-							<td><%-- ${sessionScope.login.logindate} --%>2017-05-12 15:27</td>
+							<td>${login.logindate}</td>
 						</tr>
 						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;거래 횟수</td>
@@ -68,7 +73,7 @@
 						</tr>
 						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;등급</td>
-							<td>플래티넘</td>
+							<td>${login.grade}</td>
 						</tr>
 						
 					</table>
@@ -86,19 +91,19 @@
 						<tr>
 							<td width="250"><img src="images/yyy.jpg">&nbsp;팝니다에 등록한 게시글</td>
 							<td>
-								<a href="sellWriteHistory">0건</a>
+								<a href="sellWriteHistory">${login.sellwrite}건</a>
 							</td>
 						</tr>
 						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;판매중인상품</td>
 							<td>
-								<a href="sellTrading">0건</a>
+								<a href="sellTrading">${login.sellprocess}건</a>
 							</td>
 						</tr>
 						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;판매종료내역</td>
 							<td>
-								<a href="sellEndHistory">0건</a>
+								<a href="sellEndHistory">${login.sellend}건</a>
 							</td>
 						</tr>
 					</table>
@@ -117,19 +122,19 @@
 								<img src="images/yyy.jpg">&nbsp;삽니다에 등록한 게시글
 							</td>
 							<td>
-								<a href="buyEndHistory">0건</a>
+								<a href="buyWriteHistory">${login.buywrite}건</a>
 							</td>
 						</tr>
 						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;구매중인상품</td>
 							<td>
-								<a href="buyTrading">0건</a>
+								<a href="buyTrading">${login.buyprocess}건</a>
 							</td>
 						</tr>
 						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;구매종료내역</td>
 							<td>
-								<a href="buyEndHistory">0건</a>
+								<a href="buyEndHistory">${login.buyend}건</a>
 							</td>
 						</tr>
 					</table>

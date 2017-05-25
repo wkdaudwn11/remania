@@ -6,8 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Remania</title>
-
+<title>remaina</title>
 <style>
 	.alert {font-size: 1.5em;}
 	
@@ -30,32 +29,13 @@
 	.visualRightTable .productPrice2 {color: red; font-size: 15px; font: bold;}
 	.visualRightTable .productPrice3 { color: #3f4993; font-size: 15px; font: bold;}
 </style>
-
 </head>
 <body>
-
 	<c:set var="login" value="${login}" scope="session" />
 	<c:set var="buyDTO" value="${buyDTO}" scope="request" />
-
-	<c:set var="buyPageDTO" value="${buyPageDTO}" scope="request" />
-	<c:set var="category" value="${category}" scope="request" />
-	<c:set var="sort" value="${sort}" scope="request" />
-	<c:set var="searchType" value="${searchType}" scope="request" />
-	<c:set var="searchValue" value="${searchValue}" scope="request" />
 	
-	<form id="hiddenForm" method="post">
-		<input type="hidden" name="category" value="buy">
-		<input type="hidden" name="categorynum" value="${buyDTO.buynum}">
-		<input type="hidden" name="buyer" value="${buyDTO.email}">
-		<input type="hidden" name="seller" value="${login.email}">
-	</form>
-
-	<jsp:include page="../../include/nav.jsp" flush="true" />
-
-	<jsp:include page="../../include/trade/buyDetailInclude.jsp" flush="true" />
-
-	<jsp:include page="../../include/trade/buyListInclude.jsp" flush="true" />
-
-	<jsp:include page="../../include/footer.jsp" flush="true" />
+	<jsp:include page="../include/nav.jsp" flush="true" />
+	<jsp:include page="../include/trade/buyDetailInclude.jsp" flush="true" />
+	<jsp:include page="../include/footer.jsp" flush="true" />
 </body>
 </html>

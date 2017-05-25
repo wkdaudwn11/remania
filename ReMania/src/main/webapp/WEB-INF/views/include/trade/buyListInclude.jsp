@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="com.entity.trade.BuyPageDTO"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@page import="com.entity.trade.BuyPageDTO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -62,6 +62,8 @@
 <c:set var="page" value="${buyPageDTO.page}" scope="request"/> <!-- 표시할 페이지 수 -->
 <c:set var="pageblock" value="${Math.ceil(curPage/page)}" scope="request"/> <!-- 표시할 페이지 블럭수 -->
 <c:set var="totalRecord" value="${buyPageDTO.totalRecord}" scope="request"/> <!-- 전체 게시물 수 -->
+
+<br /><br /><br /><br /><br /><br />
 
 <center>
 	<font size="100"><b><a href="buyList" style="text-decoration: none; color:black;">삽니다</a></b></font><br /><br />
