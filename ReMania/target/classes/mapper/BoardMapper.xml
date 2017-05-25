@@ -10,20 +10,34 @@
 		values(freeBoard_seq.nextval,#{email},#{author},#{title},#{content})
 	</insert>
 	
+	<!-- 업데이트 쿼리 -->
+	<update id="boardUpdate" parameterType="FreeBoardDTO">
+		update freeBoard
+		set title = #{title}, content = #{content},writeday = sysdate
+		where freeboardnum = #{freeboardnum}
+	</update>
+	
+	<!-- delete 쿼리 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from freeBoard
+		where freeboardnum = #{freeboardnum}
+	</delete>
+	
 	<!-- 게시판 리스트 쿼리 -->
 	<select id="freeBoardList" resultType="FreeBoardDTO" parameterType="FreeBoardPage">
 		select freeboardnum,email,author,title,content,writeday,readcnt,replecnt
 		from freeBoard
 		<where>
-		<if test="value != null">
-				<if test="type == 'title'">
-					upper(title) like '%'||upper(#{value})||'%'
-				</if>
-				<if test="type == 'content'">
-					upper(content) like '%'||upper(#{value})||'%'
-				</if>
-		</if>
+			<if test="value != null">
+					<if test="type == 'title'">
+						upper(title) like '%'||upper(#{value})||'%'
+					</if>
+					<if test="type == 'content'">
+						upper(content) like '%'||upper(#{value})||'%'
+					</if>
+			</if>
 		</where>
+		order by freeboardnum desc
 	</select>
 	
 	<!-- 전체 게시물 갯수 -->
@@ -69,6 +83,26 @@
 		values(comment_seq.nextval,comment_seq.currval,#{boardnum},#{category},#{email},#{author},#{usercomment},comment_seq.currval,
 		(select count(*) from remania_comment where category=#{category} and boardnum = #{boardnum})+1,0)
 	</insert>
+	
+	<!-- comment 삭제 쿼리 -->
+	<insert id="deleteComment" parameterType="Comment">
+		delete from remania_comment
+		where num = ${num} and category = #{category}
+	</insert>
+	
+	<!-- step 감소 쿼리 -->
+	<update id="updateStep" parameterType="Comment">
+		update remania_comment
+		set step = step-1
+		where boardnum = #{boardnum} and step > (select step from remania_comment where num = #{num} and category = #{category}) 
+	</update>
+	
+	<!-- comment 업데이트 쿼리 -->
+	<update id="updateComment" parameterType="Comment">
+		update remania_comment
+		set usercomment = #{usercomment},writeday = sysdate
+		where category = #{category} and num = #{num}
+	</update>
 	
 	<!-- recomment 쿼리 -->
 	<insert id="recomment">
