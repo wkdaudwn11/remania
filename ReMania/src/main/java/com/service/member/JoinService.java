@@ -31,4 +31,11 @@ public class JoinService {
 	}
 
 
+		public int deleteCheck(int membernum) {
+		// TODO Auto-generated method stub
+			return joinDao.deleteCheck(membernum);
+			
+	}
+
+
 }

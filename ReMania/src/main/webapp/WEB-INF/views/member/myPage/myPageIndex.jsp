@@ -17,9 +17,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 	
-	function pwdcheck2(){
-		
-	}
+
 
 </script>
 
@@ -46,9 +44,9 @@
 					<a href="pwdCheck">
 						<button type="button" class="btn btn-default">회원정보수정</button>
 					</a>　　　　　　　　　　　　　　　　　　　　<!-- 공백 건들지 말 것! -->
-					<button type="button" onclick="pwdcheck2" class="btn btn-danger">
-						회원탈퇴
-					</button>
+					<a href="pwdCheck2">
+						<button type="button" class="btn btn-danger">회원탈퇴</button>
+					</a>
 				</div>
 				<div class="panel-body">
 					<table style="width: 100%; font-size: 1.2em;">

@@ -32,25 +32,48 @@ public class FindController {
 	@RequestMapping(value="findIdCheck", method=RequestMethod.POST)
 	public String findIdCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
 		
-		String target = "redirect:login";
-		
 		MemberDTO find = service.findIdCheck(dto);
 		
-		if(find != null){	
-				session.setAttribute("find", find);
-				System.out.println("1");
-				target = "redirect:login";
-			
+		if(find != null){
+			System.out.println("이메일은"+find.getEmail()+"입니다.");
+			session.setAttribute("find", find);
+			return "member/find/findIdUI2";
 		}else{
-			System.out.println("2");
+			System.out.println("가입되지 않은 회원입니다.");
+			return "member/login/loginUI";
 		}
-		System.out.println(find.getTel());
-		System.out.println(find.getEmail());
+
+	}
+	/** 휴대폰 번호로 비밀번호 찾기 메소드 */
+	@RequestMapping(value="findPwdForTelCheck", method=RequestMethod.POST)
+	public String findPwdForTelCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
 		
-		return "member/login/loginUI";
+		MemberDTO find = service.findPwdForTelCheck(dto);
 		
-		/*return "redirect:login";*/
-	}//updateCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
-	
+		if(find != null){
+			System.out.println("비밀번호는"+find.getPwd()+"입니다.");
+			session.setAttribute("find", find);
+			return "member/find/findPwdUI2";
+		}else{
+			System.out.println("가입되지 않은 회원입니다.");
+			return "member/login/loginUI";
+		}
+
+	}	/** 휴대폰 번호로 비밀번호 찾기 메소드 */
+	@RequestMapping(value="findPwdForEmailCheck", method=RequestMethod.POST)
+	public String findPwdForEmailCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
+		
+		MemberDTO find = service.findPwdForEmailCheck(dto);
+		
+		if(find != null){
+			System.out.println("비밀번호는"+find.getPwd()+"입니다.");
+			session.setAttribute("find", find);
+			return "member/find/findPwdUI2";
+		}else{
+			System.out.println("가입되지 않은 회원입니다.");
+			return "member/login/loginUI";
+		}
+
+	}
 	
 }

@@ -15,12 +15,19 @@ public class JoinDAO {
 	private SqlSessionTemplate template;
 
 	
+	/**  DB에 회원정보를 삭제하는 메소드   */
+	public int deleteCheck(int membernum) {
+		return template.delete(namespace+"deleteMember", membernum);
+		
+	
+	}
+	
 	
 	/**  DB에 회원정보를 업데이트하는 메소드 */
-	public void updateMember(MemberDTO dto) {
+	public MemberDTO updateMember(MemberDTO dto) {
 		
 		int n = template.update(namespace+"updateMember", dto);
-		
+		return dto;
 	}
 	
 	public MemberDTO updateCheck(MemberDTO dto) {

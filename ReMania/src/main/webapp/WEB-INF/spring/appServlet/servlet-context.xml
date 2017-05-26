@@ -63,6 +63,7 @@
 	
 	<!-- 찾기 화면 -->
 	<mvc:view-controller path="findId" view-name="member/find/findIdUI"/>
+	<mvc:view-controller path="findId2" view-name="member/find/findIdUI2"/>
 	<mvc:view-controller path="findPwdForEmailUI" view-name="member/find/findPwdForEmailUI"/>
 	<mvc:view-controller path="findPwdForTelUI" view-name="member/find/findPwdForTelUI"/>
 	
@@ -73,6 +74,7 @@
 	
 	<mvc:view-controller path="myPageIndex" view-name="member/myPage/myPageIndex"/>
 	<mvc:view-controller path="pwdCheck" view-name="member/myPage/pwdCheck"/>
+	<mvc:view-controller path="pwdCheck2" view-name="member/myPage/pwdCheck2"/>
 	<mvc:view-controller path="updateMemberUI" view-name="member/myPage/updateMemberUI"/>
 	
 	<mvc:view-controller path="sellEndHistory" view-name="member/myPage/sellEndHistory"/>

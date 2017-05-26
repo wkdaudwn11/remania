@@ -1,5 +1,6 @@
 package com.controller.member;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,18 @@ public class JoinController {
 	
 	@Autowired
 	RandomNumberAjax util;
+	
+	/** 회원정보 삭제하는 메소드 */
+	@RequestMapping(value="deleteCheck", method=RequestMethod.POST)
+	public String deleteMember(int membernum, HttpSession session){
+		
+		System.out.println(membernum);
+		
+		service.deleteCheck(membernum);	
+		session.invalidate();
+		return "index";
+	}//updateCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
+	
 	
 	/** 회원정보 업데이트 메소드 */
 	@RequestMapping(value="updateCheck", method=RequestMethod.POST)

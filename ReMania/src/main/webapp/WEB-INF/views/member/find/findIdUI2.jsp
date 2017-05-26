@@ -12,19 +12,18 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-	function find(){
-		location.replace('findPwdForTelUI');
-	}
-	
-	function check(form){
+function find(){
+	location.replace('findPwdForTelUI');
+}
+function check(form){
 
-		
-		//alert(confirm2.value);
-		//alert(randomNumber);
-		form.action = "findPwdForEmailCheck";
-		form.submit();	
-		
-	}//check2(form)	
+	
+	//alert(confirm2.value);
+	//alert(randomNumber);
+	form.action = "findPwdForEmailCheck";
+	form.submit();	
+	
+}//check2(form)	
 </script>
 
 </head>
@@ -36,7 +35,7 @@
 		<div class="item active">
 			<div class="carousel-caption1zz" style="height: 44.3em; text-align: center; color: #FFFFFF; background-image: url('images/test/sample5.jpg');">
 				<br /><br /><br /><br />
-					<span style="color:#C5C5C5; font-size: 5em;">W e l c o m e !</span>
+				<span style="color:#C5C5C5; font-size: 4em;">회원님의 아이디는[ ${find.email} ]입니다.</span>
 				<p style="color:#C5C5C5; font-size: 1em;">
 					<font color="white">비밀번호</font>를 찾기 위해선 <br />
 					<font color="white">이메일</font> 인증을 해주셔야 합니다!<br />
@@ -63,7 +62,7 @@
 						style="width: 70%; height: 3em; color: black;
 							border-bottom-right-radius: 3em; border-top-right-radius: 3em;">
 				</div>
-				<br /><br/>
+				<br />
 				</form>	
 				<button type="button" class="btn btn-default"  id="sign"
 					onclick="check(findForm)"

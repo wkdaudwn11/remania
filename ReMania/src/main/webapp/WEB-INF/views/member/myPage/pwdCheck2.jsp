@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>비밀번호 재확인</title>
+<title>회원탈퇴 재확인</title>
 
 <style>
 	#pwdCheckContent {width:100%; margin: 0 auto; border:2px solid gray;}
@@ -25,16 +25,17 @@
 	function check(form){
 		var pwdcheck = form.pwdcheck;
 		if(pwdcheck.value =='${login.pwd}'){
-			alert('변경창으로 넘어갑니다.');
-			location.href="updateMemberUI"; 	
+			if(confirm("정말로 회원탈퇴를 하시겠습니까?")){
+				form.submit(); 
+				alert('서비스를 이용해주셔서 감사합니다.');
+			}
 		}else{
 			alert('비밀번호가 일치하지 않습니다.');
 			pwdcheck.value="";
 			pwdcheck.focus();
 		}
 	}//check(form)
-	function sss(){
-		alert("Mypage로 이동합니다.");
+	function cancel(){
 		location.href="myPageIndex"; 
 	}
 </script>
@@ -48,7 +49,8 @@
 			<br /><br />
 			<center><img src="images/pwdCheck.jpg"></center>
 			
-			<form name="pwdCheckForm" id="pwdCheckForm" >		
+			<form name="pwdCheckForm" id="pwdCheckForm" method="post" action="deleteCheck">
+				<input type="hidden" name="membernum" value="${login.membernum}">		
 				<div id="inputPwdTable">
 					<table>
 						<tr>
@@ -71,7 +73,7 @@
 						확인
 					</button>
 					<button type="button"  class="btn btn-danger" style="width: 8em; border-radius: 3em;"
-							onclick="sss()" value="return">
+							onclick="cancel()" value="return">
 						취소
 					</button>
 				</div>
