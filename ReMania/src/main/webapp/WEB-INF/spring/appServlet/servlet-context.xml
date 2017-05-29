@@ -30,23 +30,17 @@
 			<mvc:mapping path="/freeWrite"/>
 			<mvc:mapping path="/comment"/>
 			<mvc:mapping path="/buyWrite"/>
+			<mvc:mapping path="/buyWriteUI"/>
+			<mvc:mapping path="/buyDelete"/>
+			<mvc:mapping path="/buyUpdate"/>
+			<mvc:mapping path="/myPageIndex"/>
+			<mvc:mapping path="/trading"/>
+			<mvc:mapping path="/trade"/>
 			<bean class="com.util.LoginValidInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/loginCheck"/>
 			<bean class="com.util.PrevPageInterceptor" />
-		</mvc:interceptor>
-		<mvc:interceptor>
-			<mvc:mapping path="/buyWriteUI"/>
-			<bean class="com.util.LoginValidInterceptor" />
-		</mvc:interceptor>
-		<mvc:interceptor>
-			<mvc:mapping path="/buyDelete"/>
-			<bean class="com.util.LoginValidInterceptor" />
-		</mvc:interceptor>
-		<mvc:interceptor>
-			<mvc:mapping path="/buyUpdate"/>
-			<bean class="com.util.LoginValidInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
@@ -67,17 +61,8 @@
 	<mvc:view-controller path="findPwdForTelUI" view-name="member/find/findPwdForTelUI"/>
 	
 	<!-- MyPage 화면 -->
-	<mvc:view-controller path="buyEndHistory" view-name="member/myPage/buyEndHistory"/>
-	<mvc:view-controller path="buyTrading" view-name="member/myPage/buyTrading"/>
-	<mvc:view-controller path="buyWriteHistory" view-name="member/myPage/buyWriteHistory"/>
-	
-	<mvc:view-controller path="myPageIndex" view-name="member/myPage/myPageIndex"/>
 	<mvc:view-controller path="pwdCheck" view-name="member/myPage/pwdCheck"/>
 	<mvc:view-controller path="updateMemberUI" view-name="member/myPage/updateMemberUI"/>
-	
-	<mvc:view-controller path="sellEndHistory" view-name="member/myPage/sellEndHistory"/>
-	<mvc:view-controller path="sellTrading" view-name="member/myPage/sellTrading"/>
-	<mvc:view-controller path="sellWriteHistory" view-name="member/myPage/sellWriteHistory"/>
 	
 	<!-- 자유 게시판 -->
 	<mvc:view-controller path="freeWrite" view-name="board/free/freeBoardWrite"/>

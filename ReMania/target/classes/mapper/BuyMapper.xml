@@ -71,18 +71,6 @@
 				#{email}, #{author}, #{title}, #{content}, sysdate, 0, 0, #{image1}, #{image2})
 	</insert>
 	
-	<!-- 글작성을 하면 회원의 buywrite 속성을 +1 시켜줌 -->
-	<update id="buywriteUpdate" parameterType="hashmap">
-		<choose>
-			<when test="sign == 'plus'">
-				update member set buywrite=buywrite+1 where email=#{email}
-			</when>
-			<when test="sign == 'minus'">
-				update member set buywrite=buywrite-1 where email=#{email}
-			</when>
-		</choose>
-	</update>
-	
 	<!-- 넘겨받은 buynum에 대한 상세 정보를 반환하는 쿼리 -->
 	<select id="buyDetail" parameterType="int" resultType="BuyDTO">
 		select * from buy where buynum=#{value}

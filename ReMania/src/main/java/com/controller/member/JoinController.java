@@ -24,14 +24,6 @@ public class JoinController {
 	@Autowired
 	RandomNumberAjax util;
 	
-	/** 회원정보 업데이트 메소드 */
-	@RequestMapping(value="updateCheck", method=RequestMethod.POST)
-	public String updateCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
-		service.updateCheck(dto);
-		return "redirect:myPageIndex";
-	}//updateCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
-	
-	
 	/** 회원가입 메소드 */
 	@RequestMapping(value="joinCheck", method=RequestMethod.POST)
 	public String JoinCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
@@ -52,5 +44,23 @@ public class JoinController {
 		String confirmNumber = util.getConfirmNum(usertel);
 		return confirmNumber;
 	}//randomNumberAjax(String usertel, HttpSession session)
+	
+	/** 회원정보수정 화면을 뿌려주는 메소드 */
+	@RequestMapping(value="updateMemberUI", method=RequestMethod.GET)
+	public String updateMemberUI(HttpSession session, Model m){
+		MemberDTO login = (MemberDTO)session.getAttribute("login");
+		MemberDTO member = service.getMemberInfo(login.getMembernum());
+		m.addAttribute("member", member);
+		return "member/myPage/updateMemberUI";
+	}//updateMemberUI(HttpSession session, Model m)
+	
+	/** 회원정보 업데이트 메소드 */
+	@RequestMapping(value="updateCheck", method=RequestMethod.POST)
+	public String updateCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
+		service.updateCheck(dto); 
+		MemberDTO login = service.getMemberInfo(dto.getMembernum());
+		session.setAttribute("login", login);
+		return "redirect:myPageIndex";
+	}//updateCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
 	
 }
