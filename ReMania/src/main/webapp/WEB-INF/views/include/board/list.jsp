@@ -2,7 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<style>
+	.boardList {font-size:1em;}
+	.boardList th, .boardList td {border-top:1px solid #ddd; border-bottom:1px solid #ddd; padding:14px 0 10px 0;}
+	.boardList th {background:#dff0d8; text-align:center;}
+</style>
 		<c:set var="totalRecord" value="${FreeBoardPage.totalRecord}" scope="page"/>
 		<c:set var="INDICATEPAGE" value="${FreeBoardPage.INDICATEPAGE}" scope="page"/>
 		<c:set var="PERPAGE" value="${FreeBoardPage.PERPAGE}" scope="page"/>
@@ -46,7 +50,8 @@
 				</tr>
 			</c:forEach>
 		</table> <!-- boardList -->
-	
+		
+		
 		<div id="paging" style="width: 44em; margin: 0 auto;">
 			<ul class="pager" style="float: left;"> <!-- style="float: left;" -->
 				<c:if test="${curPage != 1}">
@@ -67,10 +72,10 @@
 			</c:forEach>
 			</ul>
 			<ul class="pager" style="float: left;"> <!-- style="float: left;" -->
-				<c:if test="${pageBlock != endPageBlock}">
+				<c:if test="${pageBlock < endPageBlock}"> <!-- != -->
 					<li><a href="freeBoardList?curPage=${(pageBlock+1)*INDICATEPAGE}&${search}">></a></li> <!-- type=${FreeBoardPage.type}&value=${FreeBoardPage.value} -->
 				</c:if>
-				<c:if test="${curPage != totalPage}">
+				<c:if test="${curPage < totalPage}"> <!-- != -->
 					<li><a href="freeBoardList?curPage=${totalPage}&${search}">맨끝</a></li> <!-- type=${FreeBoardPage.type}&value=${FreeBoardPage.value} -->
 				</c:if>
 			</ul>
