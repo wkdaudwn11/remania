@@ -13,18 +13,31 @@
 	
 </style>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){
 		
-		$("#writeBtn").on("click", function(){
-			location.replace('questionWrite');
-		})
+		$(".A-toggle").on("mouseenter",function(){
+			$(this).find(".question").wrap("<strong>");
+		});
+		$(".A-toggle").on("mouseleave",function(){
+			$(this).find(".question").unwrap();
+		});
 		
-	});
-
-
+		$(".A-toggle").on("click",function(){
+			var $answer = $(this).next();
+			if($answer.attr("style") == "display: none;"){
+				$(this).find(".question").wrap("<strong>");
+				$answer.show("slow");
+			}else{
+				$(this).find(".question").unwrap();
+				$answer.hide();
+			}
+		});
+		
+	}); // $(document).ready();
 </script>
 
 </head>
@@ -33,141 +46,52 @@
 	
 	<br /><br /><br /><br /><br /><br />
 	<center>
-		<font size="100"><b>질문과답변</b></font><br /><br />
-		<form class="form-inline">
-			<div class="form-group">
-				<select class="form-control">
-					<option selected="selected">제목</option>
-					<option>내용</option>
-				</select>
-			</div>
-			<input type="text" class="form-control" size="50"
-				placeholder="검색어를 입력하세요.">
-			<button type="button" class="btn btn-default">Search</button>
-		</form>
+		<font size="100"><i class="fa">&#xf0e6;</i>  <b>문의게시판</b></font><br /><br />
 	</center>
-		
+	
 	<div class="container">
 	
-		<p>글목록(전체 글: 999)</p>
-				
-		<!-- 게시판 리스트 -->
-		<table width="100%" cellpadding="0" cellspacing="0" border="0" class="boardList">
-			<tr height="30"> 
-				<th width="50">번 호</td> 
-				<th width="250">제   목</td> 
-			    <th width="100">작성자</td>
-			    <th width="150">작성일</td> 
-			    <th width="50">조 회</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >10</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >9</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >8</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >7</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >6</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >5</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >4</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >2</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >3</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >2</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-			<tr height="30">
-				<td  width="50" align="center" >1</td>
-			    <td  width="250" align="center">제목</td>
-				<td width="100" align="center">작성자</td>			    
-			    <td width="150" align="center">2017-05-09</td>
-			    <td width="50" align="center">10</td>
-			</tr>
-		</table> <!-- boardList -->
-	
-		<div id="paging" style="width: 44em; margin: 0 auto;">
-			<ul class="pager" style="float: left;">
-				<li><a href="#">처음</a></li>
-				<li><a href="#"><</a></li>
-			</ul>
-			<ul class="pagination" style="float: left;">
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">10</a></li>
-			</ul>
-			<ul class="pager" style="float: left;">
-				<li><a href="#">></a></li>
-				<li><a href="#">맨끝</a></li>
-			</ul>
-			<br />
-			<br />
-			<br />
-			<br />
-		</div>
+		<div class="alert alert-warning" style="background-color: #fbd14e;"><font size="5"><strong>Q&A</strong></font></div>
+		<div id="panel-group" class="panel-group">
+			<div class="panel panel-warning" style="border-color: #fbd14e;">
+				<div class="panel-heading A-toggle" style="background-color: #fbd14e;"><font color="#a87840" size="3"><strong>Q. </strong></font><span class="question" style="cursor: pointer;">aaaaaaaa</span></div>
+				<div class="panel-body" style="display: none;"><font size="3"><strong>A. </strong></font></div>
+			</div>
+			
+			<div class="panel panel-warning" style="border-color: #fbd14e;">
+				<div class="panel-heading A-toggle" style="background-color: #fbd14e;"><font color="#a87840" size="3"><strong>Q. </strong></font><span class="question" style="cursor: pointer;">aaaaaaaa</span></div>
+				<div class="panel-body" style="display: none;"><font size="3"><strong>A. </strong></font></div>
+			</div>
+			
+			<div class="panel panel-warning" style="border-color: #fbd14e;">
+				<div class="panel-heading A-toggle" style="background-color: #fbd14e;"><font color="#a87840" size="3"><strong>Q. </strong></font><span class="question" style="cursor: pointer;">aaaaaaaa</span></div>
+				<div class="panel-body" style="display: none;"><font size="3"><strong>A. </strong></font></div>
+			</div>
+			
+			<div class="panel panel-warning" style="border-color: #fbd14e;">
+				<div class="panel-heading A-toggle" style="background-color: #fbd14e;"><font color="#a87840" size="3"><strong>Q. </strong></font><span class="question" style="cursor: pointer;">aaaaaaaa</span></div>
+				<div class="panel-body" style="display: none;"><font size="3"><strong>A. </strong></font></div>
+			</div>
+			
+			<div class="panel panel-warning" style="border-color: #fbd14e;">
+				<div class="panel-heading A-toggle" style="background-color: #fbd14e;"><font color="#a87840" size="3"><strong>Q. </strong></font><span class="question" style="cursor: pointer;">aaaaaaaa</span></div>
+				<div class="panel-body" style="display: none;"><font size="3"><strong>A. </strong></font></div>
+			</div>
+			
+			<div class="panel panel-warning" style="border-color: #fbd14e;">
+				<div class="panel-heading A-toggle" style="background-color: #fbd14e;"><font color="#a87840" size="3"><strong>Q. </strong></font><span class="question" style="cursor: pointer;">aaaaaaaa</span></div>
+				<div class="panel-body" style="display: none;"><font size="3"><strong>A. </strong></font></div>
+			</div>
+			
+			<div class="panel panel-warning" style="border-color: #fbd14e;">
+				<div class="panel-heading A-toggle" style="background-color: #fbd14e;"><font color="#a87840" size="3"><strong>Q. </strong></font><span class="question" style="cursor: pointer;">aaaaaaaa</span></div>
+				<div class="panel-body" style="display: none;"><font size="3"><strong>A. </strong></font></div>
+			</div>
+		</div> <!--  panel-group  -->
+		
 		<p style="text-align: right;">
-			<button type="button" class="btn btn-default" id="writeBtn">
-				문의하기
+			<button type="button" class="btn btn-warning" onclick="location.replace('inquiryWrite');">
+				<i class="fa">&#xf27a;</i>  문의하기
 			</button>
 		</p>
 	</div>

@@ -28,9 +28,14 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/freeWrite"/>
+			<mvc:mapping path="/boardUpdate"/>
+			<mvc:mapping path="/deleteBoard"/>
 			<mvc:mapping path="/comment"/>
 			<mvc:mapping path="/buyWrite"/>
-			<mvc:mapping path="/buyWriteUI"/>
+			<mvc:mapping path="/inquiryWrite" />
+			<mvc:mapping path="/inquiryRegister"/>
+			<mvc:mapping path="/answer" />
+      <mvc:mapping path="/buyWriteUI"/>
 			<mvc:mapping path="/buyDelete"/>
 			<mvc:mapping path="/buyUpdate"/>
 			<mvc:mapping path="/myPageIndex"/>
@@ -68,7 +73,7 @@
 	<mvc:view-controller path="freeWrite" view-name="board/free/freeBoardWrite"/>
 	
 	<!-- 질문과답변 게시판 -->
-	<mvc:view-controller path="questionList" view-name="board/question/questionList"/>
+	<mvc:view-controller path="inquiryWrite" view-name="board/question/inquiry" />
 	
 	<!-- 삽니다  화면 -->
 	<mvc:view-controller path="buyWriteUI" view-name="trade/buy/buyWrite"/>

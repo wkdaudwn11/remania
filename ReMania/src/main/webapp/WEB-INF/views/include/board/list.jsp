@@ -2,7 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<style>
+	.boardList {font-size:1em;}
+	.boardList th, .boardList td {border-top:1px solid #ddd; border-bottom:1px solid #ddd; padding:14px 0 10px 0;}
+	.boardList th {background:#dff0d8; text-align:center;}
+</style>
 		<c:set var="totalRecord" value="${FreeBoardPage.totalRecord}" scope="page"/>
 		<c:set var="INDICATEPAGE" value="${FreeBoardPage.INDICATEPAGE}" scope="page"/>
 		<c:set var="PERPAGE" value="${FreeBoardPage.PERPAGE}" scope="page"/>
@@ -16,6 +20,8 @@
 		<c:if test="${pageBlock*INDICATEPAGE <= totalPage}">
 			<c:set var="endPage" value="${pageBlock*INDICATEPAGE}"/>
 		</c:if>
+		
+		<c:set var="search" value="freeBoardList?type=${FreeBoardPage.type}&value=${FreeBoardPage.value}"/>
 		
 		<p>글목록(전체 글: ${FreeBoardPage.totalRecord})</p>
 		<!-- 게시판 리스트 -->
@@ -32,7 +38,7 @@
 					<td  width="50" align="center" >${totalRecord-status.index}</td>
 				    <td  width="250" align="center">
 				    	<c:if test="${board.freeboardnum != freeboard.freeboardnum}">
-				    		<a href="freeBoardDetail?freeboardnum=${freeboard.freeboardnum}&curPage=${curPage}">${freeboard.title}</a>
+				    		<a href="freeBoardDetail?freeboardnum=${freeboard.freeboardnum}&curPage=${curPage}&${search}">${freeboard.title}</a>
 				    	</c:if>
 				    	<c:if test="${board.freeboardnum == freeboard.freeboardnum}">
 				    		${freeboard.title}
@@ -44,14 +50,15 @@
 				</tr>
 			</c:forEach>
 		</table> <!-- boardList -->
-	
+		
+		
 		<div id="paging" style="width: 44em; margin: 0 auto;">
 			<ul class="pager" style="float: left;"> <!-- style="float: left;" -->
 				<c:if test="${curPage != 1}">
-					<li><a href="freeBoardList?type=${FreeBoardPage.type}&value=${FreeBoardPage.value}">처음</a></li>
+					<li><a href="freeBoardList?${search}">처음</a></li> <!-- type=${FreeBoardPage.type}&value=${FreeBoardPage.value} -->
 				</c:if>
 				<c:if test="${pageBlock != 1}">
-					<li><a href="freeBoardList?curPage=${(pageBlock-1)*INDICATEPAGE}&type=${FreeBoardPage.type}&value=${FreeBoardPage.value}"><</a></li>
+					<li><a href="freeBoardList?curPage=${(pageBlock-1)*INDICATEPAGE}&${search}"><</a></li> <!-- type=${FreeBoardPage.type}&value=${FreeBoardPage.value} -->
 				</c:if>
 			</ul>
 			<ul class="pagination" style="float: left;"> <!-- style="float: left;" -->
@@ -60,16 +67,16 @@
 					<li class="active"><a>${pageIndex}</a></li>
 				</c:if>
 				<c:if test="${curPage != pageIndex}">
-					<li><a href="freeBoardList?curPage=${pageIndex}&type=${FreeBoardPage.type}&value=${FreeBoardPage.value}">${pageIndex}</a></li>
+					<li><a href="freeBoardList?curPage=${pageIndex}&${search}">${pageIndex}</a></li> <!-- type=${FreeBoardPage.type}&value=${FreeBoardPage.value} -->
 				</c:if>
 			</c:forEach>
 			</ul>
 			<ul class="pager" style="float: left;"> <!-- style="float: left;" -->
-				<c:if test="${pageBlock != endPageBlock}">
-					<li><a href="freeBoardList?curPage=${(pageBlock+1)*INDICATEPAGE}&type=${FreeBoardPage.type}&value=${FreeBoardPage.value}">></a></li>
+				<c:if test="${pageBlock < endPageBlock}"> <!-- != -->
+					<li><a href="freeBoardList?curPage=${(pageBlock+1)*INDICATEPAGE}&${search}">></a></li> <!-- type=${FreeBoardPage.type}&value=${FreeBoardPage.value} -->
 				</c:if>
-				<c:if test="${curPage != totalPage}">
-					<li><a href="freeBoardList?curPage=${totalPage}&type=${FreeBoardPage.type}&value=${FreeBoardPage.value}">맨끝</a></li>
+				<c:if test="${curPage < totalPage}"> <!-- != -->
+					<li><a href="freeBoardList?curPage=${totalPage}&${search}">맨끝</a></li> <!-- type=${FreeBoardPage.type}&value=${FreeBoardPage.value} -->
 				</c:if>
 			</ul>
 			<br />
