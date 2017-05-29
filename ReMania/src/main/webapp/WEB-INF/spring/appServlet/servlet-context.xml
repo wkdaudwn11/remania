@@ -107,7 +107,7 @@
 	<bean id="validator" class="com.util.GlobalValidator" />
 	<!-- 유효성 검사 등록 끝 -->
 	
-	<!-- com.text.RandomNumberAjax 등록 -->
+	<!-- RandomNumberAjax 등록 -->
 	<bean id="randomNumberAjax" class="com.util.RandomNumberAjax" />
 		
 </beans>

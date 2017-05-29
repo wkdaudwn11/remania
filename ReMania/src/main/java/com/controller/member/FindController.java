@@ -25,8 +25,7 @@ public class FindController {
 	@Autowired
 	private FindService service;
 	
-	@Autowired
-	RandomNumberAjax util;
+	private RandomNumberAjax util;
 	
 	/** 아이디 찾기 메소드 */
 	@RequestMapping(value="findIdCheck", method=RequestMethod.POST)

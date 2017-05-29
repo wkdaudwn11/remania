@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.remania.TradeMapper">
+	
+	<!-- 넘겨받은 buynum에 대한 상세 정보를 반환하는 쿼리 -->
+	<select id="buyDetail" parameterType="int" resultType="BuyDTO">
+		select * from buy where buynum=#{value}
+	</select>
+	
+	<select id="getMemberInfo" parameterType="string" resultType="MemberDTO">
+		select * from member where email=#{value} 
+	</select>
+	
+</mapper>
