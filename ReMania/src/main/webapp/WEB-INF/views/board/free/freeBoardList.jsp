@@ -9,14 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Remania</title>
 
-<style>
-	
-	.boardList {font-size:1em;}
-	.boardList th, .boardList td {border-top:1px solid #ddd; border-bottom:1px solid #ddd; padding:14px 0 10px 0;}
-	.boardList th {background:#f8f8f8; text-align:center;}
-	
-</style>
+<style></style>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -49,7 +44,7 @@
 			</div>
 			<input type="text" name="value" class="form-control" size="50" value="${FreeBoardPage.value}"
 				placeholder="검색어를 입력하세요.">
-			<button id="search" type="button" class="btn btn-success">Search</button>
+			<button id="search" type="button" class="btn btn-success"><span class="glyphicon">&#xe003;</span>  Search</button>
 		</form>
 	</center>
 		
@@ -60,8 +55,8 @@
 		</jsp:include>
 
 		<p style="text-align: right;">
-			<button type="button" class="btn btn-success" onclick="location.href='freeWrite'">
-				글작성
+			<button type="button" class="btn btn-success" onclick="location.href='freeWrite';">
+				 <i class="fa">&#xf040;</i> 작성하기  
 			</button>
 		</p>
 	</div>

@@ -24,6 +24,7 @@ values(member_seq.nextval, 'admin', '관리자', '123', '010', '123', '456', '�
         sysdate, sysdate, 0, 0, 'remania');
         
 --자유게시판 테이블
+drop table freeBoard purge;
 create table freeBoard(
 	freeboardnum	number(4)		constraint freeBoard_freeBoard_pk primary key,--게시판번호
 	email       	varchar2(16)	not null,		--작성자의 이메일
@@ -39,6 +40,7 @@ drop sequence freeBoard_seq;
 create sequence freeBoard_seq minvalue 1;
 
 -- 댓 글
+drop table remania_comment purge;
 create table remania_comment(
 	comment_level number(1) default 0,		--댓글 깊이 
 	ref number(5)	not null,			-- root 댓글 = 최상위 댓글 고유번호
@@ -59,29 +61,25 @@ create table remania_comment(
 drop sequence comment_seq;
 create sequence comment_seq minvalue 1;
 
---자유게시판 댓글 테이블 (댓글의 댓글 추가)
-Create table freeBoardReple(  
- relevel	number(4) 		default 0,		-- 댓글의 깊이  현재 달고있는 댓글의 레벨 +1 
- ref 		number(4)		not null, 		-- 그룹  frnum 가져와서 세팅.
- step 		number(4) 		default 0,      -- 공백 갯수
- pfrnum 	number(4)  		not null , 		-- 부모의 고유넘버
- freeboardreplenum 	  	number(4)		constraint freeBoardReple_frnum_pk primary key,	--댓글번호, 댓글의 고유번호 ref
- freeboardnum     	number(4)       not null,       --게시판번호 (fk)
- email			varchar2(50),					-- 이메일 (fk)
- author 	varchar2(16)	not null,		--작성자
- content	varchar2(4000)  not null,	    --내용
- writeday	date            default sysdate,--작성일
-constraint freeBoardReple_email_fk foreign key(email) references member(email) on delete cascade,
-constraint freeBoardReple_fnum_fk foreign key(freeboardnum) references freeboard(freeboardnum) on delete cascade
+-- 문의 게시판
+drop table inquiry purge;
+create table inquiry(
+ 	registernum number(5) constraint inquiry_registernum_pk primary key,	--문의 글번호
+ 	ref number(5),
+ 	comment_level number(1),
+	category varchar2(10),		-- 문의 유형,분류
+	email varchar2(50),		--작성자 이메일
+	author varchar2(10),		--작성자 이름
+	title varchar2(50),		--제목
+	content varchar2(4000),		--내용
+	writeday date default sysdate,	--작성일
+	state varchar2(10) default '처리 중',
+	constraint inquiry_ref_fk foreign key(ref) references inquiry(registernum) on delete cascade,
+	constraint inquiry_email_fk foreign key(email) references member(email) on delete cascade
 );
 
-alter table freeBoardReple add constraint freeBoardReple_pfrnum_fk foreign key(pfrnum)
-references freeBoardReple(freeboardreplenum) on delete cascade;
-
-alter table freeBoardReple add constraint freeBoardReple_ref_fk foreign key(ref)
-references freeBoardReple(freeboardreplenum) on delete cascade;
-
-create sequence freeBoardReple_seq minvalue 1;
+drop sequence inquiry_seq;
+create sequence inquiry_seq;
 
 --삽니다
 create table buy(

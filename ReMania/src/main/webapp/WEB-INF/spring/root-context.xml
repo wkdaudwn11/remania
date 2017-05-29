@@ -27,6 +27,7 @@
 				<value>classpath:mapper/MemberMapper.xml</value>
 				<value>classpath:mapper/BuyMapper.xml</value>
 				<value>classpath:mapper/BoardMapper.xml</value>
+				<value>classpath:mapper/QuestionMapper.xml</value>
 			</list>
 		</property>
 		<property name="typeAliases">
@@ -36,6 +37,8 @@
 				<value>com.entity.board.FreeBoardPage</value>
 				<value>com.entity.trade.BuyDTO</value>
 				<value>com.entity.board.Comment</value>
+				<value>com.entity.board.QuestionDTO</value>
+				<value>com.entity.board.InquiryPage</value>
 			</list>
 		</property>
 	</bean>
