@@ -209,7 +209,7 @@
 		
 		<br /><br /><hr /><br />
 		
-		<div id="panel-group" class="panel-group">
+		<%-- <div id="panel-group" class="panel-group">
 			<!-- 댓글 입력 폼 -->
 			<div class="panel panel-success">
 				<div class="panel-heading"><strong>댓글</strong></div>
@@ -288,7 +288,13 @@
 							</c:if>
 						</form>
 				<br /><br /><br />
-			</c:forEach>
+			</c:forEach> --%>
+			<jsp:include page="../../include/board/comment.jsp" flush="true">
+				<jsp:param name="FreeBoardPage" value="${FreeBoardPage}"/>
+				<jsp:param name="board" value="${board}" />
+				<jsp:param name="commentList" value="${commentList}"/>
+			</jsp:include>
+			
 		</div>
 		<br /><br /><hr /><br /><br />
 		
