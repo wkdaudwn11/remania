@@ -31,11 +31,102 @@
 </style>
 </head>
 <body>
+
 	<c:set var="login" value="${login}" scope="session" />
 	<c:set var="buyDTO" value="${buyDTO}" scope="request" />
+	<c:set var="buyer" value="${buyer}" scope="request" />
+	<c:set var="seller" value="${seller}" scope="request" />
 	
 	<jsp:include page="../include/nav.jsp" flush="true" />
 	<jsp:include page="../include/trade/buyDetailInclude.jsp" flush="true" />
+	
+	<hr />
+	
+	<div class="container">
+		<!-- 구매자 -->
+		<div class="panel panel-danger" style="width: 50%; float: left;">
+			<div class="panel-heading" style="background-color: #d9534f;">
+				<h5 style="color: white;">
+					구매자
+					<c:if test="${login.name == buyer.name}">(나)</c:if>
+					<c:if test="${login.name != buyer.name}">(상대방)</c:if>
+				</h5>
+			</div>
+			<div class="panel-body">
+				<div style="background-color:#d9534f; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
+					<span style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px; text-align: center; color: white;">이름</span>
+					<input type="text" readonly value="${buyer.name}"
+						style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;"/>
+				</div>	
+			</div>
+			<div class="panel-body">
+				<div style="background-color:#d9534f; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
+					<span style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px; text-align: center; color: white;">연락처</span>
+					<input type="text" readonly value="${buyer.tel}"
+						style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;"/>
+				</div>	
+			</div>
+			<div class="panel-body">
+				<div style="background-color:#d9534f; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
+					<span style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px; text-align: center; color: white;">주소</span>
+					<input type="text" readonly value="${buyer.addr1}"
+						style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;"/>
+				</div>	
+			</div>
+		</div><!-- .panel panel-danger -->
+		
+		<!-- 판매자 -->
+		<div class="panel panel-primary" style="width: 50%; float: left;">
+			<div class="panel-heading">
+				<h5>
+					판매자
+					<c:if test="${login.name == seller.name}">(나)</c:if>
+					<c:if test="${login.name != seller.name}">(상대방)</c:if>
+				</h5>
+			</div>
+			<div class="panel-body">
+				<div style="background-color:#337ab7; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
+					<span style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px; text-align: center; color: white;">이름</span>
+					<input type="text" readonly value="${seller.name}"
+						style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;"/>
+				</div>	
+			</div>
+			<div class="panel-body">
+				<div style="background-color:#337ab7; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
+					<span style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px; text-align: center; color: white;">연락처</span>
+					<input type="text" readonly value="${seller.tel}"
+						style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;"/>
+				</div>	
+			</div>
+			<div class="panel-body">
+				<div style="background-color:#337ab7; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
+					<span style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px; text-align: center; color: white;">주소</span>
+					<input type="text" readonly value="${seller.addr1}"
+						style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;"/>
+				</div>	
+			</div>
+		</div><!-- .panel panel-danger -->
+		
+		<div style="text-align: center;">
+			<c:choose>
+				<c:when test="${login.name == seller.name}">
+					<button type="button" class="btn btn-primary" 
+						style="width: 30em; border-radius: 3em;">
+						인계 완료
+					</button>
+				</c:when>
+				<c:otherwise>
+					<button type="button" class="btn btn-danger"
+						style="width: 30em; border-radius: 3em; background-color: #d9534f;">
+						인수 완료
+					</button>
+				</c:otherwise>
+			</c:choose>
+		</div>
+		
+	</div>
+	
 	<jsp:include page="../include/footer.jsp" flush="true" />
+	
 </body>
 </html>

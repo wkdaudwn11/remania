@@ -32,7 +32,7 @@ public class LoginDAO {
 	}
 
 	/** sns로그인을 하는 메소드 */
-	public void snsLogin(MemberDTO dto) {
+	public MemberDTO snsLogin(MemberDTO dto) {
 		
 		// sns로 처음 로그인하는 것인지 알기위한 select
 		int n = template.selectOne(namespace+"existSns", dto.getEmail());
@@ -41,6 +41,8 @@ public class LoginDAO {
 		if(n == 0) {
 			template.insert(namespace+"snsJoin", dto);
 		}
+		
+		return template.selectOne(namespace+"snsLogin", dto.getEmail());
 		
 	}//snsLogin(MemberDTO dto)
 	

@@ -19,15 +19,18 @@ public class JoinService {
 	}
 
 
-	public MemberDTO updateCheck(MemberDTO dto) {
-		// TODO Auto-generated method stub
-		return joinDao.updateCheck(dto);
+	public void updateCheck(MemberDTO dto) {
+		joinDao.updateCheck(dto);
 	}
 
 
 	public MemberDTO joinCheck(MemberDTO dto) {
-		// TODO Auto-generated method stub
 		return joinDao.joinCheck(dto);
+	}
+
+
+	public MemberDTO getMemberInfo(int membernum) {
+		return joinDao.getMemberInfo(membernum);
 	}
 
 

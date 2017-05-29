@@ -29,8 +29,25 @@
 			location.replace("buyList?category="+category+"&sort="+sort+"&searchType="+searchType+"&searchValue="+searchValue);
 		});
 		
+		/** 글 작성 버튼을 경우 실행되는 함수 */
 		$("#buyWriteBtn").on("click", function(){
-			location.replace('buyWriteUI');
+			
+			var tel = '${login.tel}';
+			var addr = '${login.addr1}';
+			var loginEmail = '${login.email}';
+			
+			if((tel == 'tel' || addr == null) && loginEmail != "admin"){
+				if(confirm("연락처와 주소를 등록하셔야 거래할 수 있습니다. 등록하시겠습니까?")){
+					location.replace("updateMemberUI");
+				}
+			}else if(addr == '1' && loginEmail != "admin"){
+				if(confirm("주소를 등록하셔야 거래할 수 있습니다. 등록하시겠습니까?")){
+					location.replace("pwdCheck");
+				}
+			}else{
+				location.replace('buyWriteUI');
+			}
+			
 		});
 		
 	});
@@ -138,58 +155,63 @@
 	<div class="row">
 		<c:forEach var="buyDTO2" items="${buyList}" varStatus="status">
 			<div class="col-sm-4">
-				<c:choose>
-					<c:when test="${empty category}">
-						<a href="buyDetail?buynum=${buyDTO2.buynum}&curPage=${curPage}&sort=${sort}&searchType=${searchType}&searchValue=${searchValue}&buyPageDTO=${buyPageDTO}" style="text-decoration: none; color:black;">
-					</c:when>
-					<c:otherwise>
-						<a href="buyDetail?buynum=${buyDTO2.buynum}&curPage=${curPage}&category=${category}&sort=${sort}&searchType=${searchType}&searchValue=${searchValue}&buyPageDTO=${buyPageDTO}" style="text-decoration: none; color:black;">
-					</c:otherwise>
-				</c:choose>
-					<div class="panel panel-danger">
-						<div class="panel-heading">
-							${buyDTO2.category}　　　　　　　　　<!-- 공백 건들지 말 것 -->
-							조회수: ${buyDTO2.readcnt}
-						</div>
-						<div class="panel-body">
-							<c:choose>
-								<c:when test="${!(empty buyDTO2.image1)}">
-									<img src="buy/${buyDTO2.buynum}_${buyDTO2.email}/${buyDTO2.image1}.jpg" class="img-responsive"
-										style="width: 100%; height: 15em;" alt="Image">
-								</c:when>
-								<c:otherwise> <!-- 사진 등록을 안했을 경우는 기본 사진을 뿌려줌 -->
-									<img src="images/ImgNotFound.png" class="img-responsive"
-										style="width: 100%; height: 15em;" alt="Image">
-								</c:otherwise>
-							</c:choose>
-						</div>
-						<div class="panel-footer">
-							<c:if test="${!(empty buyDTO2.image2)}">
-								
-							</c:if>
-							<strong>${buyDTO2.title}</strong><br />
-							<small>희망가격:
-							<c:choose>
-								<c:when test="${buyDTO2.pricechoice == '범위 설정'}">
-									<fmt:formatNumber value="${buyDTO2.price1}" type="currency" /> ~ <fmt:formatNumber value="${buyDTO2.price2}" type="currency" />
-								</c:when>
-								<c:otherwise>
-									합의 후 결정
-								</c:otherwise>
-							</c:choose>
-							</small>
-						</div>
-					</div><!-- .panel panel-danger -->
-				</a>
-				<c:choose>
-					<c:when test="${login.email == buyDTO2.email}">
-						<button type="button" class="btn btn-danger" style="width: 10.2em;" onclick="buyUpdate('${buyDTO2.email}', '${buyDTO2.email}', '${buyDTO2.buynum}','${buyPageDTO.curPage}','${category}', '${sort}', '${searchType}', '${searchValue}')">수정하기</button>
-						<button type="button" class="btn btn-danger" style="width: 10.2em;" onclick="buyDelete('${buyDTO2.email}', '${buyDTO2.email}', '${buyDTO2.buynum}','${buyPageDTO.curPage}','${category}', '${sort}', '${searchType}', '${searchValue}')">삭제하기</button>
-					</c:when>
-					<c:when test="${!(empty login)}">
-						<button type="button" class="btn btn-danger" style="width: 20.8em;">판매신청</button>
-					</c:when>
-				</c:choose>
+				<c:if test="${empty buyDTO2.state}">
+					<c:choose>
+						<c:when test="${empty category}">
+							<a href="buyDetail?buynum=${buyDTO2.buynum}&curPage=${curPage}&sort=${sort}&searchType=${searchType}&searchValue=${searchValue}&buyPageDTO=${buyPageDTO}" style="text-decoration: none; color:black;">
+						</c:when>
+						<c:otherwise>
+							<a href="buyDetail?buynum=${buyDTO2.buynum}&curPage=${curPage}&category=${category}&sort=${sort}&searchType=${searchType}&searchValue=${searchValue}&buyPageDTO=${buyPageDTO}" style="text-decoration: none; color:black;">
+						</c:otherwise>
+					</c:choose>
+						<div class="panel panel-danger">
+							<div class="panel-heading" style="background-color: #d9534f;">
+								<font color="white">
+									${buyDTO2.category}　　　　　　　　　<!-- 공백 건들지 말 것 -->
+									조회수: ${buyDTO2.readcnt}
+								</font>
+							</div>
+							<div class="panel-body">
+								<c:choose>
+									<c:when test="${!(empty buyDTO2.image1)}">
+										<img src="buy/${buyDTO2.buynum}_${buyDTO2.email}/${buyDTO2.image1}.jpg" class="img-responsive"
+											style="width: 100%; height: 15em;" alt="Image">
+									</c:when>
+									<c:otherwise> <!-- 사진 등록을 안했을 경우는 기본 사진을 뿌려줌 -->
+										<img src="images/ImgNotFound.png" class="img-responsive"
+											style="width: 100%; height: 15em;" alt="Image">
+									</c:otherwise>
+								</c:choose>
+							</div>
+							<div class="panel-footer">
+								<c:if test="${!(empty buyDTO2.image2)}">
+									
+								</c:if>
+								<strong>${buyDTO2.title}</strong><br />
+								<small>희망가격:
+								<c:choose>
+									<c:when test="${buyDTO2.pricechoice == '범위 설정'}">
+										<fmt:formatNumber value="${buyDTO2.price1}" type="currency" /> ~ <fmt:formatNumber value="${buyDTO2.price2}" type="currency" />
+									</c:when>
+									<c:otherwise>
+										합의 후 결정
+									</c:otherwise>
+								</c:choose>
+								</small>
+							</div>
+						</div><!-- .panel panel-danger -->
+					</a>
+				
+					<c:choose>
+						<c:when test="${login.email == buyDTO2.email}">
+							<button type="button" class="btn btn-danger" style="width: 10.2em;" onclick="buyUpdate('${buyDTO2.email}', '${buyDTO2.email}', '${buyDTO2.buynum}','${buyPageDTO.curPage}','${category}', '${sort}', '${searchType}', '${searchValue}')">수정하기</button>
+							<button type="button" class="btn btn-danger" style="width: 10.2em;" onclick="buyDelete('${buyDTO2.email}', '${buyDTO2.email}', '${buyDTO2.buynum}','${buyPageDTO.curPage}','${category}', '${sort}', '${searchType}', '${searchValue}')">삭제하기</button>
+						</c:when>
+						<c:when test="${!(empty login)}">
+							<button type="button" class="btn btn-danger" style="width: 20.8em;">판매신청</button>
+						</c:when>
+					</c:choose>
+				</c:if>
 			</div>
 			<c:if test="${status.count % 3 == 0}">
 				</div>

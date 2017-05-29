@@ -49,7 +49,7 @@ public class FindController {
 		return "member/login/loginUI";
 		
 		/*return "redirect:login";*/
-	}//updateCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
+	}//findIdCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
 	
 	
 }

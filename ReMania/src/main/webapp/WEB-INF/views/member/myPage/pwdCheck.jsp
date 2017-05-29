@@ -25,7 +25,6 @@
 	function check(form){
 		var pwdcheck = form.pwdcheck;
 		if(pwdcheck.value =='${login.pwd}'){
-			alert('변경창으로 넘어갑니다.');
 			location.href="updateMemberUI"; 	
 		}else{
 			alert('비밀번호가 일치하지 않습니다.');
@@ -52,7 +51,7 @@
 				<div id="inputPwdTable">
 					<table>
 						<tr>
-							<td>아이디</td>
+							<td>이메일</td>
 							<td>${login.email}</td>
 						</tr>
 						<tr>
