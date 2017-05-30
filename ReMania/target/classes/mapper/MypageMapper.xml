@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.remania.MypageMapper">
+	
+	<!-- 넘겨받은 email이 작성한 삽니다 쪽 게시글의 갯수를 가져오는 쿼리 (state가 null인 것만) -->
+	<select id="getBuywrite" parameterType="string" resultType="int">
+		select count(*) from buy where email=#{value} and state is null
+	</select> 
+	
+	<!-- 넘겨받은 email이 구매중인 물품의 갯수를 반환 -->
+	<select id="getBuytrading" parameterType="string" resultType="int">
+		select count(*) from trade where buyer=#{value} and state='진행중'
+	</select> 
+	
+	<!-- 넘겨받은 email이 구매 완료한 물품의 갯수를 반환 -->
+	<select id="getBuyend" parameterType="string" resultType="int">
+		select count(*) from trade where buyer=#{value} and state='완료'
+	</select>
+	
+	<!-- 넘겨받은 email이 작성한 팝니다 쪽 게시글의 갯수를 가져오는 쿼리 (sell은 미구현) -->
+	<!-- <select id="getSellwrite" parameterType="string" resultType="int">
+		select count(*) from sell where email=#{value} and state is null
+	</select>  -->
+	
+	<!-- 넘겨받은 email이 판매중인 물품의 갯수를 반환 -->
+	<select id="getSelltrading" parameterType="string" resultType="int">
+		select count(*) from trade where seller=#{value} and state='진행중'
+	</select> 
+	
+	<!-- 넘겨받은 email이 판매 완료한 물품의 갯수를 반환 -->
+	<select id="getSellend" parameterType="string" resultType="int">
+		select count(*) from trade where seller=#{value} and state='완료'
+	</select>
+	
+	<select id="getTradeInfo" parameterType="hashmap" resultType="TradeDTO">
+		<choose>
+			<when test="history == 'trading'">
+				select * from trade where ${trade}=#{email} and state='진행중'
+			</when>
+			<otherwise>
+				select * from trade where ${trade}=#{email} and state='완료'
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="getBuyInfo" parameterType="int" resultType="BuyDTO">
+		select * from buy where buynum=#{value}
+	</select>
+	
+	<select id="getSellerName" parameterType="string" resultType="string">
+		select name from member where email=#{value}
+	</select>
+	
+</mapper>
