@@ -33,7 +33,6 @@
 <body>
 
 	<c:set var="login" value="${login}" scope="session" />
-	<c:set var="buyDTO" value="${buyDTO}" scope="request" />
 	<c:set var="buyer" value="${buyer}" scope="request" />
 	<c:set var="seller" value="${seller}" scope="request" />
 	
@@ -73,15 +72,15 @@
 						style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;"/>
 				</div>	
 			</div>
-		</div><!-- .panel panel-danger -->
+		</div><!-- .panel panel-danger --> <!-- a -->
 		
 		<!-- 판매자 -->
 		<div class="panel panel-primary" style="width: 50%; float: left;">
 			<div class="panel-heading">
 				<h5>
 					판매자
-					<c:if test="${login.name == seller.name}">(나)</c:if>
-					<c:if test="${login.name != seller.name}">(상대방)</c:if>
+					<c:if test="${login.email == seller.email}">(나)</c:if>
+					<c:if test="${login.email != seller.email}">(상대방)</c:if>
 				</h5>
 			</div>
 			<div class="panel-body">
@@ -109,7 +108,7 @@
 		
 		<div style="text-align: center;">
 			<c:choose>
-				<c:when test="${login.name == seller.name}">
+				<c:when test="${login.email == seller.email}">
 					<button type="button" class="btn btn-primary" 
 						style="width: 30em; border-radius: 3em;">
 						인계 완료

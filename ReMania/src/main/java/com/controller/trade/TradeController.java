@@ -1,5 +1,8 @@
 package com.controller.trade;
 
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +29,17 @@ public class TradeController {
 		if(tradeDTO.getCategory().equals("buy")){
 			service.buyStateUpdate(tradeDTO.getCategorynum()); // 삽니다 게시판의 해당 게시물의 state를 '진행중'으로 변경
 			BuyDTO buyDTO = service.buyDetail(tradeDTO.getCategorynum()); // 해당 게시물의 대한 상세정보를 반환
+			
+			if(buyDTO.getImage2() != null){
+				ArrayList<String> image2List = new ArrayList<>();
+				StringTokenizer image2 = new StringTokenizer(buyDTO.getImage2(), ",");
+				
+				while(image2.hasMoreElements()){
+					image2List.add(image2.nextToken());
+				}
+				m.addAttribute("image2List", image2List);
+			}
+			
 			m.addAttribute("buyDTO", buyDTO);
 		}else{
 			//sell쪽은 아직 구현 안됌.
@@ -51,6 +65,16 @@ public class TradeController {
 		if(tradeDTO.getCategory().equals("buy")){
 			service.buyStateUpdate(tradeDTO.getCategorynum()); // 삽니다 게시판의 해당 게시물의 state를 '진행중'으로 변경
 			BuyDTO buyDTO = service.buyDetail(tradeDTO.getCategorynum()); // 해당 게시물의 대한 상세정보를 반환
+			if(buyDTO.getImage2() != null){
+				ArrayList<String> image2List = new ArrayList<>();
+				StringTokenizer image2 = new StringTokenizer(buyDTO.getImage2(), ",");
+				
+				while(image2.hasMoreElements()){
+					image2List.add(image2.nextToken());
+				}
+				m.addAttribute("image2List", image2List);
+			}
+			
 			m.addAttribute("buyDTO", buyDTO);
 		}else{
 			//sell쪽은 아직 구현 안됌.
