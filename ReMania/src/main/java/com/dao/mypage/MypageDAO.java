@@ -29,7 +29,6 @@ private String namespace = "com.remania.MypageMapper.";
 		dto.setBuyend(template.selectOne(namespace+"getBuyend", email));
 		
 		//팝니다
-		/*dto.setSellwrite(template.selectOne(namespace+"getSellwrite", email)); 미구현*/ 
 		dto.setSelltrading(template.selectOne(namespace+"getSelltrading", email));
 		dto.setSellend(template.selectOne(namespace+"getSellend", email));
 		
@@ -50,6 +49,7 @@ private String namespace = "com.remania.MypageMapper.";
 		return template.selectOne(namespace+"getBuyInfo", categorynum);
 	}
 
+	/** 판매자의 이름을 반환한다. */
 	public String getSellerName(String seller) {
 		return template.selectOne(namespace+"getSellerName", seller);
 	}

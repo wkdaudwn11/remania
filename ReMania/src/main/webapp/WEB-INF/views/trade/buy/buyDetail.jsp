@@ -33,16 +33,6 @@
 
 </head>
 <body>
-
-	<c:set var="login" value="${login}" scope="session" />
-	<c:set var="buyDTO" value="${buyDTO}" scope="request" />
-
-	<c:set var="buyPageDTO" value="${buyPageDTO}" scope="request" />
-	<c:set var="category" value="${category}" scope="request" />
-	<c:set var="sort" value="${sort}" scope="request" />
-	<c:set var="searchType" value="${searchType}" scope="request" />
-	<c:set var="searchValue" value="${searchValue}" scope="request" />
-	
 	<form id="hiddenForm" method="post">
 		<input type="hidden" name="category" value="buy">
 		<input type="hidden" name="categorynum" value="${buyDTO.buynum}">

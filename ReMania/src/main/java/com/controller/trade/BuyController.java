@@ -289,6 +289,7 @@ public class BuyController {
 		m.addAttribute("searchValue", searchValue);
 		
 		return "trade/buy/buyUpdate";
+		
 	}//buyUpdate(String buynum, Model m) GET
 	
 }

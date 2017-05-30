@@ -23,9 +23,9 @@ public class JoinDAO {
 		
 	}
 	
-	public MemberDTO updateCheck(MemberDTO dto) {
-		int n = template.update(namespace+"updateMember", dto);
-		return dto;
+	/** 회원정보수정 */
+	public void updateCheck(MemberDTO dto) {
+		template.update(namespace+"updateMember", dto);
 	}
 	
 	/**  DB에 회원정보를 추가하는 메소드 */
@@ -44,9 +44,10 @@ public class JoinDAO {
 	public MemberDTO emailCheck(String email) {
 		return template.selectOne(namespace+"emailCheck", email);
 	}
-	
 
-	
-	
+	/** 회원정보를 만환 */
+	public MemberDTO getMemberInfo(int membernum) {
+		return template.selectOne(namespace+"getMemberInfo", membernum);
+	}
 	
 }

@@ -42,9 +42,9 @@
 
 		<div class="panel-group">
 			<div class="panel panel-danger">
-				<div class="panel-heading">
-					<font size="5">[장명주]</font>
-					<font size="4">님의 구매종료내역 입니다.</font>　
+				<div class="panel-heading" style="background-color: #d9534f;">
+					<font size="5" color="white">[장명주]</font>
+					<font size="4" color="white">님의 구매종료내역 입니다.</font>　
 				</div>
 				<!-- .panel-heading -->
 				<div class="panel-body">

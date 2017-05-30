@@ -13,14 +13,7 @@ create table member(
 	logindate   date          	default sysdate,	--로그인 날짜
   	buyCount    number(5)     	default 0,      	--구매횟수
   	sellCount   number(5)     	default 0,        	--판매횟수
-	sns         varchar2(10)	default 'remania', 	--sns로그인 (remania면 일반회원)
-  	buywrite    number        	default 0,          --삽니다에 등록한 게시글 갯수
-  	buyprocess  number        	default 0,          --구매중인 물품의 갯수
-  	buyend      number        	default 0,          --구매완료한 물품의 갯수
-  	sellwrite   number        	default 0,          --팝니다에 등록한 게시글 갯수
-  	sellprocess number        	default 0,          --판매중인 물품의 갯수
-  	sellend     number       	default 0,          --판매완료한 물품의 갯수
-  	grade       varchar2(20)  	default '브론즈'      --회원등급
+	sns         varchar2(10)	default 'remania' 	--sns로그인 (remania면 일반회원)
 );
 
 create sequence member_seq minvalue 0;
@@ -97,7 +90,7 @@ create table buy(
   priceChoice	varchar2(20)    not null,     	--가격선택 (합의 후 결정, 범위 설정)
   price1      	number(9)       default 0,    	--최소가격
   price2      	number(9)       default 0,    	--최대가격
-  email     	varchar2(16)    not null,		--작성자의 이메일
+  email     	varchar2(50)    not null,		--작성자의 이메일
   author		varchar2(16)	not null,		--작성자 이름
   title	  		varchar2(50)	not null,		--제목
   content	  	varchar2(4000)	not null,		--내용
@@ -106,6 +99,7 @@ create table buy(
   replecnt 		number(4)       default 0,      --댓글수
   image1    	varchar2(4000)  default null,   --대표사진
   image2    	varchar2(4000)  default null,   --내용에뿌려지는사진들
+  state     	varchar2(10)    default null,   --거래상황
   constraint buy_email_fk foreign key(email) references member(email) on delete cascade
 );
 create sequence buy_seq minvalue 1;
@@ -140,7 +134,10 @@ create table trade(
   categorynum number(4)     not null,       --게시글 번호
   buyer       varchar2(50)  not null,       --구매자 이메일
   seller      varchar2(50)  not null,       --판매자 이메일
-  state       varchar2(10)  default '진행중' -- 거래상황
+  state       varchar2(10)  default '진행중', -- 거래상황
+  transfer    varchar2(10)  default null,   --인계
+  takeover    varchar2(10)  default null    --인수
 );
+create sequence trade_seq minvalue 0;
         
 commit;

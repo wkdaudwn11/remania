@@ -9,8 +9,24 @@
 		select * from buy where buynum=#{value}
 	</select>
 	
+	<!-- email에 해당하는 회원정보를 반환하는 쿼리 -->
 	<select id="getMemberInfo" parameterType="string" resultType="MemberDTO">
 		select * from member where email=#{value} 
+	</select>
+	
+	<!-- trade테이블에 정보를 입력 -->
+	<insert id="tradeInsert" parameterType="TradeDTO">
+		insert into trade(tradenum, category, categorynum, buyer, seller)
+		values(trade_seq.nextval, #{category}, #{categorynum}, #{buyer}, #{seller})
+	</insert>
+	
+	<update id="buyStateUpdate" parameterType="int">
+		update buy set state='진행중' where buynum=#{value}
+	</update>
+	
+	<!-- email에 해당하는 회원정보를 반환하는 쿼리 -->
+	<select id="getTradeInfo" parameterType="int" resultType="TradeDTO">
+		select * from trade where tradenum=#{tradenum} 
 	</select>
 	
 </mapper>
