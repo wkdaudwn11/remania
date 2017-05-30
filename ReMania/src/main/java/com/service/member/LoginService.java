@@ -19,7 +19,7 @@ public class LoginService {
 	 *  비밀번호가 틀리면 null이 들어가있다. */
 	public MemberDTO loginCheck(MemberDTO dto) {
 		
-		if(dto.getSns().equals("")){ // remania 로그인
+		if(!dto.getSns().equals("facebook") && !dto.getSns().equals("kakaotalk")){ // remania 로그인
 			MemberDTO dto2 = loginDao.loginCheck1(dto);
 			
 			if(dto2.getEmail().equals("-1")){
@@ -29,9 +29,13 @@ public class LoginService {
 			}
 		}else{
 			loginDao.snsLogin(dto);
-			return dto;
+			return loginDao.snsLogin2(dto);
 		}
 		
 	}//loginCheck(MemberDTO dto)
+
+	public String loginUpdate(int membernum) {
+		return loginDao.loginUpdate(membernum);
+	}
 	
 }

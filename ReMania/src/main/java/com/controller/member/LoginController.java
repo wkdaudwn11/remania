@@ -18,22 +18,6 @@ public class LoginController {
 	@Autowired
 	private LoginService service;
 	
-	/*
-	@RequestMapping(value="login", method=RequestMethod.GET)
-	public String login(@ModelAttribute("login") MemberDTO dto){
-		return "member/login/loginUI";
-	}
-	
-	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
-	public String loginCheck(@Valid @ModelAttribute("login") MemberDTO dto, BindingResult error){
-		
-		if(error.hasErrors()){
-			return "member/login/loginUI";
-		}
-		
-		return "index";
-	}*/
-	
 	/** 로그인 폼에서 로그인을 하면 이 메소드로 온다. */
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
@@ -46,6 +30,9 @@ public class LoginController {
 			if(login.getEmail().equals("-1")){
 				model.addAttribute("loginFail", "존재하지 않는 아이디 입니다.");
 			}else{
+				String loginDate = service.loginUpdate(login.getMembernum());
+				login = service.loginCheck(dto);
+				System.out.println(login.getLogindate());//////////////////////////////
 				session.setAttribute("login", login);
 				target = "index";
 			}

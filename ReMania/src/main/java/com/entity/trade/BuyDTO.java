@@ -26,6 +26,7 @@ public class BuyDTO {
 	private CommonsMultipartFile[] upfileContent;
 	private String image1;	//대표사진
 	private String image2;	//등록된 사진
+	private String state;
 	
 	public BuyDTO() {
 		super();
@@ -34,7 +35,7 @@ public class BuyDTO {
 	public BuyDTO(int buynum, String category, String tradeway, String location, String pricechoice, int price1,
 			int price2, String email, String author, String title, String content, String writeday, int readcnt,
 			int replecnt, CommonsMultipartFile upfile, CommonsMultipartFile[] upfileContent, String image1,
-			String image2) {
+			String image2, String state) {
 		super();
 		this.buynum = buynum;
 		this.category = category;
@@ -54,6 +55,7 @@ public class BuyDTO {
 		this.upfileContent = upfileContent;
 		this.image1 = image1;
 		this.image2 = image2;
+		this.state = state;
 	}
 
 	@Override
@@ -62,7 +64,8 @@ public class BuyDTO {
 				+ location + ", pricechoice=" + pricechoice + ", price1=" + price1 + ", price2=" + price2 + ", email="
 				+ email + ", author=" + author + ", title=" + title + ", content=" + content + ", writeday=" + writeday
 				+ ", readcnt=" + readcnt + ", replecnt=" + replecnt + ", upfile=" + upfile + ", upfileContent="
-				+ Arrays.toString(upfileContent) + ", image1=" + image1 + ", image2=" + image2 + "]";
+				+ Arrays.toString(upfileContent) + ", image1=" + image1 + ", image2=" + image2 + ", state=" + state
+				+ "]";
 	}
 
 	public int getBuynum() {
@@ -207,6 +210,14 @@ public class BuyDTO {
 
 	public void setImage2(String image2) {
 		this.image2 = image2;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 }

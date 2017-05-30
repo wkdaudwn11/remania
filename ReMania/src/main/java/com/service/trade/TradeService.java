@@ -25,5 +25,17 @@ public class TradeService {
 	public MemberDTO getMemberInfo(String email) {
 		return dao.getMemberInfo(email);
 	}
+
+	public void tradeInsert(TradeDTO tradeDTO) {
+		dao.tradeInsert(tradeDTO);
+	}
+
+	public void buyStateUpdate(int categorynum) {
+		dao.buyStateUpdate(categorynum);
+	}
+
+	public TradeDTO getTradeInfo(String tradenum) {
+		return dao.getTradeInfo(Integer.parseInt(tradenum));
+	}
 	
 }

@@ -29,14 +29,17 @@
 				<value>classpath:mapper/BoardMapper.xml</value>
 				<value>classpath:mapper/QuestionMapper.xml</value>
 				<value>classpath:mapper/TradeMapper.xml</value>
+				<value>classpath:mapper/MypageMapper.xml</value>
 			</list>
 		</property>
 		<property name="typeAliases">
 			<list>
 				<value>com.entity.member.MemberDTO</value>
+				<value>com.entity.mypage.MypageDTO</value>
 				<value>com.entity.board.FreeBoardDTO</value>
 				<value>com.entity.board.FreeBoardPage</value>
 				<value>com.entity.trade.BuyDTO</value>
+				<value>com.entity.trade.TradeDTO</value>
 				<value>com.entity.board.Comment</value>
 				<value>com.entity.board.QuestionDTO</value>
 				<value>com.entity.board.InquiryPage</value>

@@ -44,4 +44,14 @@ public class LoginDAO {
 		
 	}//snsLogin(MemberDTO dto)
 	
+	public MemberDTO snsLogin2(MemberDTO dto) {
+		return template.selectOne(namespace+"snsLogin", dto.getEmail());
+	}
+
+	/** 현재 로그인 한 시간으로 loginDate를 update해줘야함 */
+	public String loginUpdate(int membernum) {
+		template.update(namespace+"loginUpdate", membernum);
+		return template.selectOne(namespace+"getLoginDate", membernum);
+	}
+	
 }
