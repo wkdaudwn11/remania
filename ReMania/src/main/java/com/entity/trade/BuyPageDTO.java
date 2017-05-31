@@ -17,7 +17,6 @@ public class BuyPageDTO {
 	}
 
 	public BuyPageDTO(List<BuyDTO> buyList, int curPage, int perPage, int page, int totalRecord) {
-		super();
 		this.buyList = buyList;
 		this.curPage = curPage;
 		this.perPage = perPage;
@@ -27,7 +26,7 @@ public class BuyPageDTO {
 
 	@Override
 	public String toString() {
-		return "BedRoomPageDTO [buyList=" + buyList + ", curPage=" + curPage + ", perPage=" + perPage + ", page=" + page
+		return "BuyPageDTO [buyList=" + buyList + ", curPage=" + curPage + ", perPage=" + perPage + ", page=" + page
 				+ ", totalRecord=" + totalRecord + "]";
 	}
 

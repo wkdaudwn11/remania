@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.entity.board.Comment;
 import com.entity.trade.BuyDTO;
 import com.entity.trade.BuyPageDTO;
 
@@ -58,6 +59,16 @@ public class BuyDAO {
 	/**넘겨받은 buynum에 대한 상세 정보를 반환하는 메소드 (buyDetail)*/
 	public BuyDTO buyDetail(int buynum) {
 		return template.selectOne(namespace+"buyDetail", buynum);
+	}
+	
+	public List<Comment> commentList(int num,Integer skip,String category){
+		if(skip == null){
+			skip = 0;
+		}
+		HashMap<String,String> map = new HashMap<>();
+		map.put("num", String.valueOf(num));
+		map.put("category", category);
+		return template.selectList("com.remania.BoardMapper.commentList",map,new RowBounds(skip,5));
 	}
 	
 	/** 게시글 삭제 */

@@ -63,10 +63,10 @@
 		where freeboardnum = #{freeboardnum}
 	</select>
 	
-	<select id="commentList" resultType="Comment" parameterType="int">
+	<select id="commentList" resultType="Comment" parameterType="HashMap">
 		select num,parentComment,boardnum,category,email,author,usercomment,ref,step,comment_level,writeday
 		from remania_comment
-		where boardnum=#{num} and category='board'
+		where boardnum=#{num} and category=#{category}
 		order by step asc
 	</select>
 	
@@ -80,8 +80,14 @@
 	<!-- comment 쿼리 -->
 	<insert id="comment" parameterType="Comment">
 		insert into remania_comment(num,parentComment,boardnum,category,email,author,usercomment,ref,step,comment_level)
-		values(comment_seq.nextval,comment_seq.currval,#{boardnum},#{category},#{email},#{author},#{usercomment},comment_seq.currval,
-		(select count(*) from remania_comment where category=#{category} and boardnum = #{boardnum})+1,0)
+		<if test="category == 'board'">
+			values(comment_seq.nextval,comment_seq.currval,#{boardnum},#{category},#{email},#{author},#{usercomment},comment_seq.currval,
+			(select count(*) from remania_comment where category=#{category} and boardnum = #{boardnum})+1,0)
+		</if>
+		<if test="category == 'buy'">
+			values(buy_comment_seq.nextval,buy_comment_seq.currval,#{boardnum},#{category},#{email},#{author},#{usercomment},buy_comment_seq.currval,
+			(select count(*) from remania_comment where category=#{category} and boardnum=#{boardnum})+1,0)
+		</if>
 	</insert>
 	
 	<!-- comment 삭제 쿼리 -->
@@ -105,9 +111,14 @@
 	</update>
 	
 	<!-- recomment 쿼리 -->
-	<insert id="recomment">
+	<insert id="recomment" parameterType="Comment">
 		insert into remania_comment(num,parentComment,boardnum,category,email,author,usercomment,ref,step,comment_level)
-		values(comment_seq.nextval,#{parentComment},#{boardnum},#{category},#{email},#{author},#{usercomment},#{ref},#{step},#{comment_level})
+		<if test="category == 'board'">
+			values(comment_seq.nextval,#{parentComment},#{boardnum},#{category},#{email},#{author},#{usercomment},#{ref},#{step},#{comment_level})
+		</if>
+		<if test="category == 'buy'">
+			values(buy_comment_seq.nextval,#{parentComment},#{boardnum},#{category},#{email},#{author},#{usercomment},#{ref},#{step},#{comment_level})
+		</if>
 	</insert>
 	
 	<!-- step 증가 쿼리 -->

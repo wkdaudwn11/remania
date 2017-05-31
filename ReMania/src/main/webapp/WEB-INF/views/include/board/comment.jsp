@@ -3,13 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <div id="panel-group" class="panel-group">
-			<!-- 댓글 입력 폼 -->
+		<!-- 댓글 입력 폼 -->
+		<c:if test="${!empty login}">
 			<div class="panel panel-success">
 				<div class="panel-heading"><strong>댓글</strong></div>
 				<div class="panel-body">
 					<form id="comment" action="comment" method="post">
 						<input type="hidden" name="call" value="comment" />
+						<input type="hidden" name="category" value="board"/>
 						<input type="hidden" name="curPage" value="${FreeBoardPage.curPage}"/>
 						<input type="hidden" name="boardnum" value="${board.freeboardnum}"/>
 						<font color="black">
@@ -23,9 +26,10 @@
 					댓글작성
 				</button>
 			</p>
+		</c:if>
 				
 			<br />
-			<c:if test="${board.replecnt != 0}">
+			<c:if test="${board.replecnt > 0}">
 				<a href="javascript:getCommentList();">댓글 더 보기</a>
 				<p/>
 			</c:if>	
