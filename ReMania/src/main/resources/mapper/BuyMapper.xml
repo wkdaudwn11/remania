@@ -72,8 +72,10 @@
 	</insert>
 	
 	<!-- 넘겨받은 buynum에 대한 상세 정보를 반환하는 쿼리 -->
-	<select id="buyDetail" parameterType="int" resultType="BuyDTO">
-		select * from buy where buynum=#{value}
+	<select parameterType="int" resultType="BuyDTO" id="buyDetail"> 
+		select buynum,category,tradeway,location,pricechoice,price1,price2,email,author,title,content,writeday,readcnt,image1,image2, 
+			(select count(*) from remania_comment where category='buy' and boardnum=#{buynum}) as replecnt 
+		from buy where buynum=#{value}
 	</select>
 	
 	<!-- 넘겨받은 buynum에 대한 정보를 삭제하는 쿼리 -->

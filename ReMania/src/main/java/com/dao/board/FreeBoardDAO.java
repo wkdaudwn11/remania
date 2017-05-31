@@ -61,11 +61,14 @@ public class FreeBoardDAO {
 	}// end public FreeBoardDTO freeBoardDetail
 	
 	/** comment 레코드 가져오기 */
-	public List<Comment> commentList(int num,Integer skip){
+	public List<Comment> commentList(int num,Integer skip,String category){
 		if(skip == null){
 			skip = 0;
 		}
-		return template.selectList(namespace+"commentList",num,new RowBounds(skip,5));
+		HashMap<String,String> map = new HashMap<>();
+		map.put("num", String.valueOf(num));
+		map.put("category",category);
+		return template.selectList(namespace+"commentList",map,new RowBounds(skip,5));
 	}
 	
 	/** comment 추가*/
