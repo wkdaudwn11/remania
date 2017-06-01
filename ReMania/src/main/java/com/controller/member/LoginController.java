@@ -32,7 +32,6 @@ public class LoginController {
 			}else{
 				String loginDate = service.loginUpdate(login.getMembernum());
 				login = service.loginCheck(dto);
-				System.out.println(login.getLogindate());//////////////////////////////
 				session.setAttribute("login", login);
 				target = "index";
 			}

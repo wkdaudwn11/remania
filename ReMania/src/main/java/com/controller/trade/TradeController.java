@@ -55,6 +55,7 @@ public class TradeController {
 		return "trade/trade";
 	}//trade(TradeDTO tradeDTO, Model m)
 	
+	/** 마이페이지를 통해서 거래화면으로 이동할 경우 이 메소드로 오게 됨. */
 	@RequestMapping(value="trade", method=RequestMethod.GET)
 	public String trade2(String tradenum, Model m){
 		
