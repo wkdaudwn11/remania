@@ -110,14 +110,22 @@
 			<c:choose>
 				<c:when test="${login.email == seller.email}">
 					<button type="button" class="btn btn-primary" 
-						style="width: 30em; border-radius: 3em;">
+						style="width: 15em; border-radius: 3em;">
 						인계 완료
+					</button>
+					<button type="button" class="btn btn-default" 
+						style="width: 15em; border-radius: 3em; background-color: lightgray;">
+						판매 취소
 					</button>
 				</c:when>
 				<c:otherwise>
 					<button type="button" class="btn btn-danger"
-						style="width: 30em; border-radius: 3em; background-color: #d9534f;">
+						style="width: 15em; border-radius: 3em; background-color: #d9534f;">
 						인수 완료
+					</button>
+					<button type="button" class="btn btn-default"
+						style="width: 15em; border-radius: 3em;">
+						구매 취소
 					</button>
 				</c:otherwise>
 			</c:choose>
