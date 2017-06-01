@@ -56,7 +56,7 @@
 				var num = $(this).parent().children(":hidden[name='num']").val();
 				var category = $(this).parent().children(":hidden[name='category']").val();
 				var boardnum = $(this).parent().children(":hidden[name='boardnum']").val();
-				location.replace("deleteComment?num="+num+"&category="+category+"&boardnum="+boardnum+"&curPage=${FreeBoardPage.curPage}");
+				location.replace("deleteComment?num="+num+"&category="+category+"&boardnum="+boardnum+"&curPage=${FreeBoardPage.curPage}&type=${FreeBoardPage.type}&value=${FreeBoardPage.value}");
 			}
 		}); // end $("body").on("click",".deleteComment")
 		
@@ -115,7 +115,8 @@
 			dataType:"json",
 			data:{
 				"skip":skip*${commentList.size()},
-				"num":${board.freeboardnum}
+				"num":${board.freeboardnum},
+				"category":"board"
 			},
 			success:function(responseData,status,xhr){
 				$.each(responseData,function(idx,obj){
@@ -133,6 +134,8 @@
 							+"<input type='hidden' name='category' value='"+obj.category+"'>"
 							+"<input type='hidden' name='boardnum' value='"+obj.boardnum+"'/>"
 							+"<input type='hidden' name='curPage' value='"+${FreeBoardPage.curPage}+"'/>"
+							+"<input type='hidden' name='type' value='${FreeBoardPage.type}' />"
+							+"<input type='hidden' name='value' value='${FreeBoardPage.value}' />"
 								+"<textarea name='usercomment' style='width: 80%; height: 5em; color: black; border-style: none; outline: none; float: left; resize: none; background-color: white;' disabled>"+obj.usercomment+"</textarea>";
 					if(obj.email == '${login.email}'){
 						html += "<button type='button' class='btn btn-success deleteComment' style='float: right; margin-bottom: 1px;'>삭제하기</button>"
@@ -145,7 +148,9 @@
 							+"<input type='hidden' name='boardnum' value='"+obj.boardnum+"'/>"
 							+"<input type='hidden' name='ref' value='"+obj.ref+"'/>"
 							+"<input type='hidden' name='step' value='"+(obj.step+1)+"'/>"
-							+"<input type='hidden' name='comment_level' value='"+(obj.comment_level+1)+"'/>";
+							+"<input type='hidden' name='comment_level' value='"+(obj.comment_level+1)+"'/>"
+							+"<input type='hidden' name='type' value='${FreeBoardPage.type}' />"
+							+"<input type='hidden' name='value' value='${FreeBoardPage.value}' />";
 					if(obj.comment_level < 2){
 						html += "<span style='text-align: right; float: none;'>"
 								+"<textarea type='text' name='usercomment' class='recomment' style='float: left; margin-top: 0.5em; border-style: none; width: "+(100-(obj.comment_level+25))+"%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: "+obj.comment_level*7.5+"%;' placeholder='re: '></textarea>"
@@ -154,6 +159,7 @@
 					html += "</form><br /><br /><br />"; 
 					$("#panel-group").append(html);
 				}); // end $.each
+				
 			}// end success
 		});// end ajax
 	}// end getCommentList
@@ -186,6 +192,8 @@
 			<form id="boardUpdate" action="boardUpdate" method="post">
 			<input type="hidden" name="freeboardnum" value="${board.freeboardnum}">
 			<input type="hidden" name="curPage" value="${FreeBoardPage.curPage}"/>
+			<input type="hidden" name="type" value="${FreeBoardPage.type}">
+			<input type="hidden" name="value" value="${FreeBoardPage.value}"/>
 				<strong>제　　목</strong>&nbsp;&nbsp;
 				<font color="black">${board.title}</font>
 				<br /><br />
@@ -208,16 +216,20 @@
 		</p>
 		
 		<br /><br /><hr /><br />
-		
-		<%-- <div id="panel-group" class="panel-group">
-			<!-- 댓글 입력 폼 -->
+			
+	<div id="panel-group" class="panel-group">
+		<!-- 댓글 입력 폼 -->
+		<c:if test="${!empty login}">
 			<div class="panel panel-success">
 				<div class="panel-heading"><strong>댓글</strong></div>
 				<div class="panel-body">
 					<form id="comment" action="comment" method="post">
 						<input type="hidden" name="call" value="comment" />
+						<input type="hidden" name="category" value="board"/>
 						<input type="hidden" name="curPage" value="${FreeBoardPage.curPage}"/>
 						<input type="hidden" name="boardnum" value="${board.freeboardnum}"/>
+						<input type="hidden" name="type" value="${FreeBoardPage.type}" />
+						<input type="hidden" name="value" value="${FreeBoardPage.value}" />
 						<font color="black">
 							<textarea id="usercomment" name="usercomment" rows="5" cols="100" style="border-style: none; outline: none; resize: none;" placeholder="여러분들의 소중한 의견을 작성해주세요."></textarea>
 						</font>
@@ -229,9 +241,10 @@
 					댓글작성
 				</button>
 			</p>
+		</c:if>
 				
 			<br />
-			<c:if test="${board.replecnt != 0}">
+			<c:if test="${board.replecnt > 0}">
 				<a href="javascript:getCommentList();">댓글 더 보기</a>
 				<p/>
 			</c:if>	
@@ -256,6 +269,8 @@
 									<input type="hidden" name="category" value="${comment.category}" />
 									<input type="hidden" name="boardnum" value="${comment.boardnum}"/>
 									<input type="hidden" name="curPage" value="${FreeBoardPage.curPage}"/>
+									<input type="hidden" name="type" value="${FreeBoardPage.type}" />
+									<input type="hidden" name="value" value="${FreeBoardPage.value}" />
 									<textarea name="usercomment" style="width: 80%; height: 5em; color: black;
 										border-style: none; outline: none; float: left; resize: none; background-color: white;" disabled>${comment.usercomment}</textarea>
 									<c:if test="${comment.email eq login.email}">
@@ -278,6 +293,8 @@
 							<input type="hidden" name="ref" value="${comment.ref}"/>
 							<input type="hidden" name="step" value="${comment.step +1}"/>
 							<input type="hidden" name="comment_level" value="${comment.comment_level +1}"/>
+							<input type="hidden" name="type" value="${FreeBoardPage.type}" />
+							<input type="hidden" name="value" value="${FreeBoardPage.value}" />
 							<c:if test="${comment.comment_level <2}">
 								<span style="text-align: right; float: none;">
 									<textarea type="text" name="usercomment" class="recomment" style="float: left; margin-top: 0.5em; border-style: none; width:${100-(comment.comment_level+25)}%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: ${comment.comment_level*7.5}%;" placeholder="re: "></textarea>
@@ -288,19 +305,13 @@
 							</c:if>
 						</form>
 				<br /><br /><br />
-			</c:forEach> --%>
-			<jsp:include page="../../include/board/comment.jsp" flush="true">
-				<jsp:param name="FreeBoardPage" value="${FreeBoardPage}"/>
-				<jsp:param name="board" value="${board}" />
-				<jsp:param name="commentList" value="${commentList}"/>
-			</jsp:include>
+			</c:forEach>
 			
 		</div>
+		
 		<br /><br /><hr /><br /><br />
 		
-		<jsp:include page="../../include/board/list.jsp" flush="true">
-			<jsp:param name="FreeBoardPage" value="${FreeBoardPage}"/>
-		</jsp:include>
+		<jsp:include page="../../include/board/list.jsp" flush="true"/>
 		
 		</div>
 	<jsp:include page="../../include/footer.jsp" flush="true" />

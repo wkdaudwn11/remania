@@ -21,7 +21,7 @@
 			<c:set var="endPage" value="${pageBlock*INDICATEPAGE}"/>
 		</c:if>
 		
-		<c:set var="search" value="freeBoardList?type=${FreeBoardPage.type}&value=${FreeBoardPage.value}"/>
+		<c:set var="search" value="type=${FreeBoardPage.type}&value=${FreeBoardPage.value}"/>
 		
 		<p>글목록(전체 글: ${FreeBoardPage.totalRecord})</p>
 		<!-- 게시판 리스트 -->

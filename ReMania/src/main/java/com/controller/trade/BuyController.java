@@ -212,11 +212,8 @@ public class BuyController {
 	/**게시글을 클릭하면 이 메소드가 DB에서 해당 게시글에 대한 정보를 가지고 buyDetail.jsp로 넘김*/
 	@RequestMapping(value="buyDetail")
 	public String buyDetail(String buynum, String curPage, String category, String sort, String searchType, String searchValue, Model m){
-		
 		service.buyReadcntUpdate(Integer.parseInt(buynum)); // 조회수 증가
-		
 		BuyDTO buyDTO = service.buyDetail(Integer.parseInt(buynum));
-		
 		if(buyDTO.getImage2() != null){
 			ArrayList<String> image2List = new ArrayList<>();
 			StringTokenizer image2 = new StringTokenizer(buyDTO.getImage2(), ",");
@@ -226,15 +223,14 @@ public class BuyController {
 			}
 			m.addAttribute("image2List", image2List);
 		}
-		
 		if(curPage == null) curPage="1";
 		if(sort == null || sort.equals("")) sort="최신순";
-		if(searchType.equals("") || searchType == null) searchType="제목";
+		if(searchType == null || searchType.equals("")) searchType="제목";
 		
 		m.addAttribute("sort", sort);
-		
+		m.addAttribute("commentList",service.commentList(Integer.parseInt(buynum), null,"buy"));
 		BuyPageDTO buyPageDTO = service.buyList(Integer.parseInt(curPage), category, sort, searchType, searchValue);
-		
+
 		m.addAttribute("buyPageDTO", buyPageDTO);
 		m.addAttribute("buyDTO", buyDTO);
 		m.addAttribute("category", category);

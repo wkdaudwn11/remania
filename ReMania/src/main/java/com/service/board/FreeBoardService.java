@@ -35,15 +35,12 @@ public class FreeBoardService {
 	}// end public FreeBoardPage freeBoardList
 	
 	@Transactional
-	public ModelAndView freeBoardDetail(FreeBoardDTO board){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("board",dao.freeBoardDetail(board));
-		modelAndView.addObject("commentList",dao.commentList(board.getFreeboardnum(), null));
-		return modelAndView;
+	public FreeBoardDTO freeBoardDetail(FreeBoardDTO board){
+		return dao.freeBoardDetail(board);
 	}// end public FreeBoardDTO freeBoardDetail
 	
-	public List<Comment> commetList(int num,int skip){
-		return dao.commentList(num, skip);
+	public List<Comment> commentList(int num,Integer skip,String category){
+		return dao.commentList(num, skip,category);
 	}
 	
 	public void comment(Comment comment){

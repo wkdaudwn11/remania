@@ -1,11 +1,13 @@
 package com.service.trade;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.trade.BuyDAO;
+import com.entity.board.Comment;
 import com.entity.trade.BuyDTO;
 import com.entity.trade.BuyPageDTO;
 
@@ -55,6 +57,10 @@ public class BuyService {
 		dao.buyInsert(dto);
 	}
 
+	public List<Comment> commentList(int num,Integer skip,String category){
+		return dao.commentList(num,skip,category);
+	}
+	
 	public BuyDTO buyDetail(int buynum) {
 		return dao.buyDetail(buynum);
 	}
