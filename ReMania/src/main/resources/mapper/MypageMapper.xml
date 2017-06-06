@@ -34,9 +34,10 @@
 		select count(*) from trade where seller=#{value} and state='완료'
 	</select>
 	
+	<!-- 거래정보를 반환 -->
 	<select id="getTradeInfo" parameterType="hashmap" resultType="TradeDTO">
 		<choose>
-			<when test="history == 'trading'">
+			<when test="process == 'trading'">
 				select * from trade where ${trade}=#{email} and state='진행중'
 			</when>
 			<otherwise>
@@ -45,12 +46,19 @@
 		</choose>
 	</select>
 	
+	<!-- 삽니다 게시글의 정보를 반환 -->
 	<select id="getBuyInfo" parameterType="int" resultType="BuyDTO">
 		select * from buy where buynum=#{value}
 	</select>
 	
+	<!-- 판매자의 이름을 반환 -->
 	<select id="getSellerName" parameterType="string" resultType="string">
 		select name from member where email=#{value}
+	</select>
+	
+	<!-- 삽니다 혹은 팝니다 게시판에 해당 이메일이 작성한 게시글 수를 가져오는 쿼리(state가 null인 것만) -->
+	<select id="getBuyWriteHistory" parameterType="string" resultType="BuyDTO">
+		select * from buy where email=#{value} and state is null
 	</select>
 	
 </mapper>

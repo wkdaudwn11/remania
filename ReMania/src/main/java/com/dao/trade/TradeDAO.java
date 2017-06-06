@@ -1,5 +1,7 @@
 package com.dao.trade;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,12 +40,50 @@ public class TradeDAO {
 	/** trade에 정보를 insert를 하면, buy 테이블의 state 상태를 "진행중"으로 바꾼다.
 	 * 그러면 삽니다 게시판에서는 진행중인 거래는 리스트에 안보여줌. (진행중인 거래는 list에서 빼야한다.)
 	 * state가 null인 것들만 뿌려주기 때문. */
-	public void buyStateUpdate(int categorynum) {
-		template.update(namespace+"buyStateUpdate", categorynum);
+	public void buyStateUpdate(int buynum, String trade) {
+		HashMap map = new HashMap();
+		map.put("buynum", buynum);
+		map.put("trade", trade);
+		template.update(namespace+"buyStateUpdate", map);
 	}
 
 	public TradeDTO getTradeInfo(int tradenum) {
 		return template.selectOne(namespace+"getTradeInfo", tradenum);
+	}
+
+	public void deleteTrade(int tradenum) {
+		template.delete(namespace+"deleteTrade", tradenum);
+	}
+
+	public void updateTrade(HashMap map) {
+		template.update(namespace+"updateTrade", map);
+	}
+	
+	/** transfer, takeover를 체크하여 둘 다 ok면 true를 반환, 하나라도 null이면 false를 반환 */
+	public boolean result(int tradenum) {
+		
+		boolean result = false;
+		
+		String transfer = template.selectOne(namespace+"getTransfer", tradenum);
+		String takeover = template.selectOne(namespace+"getTakeover", tradenum);
+		
+		System.out.println("transfer: "+transfer);
+		System.out.println("takeover: "+takeover);
+		
+		try{
+			if(transfer.equals("ok") && takeover.equals("ok")){
+				result = true;
+			}
+		}catch(NullPointerException e){
+			result = false;
+		}
+		
+		return result;
+	}
+
+	/** 넘겨받은 tradenum의 state를 '완료'로 수정 */
+	public void endState(int tradenum) {
+		template.update(namespace+"endState", tradenum);
 	}
 	
 }

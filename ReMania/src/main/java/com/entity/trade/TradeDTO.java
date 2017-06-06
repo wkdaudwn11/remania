@@ -11,12 +11,15 @@ public class TradeDTO {
 	private String buyer;		//구매자 이메일
 	private String seller;		//판매자 이메일
 	private String state;		//거래상황
+	private String transfer;	//인계확인 (기본값: null)
+	private String takeover;	//인수확인 (기본값: null)
 	
 	public TradeDTO() {
 		super();
 	}
 
-	public TradeDTO(int tradenum, String category, int categorynum, String buyer, String seller, String state) {
+	public TradeDTO(int tradenum, String category, int categorynum, String buyer, String seller, String state,
+			String transfer, String takeover) {
 		super();
 		this.tradenum = tradenum;
 		this.category = category;
@@ -24,12 +27,15 @@ public class TradeDTO {
 		this.buyer = buyer;
 		this.seller = seller;
 		this.state = state;
+		this.transfer = transfer;
+		this.takeover = takeover;
 	}
 
 	@Override
 	public String toString() {
 		return "TradeDTO [tradenum=" + tradenum + ", category=" + category + ", categorynum=" + categorynum + ", buyer="
-				+ buyer + ", seller=" + seller + ", state=" + state + "]";
+				+ buyer + ", seller=" + seller + ", state=" + state + ", transfer=" + transfer + ", takeover="
+				+ takeover + "]";
 	}
 
 	public int getTradenum() {
@@ -78,6 +84,22 @@ public class TradeDTO {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getTransfer() {
+		return transfer;
+	}
+
+	public void setTransfer(String transfer) {
+		this.transfer = transfer;
+	}
+
+	public String getTakeover() {
+		return takeover;
+	}
+
+	public void setTakeover(String takeover) {
+		this.takeover = takeover;
 	}
 	
 }

@@ -1,6 +1,7 @@
 package com.dao.mypage;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ private String namespace = "com.remania.MypageMapper.";
 		MypageDTO dto = new MypageDTO();
 		
 		//삽니다
-		dto.setBuywrite(template.selectOne(namespace+"getBuywrite", email)); 
+		dto.setBuywrite(template.selectOne(namespace+"getBuywrite", email));
 		dto.setBuytrading(template.selectOne(namespace+"getBuytrading", email));
 		dto.setBuyend(template.selectOne(namespace+"getBuyend", email));
 		
@@ -36,12 +37,12 @@ private String namespace = "com.remania.MypageMapper.";
 	}//getMypageDTO(MemberDTO login)
 
 	/** trade 테이블에서 정보를 가져온다. */
-	public TradeDTO getTradeInfo(String trade, String email, String history) {
+	public List<TradeDTO> getTradeInfo(String trade, String email, String process) {
 		HashMap map = new HashMap();
 		map.put("trade", trade);
 		map.put("email", email);
-		map.put("history", history);
-		return template.selectOne(namespace+"getTradeInfo", map);
+		map.put("process", process);
+		return template.selectList(namespace+"getTradeInfo", map);
 	}//getTradeInfo(String trade, String email, String history)
 
 	/** buy테이블에서 정보를 가져온다. */
@@ -53,5 +54,14 @@ private String namespace = "com.remania.MypageMapper.";
 	public String getSellerName(String seller) {
 		return template.selectOne(namespace+"getSellerName", seller);
 	}
+
+	/** 삽니다 혹은 팝니다 게시판에 해당 이메일이 작성한 게시글 수를 가져오는 메소드 (state가 null인 것만) */
+	public List<BuyDTO> getWriteHistory(String email, String trade) {
+		if(trade.equals("buyer")){
+			return template.selectList(namespace+"getBuyWriteHistory", email);
+		}else{
+			return null;
+		}
+	}//getWriteHistory(String email, String trade)
 	
 }

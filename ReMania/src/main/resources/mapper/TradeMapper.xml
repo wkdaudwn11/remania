@@ -20,13 +20,44 @@
 		values(trade_seq.nextval, #{category}, #{categorynum}, #{buyer}, #{seller})
 	</insert>
 	
-	<update id="buyStateUpdate" parameterType="int">
-		update buy set state='진행중' where buynum=#{value}
+	<update id="buyStateUpdate" parameterType="map">
+		<choose>
+			<when test="trade == 'trading'">
+				update buy set state='진행중' where buynum=#{buynum}
+			</when>
+			<otherwise>
+				update buy set state=null where buynum=#{buynum}
+			</otherwise>
+		</choose>
 	</update>
 	
-	<!-- email에 해당하는 회원정보를 반환하는 쿼리 -->
+	<!-- 번호에 해당하는 거래정보를 반환하는 쿼리 -->
 	<select id="getTradeInfo" parameterType="int" resultType="TradeDTO">
 		select * from trade where tradenum=#{tradenum} 
 	</select>
+	
+	<!-- 판매취소를 하여 해당 tradenum 레코드 삭제 -->
+	<delete id="deleteTrade" parameterType="int">
+		delete from trade where tradenum=#{value}
+	</delete>
+	
+	<!-- 인수, 인계 확인 버튼을 누르면 이 쿼리를 타서 인수 혹은 인계 속성을 ok로 바꿈 -->
+	<update id="updateTrade" parameterType="map">
+		update trade set ${trade}='ok' where tradenum=#{tradenum}
+	</update>
+	
+	<!-- transfer의 값을 가져오는 쿼리 -->
+	<select id="getTransfer" parameterType="int" resultType="string">
+		select transfer from trade where tradenum=#{value}
+	</select>
+	
+	<!-- transfer의 값을 가져오는 쿼리 -->
+	<select id="getTakeover" parameterType="int" resultType="string">
+		select takeover from trade where tradenum=#{value}
+	</select>
+	
+	<update id="endState" parameterType="int">
+		update trade set state='완료' where tradenum=#{value}
+	</update>
 	
 </mapper>

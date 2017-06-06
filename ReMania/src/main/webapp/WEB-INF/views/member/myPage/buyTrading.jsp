@@ -30,13 +30,21 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		$("#myPageIndex").on("click", function(){
+			location.replace("myPageIndex");
+		});
+		$("#buyWriteHistory").on("click", function(){
+			location.replace("writeHistory?trade=buyer");
+		});
+		$("#buyEndHistoryBtn").on("click", function(){
+			location.replace("endHistory?trade=buyer&process=end");
+		});
 	});
 </script>
 
 </head>
 <body>
-
+	<br /><br />
 	<jsp:include page="../../include/nav.jsp" flush="true" />
 
 	<div class="container">
@@ -60,32 +68,27 @@
 							<th width="50">구매자</th>
 							<th width="150">작성일</th>
 						</tr>
-						<tr height="30">
-							<td width="50" align="center">1</td>
-							<td width="50" align="center">
-								<c:choose>
-									<c:when test="${tradeDTO.category == 'buy'}">
-										<c:choose>
-											<c:when test="${!empty dto.image1}">
-												<img src="buy/${tradeDTO.categorynum}_${tradeDTO.buyer}/${dto.image1}.jpg" width="50" height="50">
-											</c:when>
-											<c:otherwise>
-												<img src="images/ImgNotFound.png" width="50" height="50">
-											</c:otherwise>
-										</c:choose>
-									</c:when>
-									<c:otherwise>
-										<img src="sell/${tradeDTO.categorynum}_${tradeDTO.seller}/${dto.image1}.jpg" width="50" height="50">
-									</c:otherwise>
-								</c:choose>
-							</td>
-							<td width="200" align="center">
-								<a href="trade?tradenum=${tradeDTO.tradenum}">${dto.title}</a>
-							</td>
-							<td width="50" align="center">${sellerName}</td>
-							<td width="50" align="center">${dto.author}</td>
-							<td width="150" align="center">${dto.writeday}</td>
-						</tr>
+						<c:forEach var="buyDTO" items="${buyList}" varStatus="i">
+							<tr height="30">
+								<td width="50" align="center">${i.count}</td>
+								<td width="50" align="center">
+									<c:choose>
+										<c:when test="${!empty buyDTO.image1}">
+											<img src="buy/${buyDTO.buynum}_${buyDTO.email}/${buyDTO.image1}.jpg" width="50" height="50">
+										</c:when>
+										<c:otherwise>
+											<img src="images/ImgNotFound.png" width="50" height="50">
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td width="200" align="center">
+									<a href="trade?tradenum=${tradenum[i.count-1]}">${buyDTO.title}</a>
+								</td>
+								<td width="50" align="center">${sellerName[i.count-1]}</td>
+								<td width="50" align="center">${buyDTO.author}</td>
+								<td width="150" align="center">${buyDTO.writeday}</td>
+							</tr>
+						</c:forEach>
 					</table>
 					<!-- boardList -->
 
@@ -97,23 +100,23 @@
 		<!-- .panel-group -->
 		
 		<p style="text-align: left; float: left;">
-			<button type="button" class="btn btn-danger" id="writeBtn">
+			<button type="button" class="btn btn-danger" id="buyWriteHistory">
 				삽니다에 등록한 게시글
 			</button>
-			<button type="button" class="btn btn-danger" id="writeBtn">
+			<button type="button" class="btn btn-danger" id="buyEndHistoryBtn">
 				구매종료내역
 			</button>
 		</p>
 
 		<p style="text-align: right;">
-			<button type="button" class="btn btn-danger" id="writeBtn">
+			<button type="button" class="btn btn-danger" id="myPageIndex">
 				마이페이지로 돌아가기
 			</button>
 		</p>
 
 	</div>
 	<!-- .container -->
-	<br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br />
 	
 	<jsp:include page="../../include/footer.jsp" flush="true" />
 </body>
