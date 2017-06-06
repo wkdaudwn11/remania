@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,13 +30,19 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		$("#sellTradingBtn").on("click", function(){
+			location.replace("trading?trade=seller&process=trading");
+		})
+		$("#sellEndHistoryBtn").on("click", function(){
+			location.replace("endHistory?trade=seller&process=end");
+		})
 	});
 </script>
 
 </head>
 <body>
-
+	<br /><br />
+	
 	<jsp:include page="../../include/nav.jsp" flush="true" />
 
 	<div class="container">
@@ -43,13 +52,13 @@
 		<div class="panel-group">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<font size="5">[장명주]</font>
-					<font size="4">님이 팝니다에 등록한 게시글 입니다.</font>　
+					<font size="5" color="white">${sessionScope.login.name}</font>
+					<font size="4" color="white">님이 팝니다에 등록한 게시글 입니다.</font>　
 				</div>
 				<!-- .panel-heading -->
 				<div class="panel-body">
 
-					<p>글목록(전체 글: 999)</p>
+					<p>글목록(전체 글: ${buyList.size()})</p>
 
 					<!-- 게시판 리스트 -->
 					<table width="100%" cellpadding="0" cellspacing="0" border="0"
@@ -58,47 +67,31 @@
 							<th width="50">번 호</th>
 							<th width="100">사 진</th>
 							<th width="200">제 목</th>
-							<th width="50">작성자</th>
+							<th width="100">작성자</th>
 							<th width="150">작성일</th>
-							<th width="50">조 회</th>
 						</tr>
-						<tr height="30">
-							<td width="50" align="center">10</td>
-							<td width="50" align="center">
-								<img src="images/test/sample1.jpg" width="50" height="50">
-							</td>
-							<td width="200" align="center">
-								<a href="freeBoardDetail">제목</a>
-							</td>
-							<td width="50" align="center">작성자</td>
-							<td width="150" align="center">2017-05-09</td>
-							<td width="50" align="center">10</td>
-						</tr>
+						<c:forEach var="buyDTO" items="${buyList}" varStatus="i">
+							<tr height="30">
+								<td width="50" align="center">${i.count}</td>
+								<td width="50" align="center">
+									<c:choose>
+										<c:when test="${!empty buyDTO.image1}">
+											<img src="buy/${buyDTO.buynum}_${buyDTO.email}/${buyDTO.image1}.jpg" width="50" height="50">
+										</c:when>
+										<c:otherwise>
+											<img src="images/ImgNotFound.png" width="50" height="50">
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td width="200" align="center">
+									<a href="buyDetail?buynum=${buyDTO.buynum}">${buyDTO.title}</a>
+								</td>
+								<td width="100" align="center">${sessionScope.login.name}</td>
+								<td width="150" align="center">${buyDTO.writeday }</td>
+							</tr>
+						</c:forEach>
 					</table>
 					<!-- boardList -->
-
-					<div id="paging" style="width: 44em; margin: 0 auto;">
-						<ul class="pager" style="float: left;">
-							<li><a href="#">처음</a></li>
-							<li><a href="#"><</a></li>
-						</ul>
-						<ul class="pagination" style="float: left;">
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">6</a></li>
-							<li><a href="#">7</a></li>
-							<li><a href="#">8</a></li>
-							<li><a href="#">9</a></li>
-							<li><a href="#">10</a></li>
-						</ul>
-						<ul class="pager" style="float: left;">
-							<li><a href="#">></a></li>
-							<li><a href="#">맨끝</a></li>
-						</ul>
-					</div>
 
 				</div>
 				<!-- .panel-body -->
@@ -108,23 +101,23 @@
 		<!-- .panel-group -->
 		
 		<p style="text-align: left; float: left;">
-			<button type="button" class="btn btn-primary" id="writeBtn">
+			<button type="button" class="btn btn-primary" id="sellTradingBtn">
 				판매중인상품
 			</button>
-			<button type="button" class="btn btn-primary" id="writeBtn">
+			<button type="button" class="btn btn-primary" id="sellEndHistoryBtn">
 				판매종료내역
 			</button>
 		</p>
 
 		<p style="text-align: right;">
-			<button type="button" class="btn btn-primary" id="writeBtn">
+			<button type="button" class="btn btn-primary" id="myPageIndex">
 				마이페이지로 돌아가기
 			</button>
 		</p>
 
 	</div>
 	<!-- .container -->
-	<br /><br />
+	<br /><br /><br /><br /><br /><br />
 	
 	<jsp:include page="../../include/footer.jsp" flush="true" />
 </body>

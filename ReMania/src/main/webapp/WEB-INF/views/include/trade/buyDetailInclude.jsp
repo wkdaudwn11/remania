@@ -3,10 +3,22 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<style>
+	.displayNone{display: none;}
+</style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function() {
-		$("#sellBtn").on("click", function(){
+		
+		if("${tradeDTO}" != ""){
+			$("#trade_content").hide("fast");
+		}
+		
+		$("#contentDisplayOff").addClass("displayNone");
+		
+		/* $("#sellBtn").on("click", function(){
 			
 			var hiddenForm = document.getElementById("hiddenForm");
 			var buyerEmail = '${buyDTO.email}'; // 게시글 작성자 이메일(구매자 이메일로도 쓰임)
@@ -22,6 +34,18 @@
 					hiddenForm.submit();
 				}
 			}
+		}); // */
+		
+		$("#contentDisplayOn").on("click", function(){
+			$("#contentDisplayOff").removeClass("displayNone");
+			$("#contentDisplayOn").addClass("displayNone");
+			$("#trade_content").show("slow");
+		});
+		
+		$("#contentDisplayOff").on("click", function(){
+			$("#contentDisplayOn").removeClass("displayNone");
+			$("#contentDisplayOff").addClass("displayNone");
+			$("#trade_content").hide("slow");
 		});
 	});
 	
@@ -137,8 +161,11 @@
 								</button>
 							</c:when>
 							<c:otherwise>
-								<button type="button" class="btn btn-default">
+								<button type="button" class="btn btn-default" id="contentDisplayOn">
 									내용보기
+								</button>
+								<button type="button" class="btn btn-default" id="contentDisplayOff">
+									내용감추기
 								</button>
 							</c:otherwise>
 						</c:choose>
@@ -149,7 +176,7 @@
 			<!-- bedRoomDetailVisual -->
 			<br />
 			<hr />
-			<div>
+			<div id="trade_content">
 				<c:if test="${image2List != null}">
 					<center>
 						<c:forEach var="image2Name" items="${image2List}">

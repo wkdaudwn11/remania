@@ -29,6 +29,44 @@
 	.visualRightTable .productPrice2 {color: red; font-size: 15px; font: bold;}
 	.visualRightTable .productPrice3 { color: #3f4993; font-size: 15px; font: bold;}
 </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+	/* 판매취소 함수 */
+	$(document).ready(function(){
+		
+		$("#sellCancel").on("click", function(){
+			if(confirm("정말로 판매를 취소하시겠습니까?")){
+				alert("판매가 취소되었습니다.");
+				location.replace("sellCancel?tradenum=${tradeDTO.tradenum}&title=${buyDTO.title}&receiver=${buyer.tel}&category=${tradeDTO.category}&buynum=${buyDTO.buynum}");
+			}
+		});
+		
+		$("#buyCancel").on("click", function(){
+			if(confirm("정말로 구매를 취소하시겠습니까?")){
+				alert("구매 취소가 접수되었습니다.");
+				//location.replace("sellCancel?tradenum=${tradeDTO.tradenum}&title=${buyDTO.title}&receiver=${buyer.tel}");
+			}
+		});
+		
+		//인수확인 버튼
+		$("#takeover").on("click", function(){
+			if(confirm("정말로 인수 확인 하시겠습니까?")){
+				location.replace("takeover?trade=takeover&tradenum=${tradeDTO.tradenum}");
+			}
+		});
+		
+		//인계확인 버튼
+		$("#transfer").on("click", function(){
+			if(confirm("정말로 인계 확인 하시겠습니까?")){
+				location.replace("transfer?trade=transfer&tradenum=${tradeDTO.tradenum}");
+			}
+		});
+	});
+	
+</script>
+
 </head>
 <body>
 
@@ -108,25 +146,46 @@
 		
 		<div style="text-align: center;">
 			<c:choose>
+				<c:when test="${!empty tradeDTO.takeover && !empty tradeDTO.transfer}">
+					<div>
+						<h2>이 거래는 종료되었습니다.</h2>
+					</div>
+				</c:when>
 				<c:when test="${login.email == seller.email}">
-					<button type="button" class="btn btn-primary" 
-						style="width: 15em; border-radius: 3em;">
-						인계 완료
-					</button>
-					<button type="button" class="btn btn-default" 
-						style="width: 15em; border-radius: 3em; background-color: lightgray;">
-						판매 취소
-					</button>
+					<c:if test="${empty tradeDTO.transfer}">
+						<button type="button" class="btn btn-primary" id="transfer"
+							style="width: 15em; border-radius: 3em;">
+							인계 확인
+						</button>
+						<button type="button" class="btn btn-default" id="sellCancel"
+							style="width: 15em; border-radius: 3em; background-color: lightgray;">
+							판매 취소
+						</button>
+					</c:if>
+					<c:if test="${!empty tradeDTO.transfer}">
+						<div>
+							인계확인!<br />
+							구매자가 인계 확인을 하면 거래가 완료됩니다.
+						</div>
+					</c:if>
 				</c:when>
 				<c:otherwise>
-					<button type="button" class="btn btn-danger"
-						style="width: 15em; border-radius: 3em; background-color: #d9534f;">
-						인수 완료
-					</button>
-					<button type="button" class="btn btn-default"
-						style="width: 15em; border-radius: 3em;">
-						구매 취소
-					</button>
+					<c:if test="${empty tradeDTO.takeover}">
+						<button type="button" class="btn btn-danger" id="takeover"
+							style="width: 15em; border-radius: 3em; background-color: #d9534f;">
+							인수 확인
+						</button>
+						<button type="button" class="btn btn-default" id="buyCancel"
+							style="width: 15em; border-radius: 3em;">
+							구매 취소
+						</button>
+					</c:if>
+					<c:if test="${!empty tradeDTO.takeover}">
+						<div>
+							인수확인!<br />
+							판매자가 인계 확인을 하면 거래가 완료됩니다.
+						</div>
+					</c:if>
 				</c:otherwise>
 			</c:choose>
 		</div>

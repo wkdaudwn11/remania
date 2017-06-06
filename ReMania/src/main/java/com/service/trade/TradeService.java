@@ -1,5 +1,7 @@
 package com.service.trade;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,28 @@ public class TradeService {
 		dao.tradeInsert(tradeDTO);
 	}
 
-	public void buyStateUpdate(int categorynum) {
-		dao.buyStateUpdate(categorynum);
+	public void buyStateUpdate(int buynum, String trade) {
+		dao.buyStateUpdate(buynum, trade);
 	}
 
 	public TradeDTO getTradeInfo(String tradenum) {
 		return dao.getTradeInfo(Integer.parseInt(tradenum));
+	}
+
+	public void deleteTrade(int tradenum) {
+		dao.deleteTrade(tradenum);
+	}
+
+	public void updateTrade(HashMap map) {
+		dao.updateTrade(map);
+	}
+
+	public boolean result(int tradenum) {
+		return dao.result(tradenum);
+	}
+
+	public void endState(int tradenum) {
+		dao.endState(tradenum);
 	}
 	
 }

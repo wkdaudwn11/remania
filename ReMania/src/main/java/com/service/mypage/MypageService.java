@@ -1,5 +1,7 @@
 package com.service.mypage;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,8 @@ public class MypageService {
 		return dao.getMypageDTO(email);
 	}
 
-	public TradeDTO getTradeInfo(String trade, String email, String history) {
-		return dao.getTradeInfo(trade, email, history);
+	public List<TradeDTO> getTradeInfo(String trade, String email, String process) {
+		return dao.getTradeInfo(trade, email, process);
 	}
 
 	public BuyDTO getBuyInfo(int categorynum) {
@@ -29,6 +31,10 @@ public class MypageService {
 
 	public String getSellerName(String seller) {
 		return dao.getSellerName(seller);
+	}
+
+	public List<BuyDTO> getWriteHistory(String email, String trade) {
+		return dao.getWriteHistory(email, trade);
 	}
 	
 }

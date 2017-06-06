@@ -1,10 +1,14 @@
 package com.controller.mypage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -37,50 +41,66 @@ public class MypageController {
 	public String process(String trade, String process, HttpSession session, Model m){
 		
 		String target = "";
-		TradeDTO tradeDTO = null;
-		
 		MemberDTO login = (MemberDTO)session.getAttribute("login");
+		MypageDTO mypageDTO = service.getMypageDTO(login.getEmail());
+		
+		List<TradeDTO> tradeList = null;
 		
 		try{
-			if(process.equals("trading")){
-				tradeDTO = service.getTradeInfo(trade, login.getEmail(), "trading");
-			}else{
-				tradeDTO = service.getTradeInfo(trade, login.getEmail(), "end");
-			}
 			
-			String sellerName = service.getSellerName(tradeDTO.getSeller());
+			tradeList = service.getTradeInfo(trade, login.getEmail(), process);
+			
+			String[] sellerName = new String[tradeList.size()];
+			int[] tradenum = new int[tradeList.size()];
+			List<BuyDTO> buyList = new ArrayList<>();
+			for(int i=0; i<tradeList.size(); i++){
+				sellerName[i] = service.getSellerName(tradeList.get(i).getSeller());
+				tradenum[i] = tradeList.get(i).getTradenum();
+				buyList.add(service.getBuyInfo(tradeList.get(i).getCategorynum()));
+			}
 			
 			m.addAttribute("sellerName", sellerName);
-			m.addAttribute("tradeDTO", tradeDTO);
+			m.addAttribute("tradenum", tradenum);
+			m.addAttribute("buyList", buyList);
 			
-			MypageDTO mypageDTO = service.getMypageDTO(login.getEmail());
-			
-			if(tradeDTO.getCategory().equals("buy")){
-				BuyDTO buyDTO = service.getBuyInfo(tradeDTO.getCategorynum());
-				m.addAttribute("dto", buyDTO);
-				if(trade.equals("buyer")){
-					if(process.equals("trading")){
-						m.addAttribute("count", mypageDTO.getBuytrading());
-					}else{
-						m.addAttribute("count", mypageDTO.getBuyend());
-					}
+			if(trade.equals("buyer")){ // 구매 관련 리스트 일 경우
+				if(process.equals("trading")){
 					target = "member/myPage/buyTrading";
 				}else{
-					if(process.equals("trading")){
-						m.addAttribute("count", mypageDTO.getSelltrading());
-					}else{
-						m.addAttribute("count", mypageDTO.getSellend());
-					}
-					target = "member/myPage/sellTrading";
+					target = "member/myPage/buyEndHistory";
 				}
 			}else{
-				//팝니다는 미구현
+				if(process.equals("trading")){
+					target = "member/myPage/sellTrading";
+				}else{
+					target = "member/myPage/sellEndHistory";
+				}
 			}
+			
 		}catch(NullPointerException e){ // 판매중인 상품이 없으면 NullPointerException이 발생하므로 그냥 마이페이지로 넘겨줌.
+			e.printStackTrace();
 			target = "redirect:myPageIndex";
 		}
 		
 		return target;
 	}//process(String trade, String process, HttpSession session, Model m)
+	
+	@RequestMapping(value="writeHistory")
+	public String writeHistory(String trade, HttpSession session, Model m){
+		
+		String target = "";
+		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("login");
+		
+		if(trade.equals("buyer")){
+			List<BuyDTO> list = service.getWriteHistory(memberDTO.getEmail(), trade);
+			m.addAttribute("buyList", list);
+			target = "member/myPage/buyWriteHistory";
+		}else{
+			target = "member/myPage/sellWriteHistory";
+		}
+		
+		return target;
+	}
 	
 }

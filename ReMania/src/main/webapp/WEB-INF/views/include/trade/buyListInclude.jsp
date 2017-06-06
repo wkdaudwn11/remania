@@ -9,6 +9,24 @@
 
 	$(document).ready(function(){
 		
+		$("#sellBtn").on("click", function(){
+			
+			var hiddenForm = document.getElementById("hiddenForm");
+			var buyerEmail = '${buyDTO.email}'; // 게시글 작성자 이메일(구매자 이메일로도 쓰임)
+			var loginEmail = '${login.email}'; // 로그인 이메일 (판매자 이메일로도 쓰임)
+			
+			if(loginEmail == "" || loginEmail == null){
+				alert('로그인을 하셔야 판매신청을 할 수 있습니다.');
+			}else if(loginEmail == buyerEmail){
+				alert('자신의 글은 판매신청을 할 수 없습니다.');
+			}else{
+				if(confirm("판매신청이 되었습니다. 거래화면으로 이동하시겠습니까?")){
+					hiddenForm.action = "trade";
+					hiddenForm.submit();
+				}
+			}
+		});
+		
 		//검색버튼을 눌렀을 경우
 		$("#searchBtn").on("click", function(){
 			var category = document.getElementById("category").value;
@@ -208,7 +226,7 @@
 							<button type="button" class="btn btn-danger" style="width: 10.2em;" onclick="buyDelete('${buyDTO2.email}', '${buyDTO2.email}', '${buyDTO2.buynum}','${buyPageDTO.curPage}','${category}', '${sort}', '${searchType}', '${searchValue}')">삭제하기</button>
 						</c:when>
 						<c:when test="${!(empty login)}">
-							<button type="button" class="btn btn-danger" style="width: 20.8em;">판매신청</button>
+							<button type="button" id="sellBtn" class="btn btn-danger" style="width: 20.8em;">판매신청</button>
 						</c:when>
 					</c:choose>
 				</c:if>

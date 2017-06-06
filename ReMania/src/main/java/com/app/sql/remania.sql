@@ -46,14 +46,15 @@ create table remania_comment(
 	ref number(5)	not null,			-- root 댓글 = 최상위 댓글 고유번호
 	step number(5)	not null,			--댓글 출력 순서 구분
 	parentComment number(5),			-- 상위 댓글  고유번호
-	num number(5) ,		--댓글 고유번호 (pk)
+	num number(5) constraint comment_num_pk primary key,		--댓글 고유번호 (pk)
 	boardnum number(4),	--파라미터 넘길 필요 없이 그냥 게시물 삭제시 지우게 게시물번호 (fk) -> 게시글 삭제되면 댓글도 같이 삭제 (cascade)
 	category varchar2(10), -- 그냥 table 하나로 댓 글 관리하려고 넣었어요.
 	email varchar2(50),
 	author varchar2(10),
 	usercomment varchar2(4000),
 	writeday date default sysdate,
-	constraint comment_num_category_pk primary key(num,category),
+	constraint comment_boardnum_fk foreign key(boardnum) references freeBoard(freeboardnum) on delete cascade,
+	constraint comment_parentComment_fk foreign key(parentComment) references remania_comment(num) on delete cascade,
 	constraint comment_email_fk foreign key(email) references member(email) on delete cascade
 );
 
@@ -61,7 +62,7 @@ drop sequence comment_seq;
 create sequence comment_seq minvalue 1;
 
 drop sequence comment_seq;
-create sequnece buy_comment_seq minvalue 1;
+create sequence buy_comment_seq minvalue 1;
 
 -- 문의 게시판
 drop table inquiry purge;
@@ -113,11 +114,11 @@ Create table buyReple(
  step 		number(4) 		default 0,      -- 공백 갯수
  pfrnum 	number(4)  		not null , 		-- 부모의 고유넘버
  buyreplenum 	  	number(4)		constraint buyReple_buyreplenum_pk primary key,	--댓글번호, 댓글의 고유번호 ref
- buynum     	number(4)       not null,       --게시판번호 (fk)
- email			varchar2(50),					-- 이메일 (fk)
- author 	varchar2(16)	not null,		--작성자
- content	varchar2(4000)  not null,	    --내용
- writeday	date            default sysdate,--작성일
+ buynum     	number(4)       not null,   -- 게시판번호 (fk)
+ email			varchar2(50),				-- 이메일 (fk)
+ author 	varchar2(16)	not null,		-- 작성자
+ content	varchar2(4000)  not null,	    -- 내용
+ writeday	date            default sysdate,-- 작성일
 constraint buyReple_email_fk foreign key(email) references member(email) on delete cascade,
 constraint buyReple_buynum_fk foreign key(buynum) references buy(buynum) on delete cascade
 );
@@ -131,15 +132,15 @@ references buyReple(buyreplenum) on delete cascade;
 create sequence buyReple_seq minvalue 1;
 
 create table trade(
-  tradenum    number(4)     constraint trade_tradenum_pk primary key, --거래번호
-  category    varchar2(10)  not null,       --게시글 종류(buy, sell)
-  categorynum number(4)     not null,       --게시글 번호
-  buyer       varchar2(50)  not null,       --구매자 이메일
-  seller      varchar2(50)  not null,       --판매자 이메일
+  tradenum    number(4)     constraint trade_tradenum_pk primary key, -- 거래번호
+  category    varchar2(10)  not null,       -- 게시글 종류(buy, sell)
+  categorynum number(4)     not null,       -- 게시글 번호
+  buyer       varchar2(50)  not null,       -- 구매자 이메일
+  seller      varchar2(50)  not null,       -- 판매자 이메일
   state       varchar2(10)  default '진행중', -- 거래상황
-  transfer    varchar2(10)  default null,   --인계
-  takeover    varchar2(10)  default null    --인수
+  transfer    varchar2(10)  default null,   -- 인계
+  takeover    varchar2(10)  default null    -- 인수
 );
 create sequence trade_seq minvalue 0;
-        
+
 commit;
