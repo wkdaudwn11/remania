@@ -171,7 +171,7 @@
 						style="background-color: #478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
 						<span
 							style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;">Password</span>
-						<input type="text" name="pwd"
+						<input type="password" name="pwd"
 							style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;">
 					</div>
 					<br />

@@ -231,8 +231,6 @@ function check2(form){
 							</div>
 							<br />
 
-							<!-- pwd란에 입력값이 없으면 session에 저장되어있는 pwd를 받아오기  -->
-							<!-- pwd란에 입력값이 없으면 session에 저장되어있는 pwd를 받아오기  -->
 							<div
 								style="background-color: #478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
 								<span

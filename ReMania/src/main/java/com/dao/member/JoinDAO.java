@@ -3,6 +3,7 @@ package com.dao.member;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.SystemPropertyUtils;
 
 import com.entity.member.MemberDTO;
 
@@ -25,6 +26,7 @@ public class JoinDAO {
 	
 	/** 회원정보수정 */
 	public void updateCheck(MemberDTO dto) {
+		if(dto.getTel().equals("")) dto.setTel(null);
 		template.update(namespace+"updateMember", dto);
 	}
 	
