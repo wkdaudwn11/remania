@@ -42,8 +42,8 @@ public class BuyDAO {
 	}
 	
 	/** 현재 buy테이블의 가장 최신 글의 글 번호를 가져오는 메소드 */
-	public int getCurval() {
-		return template.selectOne(namespace+"getCurval");
+	public int getCurrval() {
+		return template.selectOne(namespace+"getCurrval");
 	}
 
 	/** 글작성 */

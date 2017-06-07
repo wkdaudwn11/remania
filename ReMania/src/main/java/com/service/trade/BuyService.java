@@ -49,8 +49,8 @@ public class BuyService {
 		return dao.buyList(curPage, map);
 	}//buyList(int curPage, String category, String sort, String searchType, String searchValue)
 	
-	public int getCurval() {
-		return dao.getCurval();
+	public int getCurrval() {
+		return dao.getCurrval();
 	}
 
 	public void buyInsert(BuyDTO dto) {

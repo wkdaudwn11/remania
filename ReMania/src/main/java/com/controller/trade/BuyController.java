@@ -59,23 +59,26 @@ public class BuyController {
 	@RequestMapping(value="buyWrite")
 	public String buyWrite(BuyDTO dto) throws Exception {
 		
-		int curval; // buy테이블의 최신글 번호를 담을 변수
+		int nextval; // buy테이블의 최신글 번호를 담을 변수
 		
 		try{
-			curval = service.getCurval();
+			nextval = service.getCurrval();
 		}catch(NullPointerException e){
-			curval = 0; // 게시글이 없어서 에러가 뜨면 걍 0으로 설정.
+			nextval = 1; // 게시글이 없어서 에러가 뜨면 걍 0으로 설정.
 		}
+		
+		dto.setBuynum(nextval);
 		
 		//앞으로 등록하 게시물은 최신글의 +1이니까, curval에다가 +1을 해줌
 		//nextval은 사진을 저장할 폴더명에 쓰일 것임.
-		int nextval = curval + 1;
 
 		CommonsMultipartFile image1 = dto.getUpfile(); // 대표사진
 		CommonsMultipartFile image2[] = dto.getUpfileContent(); // 내용에 있는 사진은 여러장 일 수도 있기 때문에 배열로 받는다.
 		
 		//사진을 저장할 경로 지정 (번호_글제목)
 		String filePath = "C:\\project\\images\\trade\\buy\\"+nextval+"_"+dto.getEmail();
+		
+		System.out.println("nextval: "+nextval);
 		
 		//없는 경로라면(무조건 없겠지만), 해당 폴더(경로)를 새로 만듬
 		if(!new File(filePath).exists()){
@@ -158,8 +161,6 @@ public class BuyController {
 				image1.transferTo(file1);
 				StringTokenizer image1Token = new StringTokenizer(fileName1, ".");
 				buyDTO.setImage1(image1Token.nextToken()); //dto에 사진이름을 저장 (.jpg를 뺀 순수한 이름)
-			}else{
-				buyDTO.setImage1("");
 			}
 			
 			//내용사진 저장
@@ -187,10 +188,10 @@ public class BuyController {
 					
 					image2Token.nextToken(); //.jpg는 필요없음.
 				}
+				
+				buyDTO.setImage2(imagesName); //dto에 사진이름들을 저장 (.jpg를 뺀 순수한 이름)
 			}
 
-			buyDTO.setImage2(imagesName); //dto에 사진이름들을 저장 (.jpg를 뺀 순수한 이름)
-			
 		}catch(IllegalStateException e){
 			e.printStackTrace();
 		}catch(IOException e2){
