@@ -51,7 +51,7 @@ public class QuestionBoardController {
 	@RequestMapping("/answer")
 	public String answer(HttpSession session,QuestionDTO question,String curPage,RedirectAttributes redirectAttributes){
 		MemberDTO member = (MemberDTO)session.getAttribute("login");
-		question.setEmail(member.getEmail());
+		question.setEmail(question.getEmail());
 		question.setAuthor(member.getName());
 		question.setComment_level(1);
 		question.setState("답변 완료");

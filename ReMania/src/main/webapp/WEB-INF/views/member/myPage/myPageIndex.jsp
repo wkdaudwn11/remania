@@ -74,6 +74,12 @@
 							<td>${login.logindate}</td>
 						</tr>
 						<tr>
+							<td><img src="images/yyy.jpg">&nbsp;문의 등록</td>
+							<td>
+								<a href="myInquiryList">${mypageDTO.inquiryRegister}</a>건
+							</td>
+						</tr>
+						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;거래 횟수</td>
 							<td>${mypageDTO.buyend}건</td> <!-- 원래 팝니다+삽니다 해야하는데 시간상 팝니다를 구현안했으므로 삽니다만.. -->
 						</tr>
@@ -93,19 +99,19 @@
 						<tr>
 							<td width="250"><img src="images/yyy.jpg">&nbsp;팝니다에 등록한 게시글</td>
 							<td>
-								<a href="writeHistory?trade=seller">${mypageDTO.sellwrite}건</a>
+								<a href="writeHistory?trade=seller">${mypageDTO.sellwrite}</a>건
 							</td>
 						</tr>
 						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;판매중인상품</td>
 							<td>
-								<a href="trading?trade=seller&process=trading">${mypageDTO.selltrading}건</a>
+								<a href="trading?trade=seller&process=trading">${mypageDTO.selltrading}</a>건
 							</td>
 						</tr>
 						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;판매종료내역</td>
 							<td>
-								<a href="endHistory?trade=seller&process=end">${mypageDTO.sellend}건</a>
+								<a href="endHistory?trade=seller&process=end">${mypageDTO.sellend}</a>건
 							</td>
 						</tr>
 					</table>
@@ -124,19 +130,19 @@
 								<img src="images/yyy.jpg">&nbsp;삽니다에 등록한 게시글
 							</td>
 							<td>
-								<a href="writeHistory?trade=buyer">${mypageDTO.buywrite}건</a>
+								<a href="writeHistory?trade=buyer">${mypageDTO.buywrite}</a>건
 							</td>
 						</tr>
 						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;구매중인상품</td>
 							<td>
-								<a href="trading?trade=buyer&process=trading">${mypageDTO.buytrading}건</a>
+								<a href="trading?trade=buyer&process=trading">${mypageDTO.buytrading}</a>건
 							</td>
 						</tr>
 						<tr>
 							<td><img src="images/yyy.jpg">&nbsp;구매종료내역</td>
 							<td>
-								<a href="endHistory?trade=buyer&process=end">${mypageDTO.buyend}건</a>
+								<a href="endHistory?trade=buyer&process=end">${mypageDTO.buyend}</a>건
 							</td>
 						</tr>
 					</table>

@@ -44,6 +44,7 @@
 		<form action="answer" method="post">
 			<div class="alert alert-warning" style="background-color: #fbd14e;">
 				<input type="hidden" name="ref" value="${Question.registernum}" />
+				<input type="hidden" name="email" value="${Question.email}"/>
 				
 				<small>
 				<strong>분　&nbsp;&nbsp;&nbsp;　류</strong>&nbsp;&nbsp;
