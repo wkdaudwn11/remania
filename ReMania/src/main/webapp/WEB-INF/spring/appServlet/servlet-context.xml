@@ -50,21 +50,25 @@
 	</mvc:interceptors>
 	
 	<!-- 화면 보여주기 시작 -->
-	<!-- web -->
 	<!-- index화면 -->
 	<mvc:view-controller path="/" view-name="index"/>
 	<mvc:view-controller path="home" view-name="index"/>
 	
 	<!-- 로그인 화면 -->
 	<mvc:view-controller path="login" view-name="member/login/loginUI"/>
+	<mvc:view-controller path="mobileLogin" view-name="mobile/member/login/mobileLoginUI"/>
 	
 	<!-- 회원가입 화면 -->
 	<mvc:view-controller path="join" view-name="member/join/joinUI"/>
+	<mvc:view-controller path="mobileJoin" view-name="mobile/member/join/mobileJoinUI"/>
 	
 	<!-- 찾기 화면 -->
 	<mvc:view-controller path="findId" view-name="member/find/findIdUI"/>
 	<mvc:view-controller path="findPwdForEmailUI" view-name="member/find/findPwdForEmailUI"/>
 	<mvc:view-controller path="findPwdForTelUI" view-name="member/find/findPwdForTelUI"/>
+	<mvc:view-controller path="mobileFindId" view-name="mobile/member/find/mobileFindIdUI"/>
+	<mvc:view-controller path="mobileFindPwdForEmail" view-name="mobile/member/find/mobileFindPwdForEmailUI"/>
+	<mvc:view-controller path="mobileFindPwdForTel" view-name="mobile/member/find/mobileFindPwdForTelUI"/>
 	
 	<!-- MyPage 화면 -->
 	<mvc:view-controller path="pwdCheck" view-name="member/myPage/pwdCheck"/>
@@ -84,10 +88,6 @@
 	<mvc:view-controller path="sellWrite" view-name="trade/sell/sellWrite"/>
 	<mvc:view-controller path="sellDetail" view-name="trade/sell/sellDetail"/>
 	<!-- web -->
-	
-	<!-- mobile -->
-	<mvc:view-controller path="mobileIndex" view-name="mobile/mobileIndex"/>
-	<!-- mobile -->
 	
 	<!-- 화면 보여주기 끝 -->
 	

@@ -4,22 +4,24 @@
 <head>
 <title>중고매니아</title>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 	
-	var smartPhones = [
-		'iphone', 'ipod', 'windows ce', 'android', 'blackberry', 'nokia', 'webos'
-		, 'opera mini', 'sonyerricsson', 'opera mobi', 'iemobile'	
-	];
-	
-	for(var i in smartPhones){
-		if(navigator.userAgent.toLowerCase().match(new RegExp(smartPhones[i]))){
-			alert("Smart Phone!");
-			document.location = 'mobileIndex';
-		}else{
-			console.log(navigator.userAgent.toLowerCase());
+	$(document).ready(function(){
+		var smartPhones = [
+			'iphone', 'ipod', 'windows ce', 'android', 'blackberry', 'nokia', 'webos'
+			, 'opera mini', 'sonyerricsson', 'opera mobi', 'iemobile'	
+		];
+		
+		for(var i in smartPhones){
+			console.log(navigator.userAgent.toLowerCase());			
+			if(navigator.userAgent.toLowerCase().match(new RegExp(smartPhones[i]))){
+				document.location = 'mobileIndex';
+				break;
+			}
 		}
-	}
-			
+	});
+
 </script>
 
 </head>

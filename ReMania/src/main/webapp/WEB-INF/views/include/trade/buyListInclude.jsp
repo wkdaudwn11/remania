@@ -77,13 +77,15 @@
 		
 	});
 	
-	function sellBtn2(buynum){
+	function sellBtn2(buynum, email){
 		var hiddenForm2 = document.getElementById("hiddenForm2");
 		var buyerEmail = '${buyDTO.email}'; // 게시글 작성자 이메일(구매자 이메일로도 쓰임)
 		var loginEmail = '${login.email}'; // 로그인 이메일 (판매자 이메일로도 쓰임)
 		var loginTel = '${login.tel}'; // 로그인 연락처
 		var loginAddr = '${login.addr1}';
+		
 		hiddenForm2.categorynum.value = buynum;
+		hiddenForm2.buyer.value = email;
 		
 		if(loginEmail == "" || loginEmail == null){
 			alert('로그인을 하셔야 판매신청을 할 수 있습니다.');
@@ -262,7 +264,7 @@
 							<button type="button" class="btn btn-danger" style="width: 10.13em;" onclick="buyDelete('${buyDTO2.email}', '${buyDTO2.email}', '${buyDTO2.buynum}','${buyPageDTO.curPage}','${category}', '${sort}', '${searchType}', '${searchValue}')">삭제하기</button>
 						</c:when>
 						<c:when test="${!(empty login)}">
-							<button type="button" onClick="sellBtn2()" class="btn btn-danger" style="width: 20.7em;">판매신청</button>
+							<button type="button" onClick="sellBtn2('${buyDTO2.buynum}', '${buyDTO2.email}')" class="btn btn-danger" style="width: 20.7em;">판매신청</button>
 						</c:when>
 					</c:choose>
 				</div><!-- .panel panel-danger -->

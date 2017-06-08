@@ -28,7 +28,9 @@ public class JoinController {
 	@RequestMapping(value="joinCheck", method=RequestMethod.POST)
 	public String JoinCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
 		service.joinCheck(dto);
-		return "redirect:login";
+		String mobile = (String)session.getAttribute("mobile");
+		if(mobile.equals("o")) return "redirect:mobileLogin";
+		else return "redirect:login";
 	}//JoinCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
 	
 	/** 이메일 중복검사 */
