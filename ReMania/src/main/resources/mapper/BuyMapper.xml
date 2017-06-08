@@ -7,10 +7,10 @@
 	<!-- 상품별로 상품을 정렬해서 가져오는 쿼리-->
 	<select id="buyList" resultType="BuyDTO" parameterType="hashmap">
    		select *
-   		  from buy
+   		  from buy where state is null
 		<choose>
 			<when test="category != null">
-				where category=#{category}
+				and category=#{category}
 				<if test="searchType =='title' ">
 					and title Like '%'||#{searchValue}||'%'
 				</if>
@@ -20,10 +20,10 @@
 			</when>
 			<otherwise>
 				<if test="searchType =='title' ">
-					where title Like '%'||#{searchValue}||'%'
+					and title Like '%'||#{searchValue}||'%'
 				</if>
 				<if test="searchType =='content' ">
-					where content Like '%'||#{searchValue}||'%'
+					and content Like '%'||#{searchValue}||'%'
 				</if>
 			</otherwise>
 		</choose>

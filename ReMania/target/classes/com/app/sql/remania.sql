@@ -1,3 +1,18 @@
+
+drop table remania_comment purge;
+drop sequence comment_seq;
+drop sequence buy_comment_seq;
+drop table trade purge;
+drop sequence trade_seq;
+drop table buy purge;
+drop sequence buy_seq;
+drop table inquiry purge;
+drop sequence inquiry_seq;
+drop table freeBoard purge;
+drop sequence freeBoard_seq;
+drop table member purge;
+drop sequence member_seq;
+
 --회원 테이블
 create table member(
 	membernum   number(5)		constraint	member_mnum_pk	primary key,		--회원번호
@@ -24,7 +39,6 @@ values(member_seq.nextval, 'admin', '관리자', '123', '010', '123', '456', '�
         sysdate, sysdate, 0, 0, 'remania');
         
 --자유게시판 테이블
-drop table freeBoard purge;
 create table freeBoard(
 	freeboardnum	number(4)		constraint freeBoard_freeBoard_pk primary key,--게시판번호
 	email       	varchar2(16)	not null,		--작성자의 이메일
@@ -36,12 +50,10 @@ create table freeBoard(
 	replecnt 		number(4)       default 0,      --댓글수
 	constraint freeboard_email_fk foreign key(email) references member(email) on delete cascade
 );
-drop sequence freeBoard_seq;
-create sequence freeBoard_seq minvalue 1;
+create sequence freeBoard_seq minvalue 0;
 
 -- 댓 글
-drop table remania_comment purge;
-create table remania_comment(
+create table remania_comment( -- COMMENT_BOARDNUM_FK
 	comment_level number(1) default 0,		--댓글 깊이 
 	ref number(5)	not null,			-- root 댓글 = 최상위 댓글 고유번호
 	step number(5)	not null,			--댓글 출력 순서 구분
@@ -53,19 +65,14 @@ create table remania_comment(
 	author varchar2(10),
 	usercomment varchar2(4000),
 	writeday date default sysdate,
-	constraint comment_boardnum_fk foreign key(boardnum) references freeBoard(freeboardnum) on delete cascade,
 	constraint comment_parentComment_fk foreign key(parentComment) references remania_comment(num) on delete cascade,
 	constraint comment_email_fk foreign key(email) references member(email) on delete cascade
 );
 
-drop sequence comment_seq;
 create sequence comment_seq minvalue 1;
-
-drop sequence comment_seq;
 create sequence buy_comment_seq minvalue 1;
 
 -- 문의 게시판
-drop table inquiry purge;
 create table inquiry(
  	registernum number(5) constraint inquiry_registernum_pk primary key,	--문의 글번호
  	ref number(5),
@@ -80,8 +87,6 @@ create table inquiry(
 	constraint inquiry_ref_fk foreign key(ref) references inquiry(registernum) on delete cascade,
 	constraint inquiry_email_fk foreign key(email) references member(email) on delete cascade
 );
-
-drop sequence inquiry_seq;
 create sequence inquiry_seq;
 
 --삽니다
@@ -105,41 +110,17 @@ create table buy(
   state     	varchar2(10)    default null,   --거래상황
   constraint buy_email_fk foreign key(email) references member(email) on delete cascade
 );
-create sequence buy_seq minvalue 1;
-
---삽니다 댓글 테이블 (댓글의 댓글 추가)
-Create table buyReple(  
- relevel	number(4) 		default 0,		-- 댓글의 깊이  현재 달고있는 댓글의 레벨 +1 
- ref 		number(4)		not null, 		-- 그룹  frnum 가져와서 세팅.
- step 		number(4) 		default 0,      -- 공백 갯수
- pfrnum 	number(4)  		not null , 		-- 부모의 고유넘버
- buyreplenum 	  	number(4)		constraint buyReple_buyreplenum_pk primary key,	--댓글번호, 댓글의 고유번호 ref
- buynum     	number(4)       not null,   -- 게시판번호 (fk)
- email			varchar2(50),				-- 이메일 (fk)
- author 	varchar2(16)	not null,		-- 작성자
- content	varchar2(4000)  not null,	    -- 내용
- writeday	date            default sysdate,-- 작성일
-constraint buyReple_email_fk foreign key(email) references member(email) on delete cascade,
-constraint buyReple_buynum_fk foreign key(buynum) references buy(buynum) on delete cascade
-);
-
-alter table buyReple add constraint buyReple_pfrnum_fk foreign key(pfrnum)
-references buyReple(buyreplenum) on delete cascade;
-
-alter table buyReple add constraint buyReple_ref_fk foreign key(ref)
-references buyReple(buyreplenum) on delete cascade;
-
-create sequence buyReple_seq minvalue 1;
+create sequence buy_seq minvalue 0;
 
 create table trade(
-  tradenum    number(4)     constraint trade_tradenum_pk primary key, -- 거래번호
-  category    varchar2(10)  not null,       -- 게시글 종류(buy, sell)
-  categorynum number(4)     not null,       -- 게시글 번호
-  buyer       varchar2(50)  not null,       -- 구매자 이메일
-  seller      varchar2(50)  not null,       -- 판매자 이메일
+  tradenum    number(4)     constraint trade_tradenum_pk primary key, --거래번호
+  category    varchar2(10)  not null,       --게시글 종류(buy, sell)
+  categorynum number(4)     not null,       --게시글 번호
+  buyer       varchar2(50)  not null,       --구매자 이메일
+  seller      varchar2(50)  not null,       --판매자 이메일
   state       varchar2(10)  default '진행중', -- 거래상황
-  transfer    varchar2(10)  default null,   -- 인계
-  takeover    varchar2(10)  default null    -- 인수
+  transfer    varchar2(10)  default null,   --인계
+  takeover    varchar2(10)  default null    --인수
 );
 create sequence trade_seq minvalue 0;
 

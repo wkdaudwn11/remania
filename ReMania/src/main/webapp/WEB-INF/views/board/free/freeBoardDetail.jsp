@@ -153,7 +153,7 @@
 							+"<input type='hidden' name='value' value='${FreeBoardPage.value}' />";
 					if(obj.comment_level < 2){
 						html += "<span style='text-align: right; float: none;'>"
-								+"<textarea type='text' name='usercomment' class='recomment' style='float: left; margin-top: 0.5em; border-style: none; width: "+(100-(obj.comment_level+25))+"%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: "+obj.comment_level*7.5+"%;' placeholder='re: '></textarea>"
+								+"<textarea type='text' name='usercomment' class='recomment' style='float: left; margin-top: 0.5em; border-style: none; border-bottom: 1px solid lightgray; width: "+(100-(obj.comment_level+25))+"%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: "+obj.comment_level*7.5+"%;' placeholder='re: '></textarea>"
 								+"<button type='button' class='btn btn-success' style='float: right;' onclick='reComment("+((skip*responseData.length)+idx)+");'>답변하기</button></span>";
 					}
 					html += "</form><br /><br /><br />"; 
@@ -297,7 +297,7 @@
 							<input type="hidden" name="value" value="${FreeBoardPage.value}" />
 							<c:if test="${comment.comment_level <2}">
 								<span style="text-align: right; float: none;">
-									<textarea type="text" name="usercomment" class="recomment" style="float: left; margin-top: 0.5em; border-style: none; width:${100-(comment.comment_level+25)}%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: ${comment.comment_level*7.5}%;" placeholder="re: "></textarea>
+									<textarea type="text" name="usercomment" class="recomment" style="float: left; margin-top: 0.5em; border-style: none; border-bottom: 1px solid lightgray; width:${100-(comment.comment_level+25)}%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: ${comment.comment_level*7.5}%;" placeholder="re: "></textarea>
 									<button type="button" class="btn btn-success" style="float: right;" onclick="reComment(${status.index});"> 
 										답변하기
 									</button>

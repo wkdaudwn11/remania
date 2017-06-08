@@ -78,8 +78,6 @@ public class BuyController {
 		//사진을 저장할 경로 지정 (번호_글제목)
 		String filePath = "C:\\project\\images\\trade\\buy\\"+nextval+"_"+dto.getEmail();
 		
-		System.out.println("nextval: "+nextval);
-		
 		//없는 경로라면(무조건 없겠지만), 해당 폴더(경로)를 새로 만듬
 		if(!new File(filePath).exists()){
 			new File(filePath).mkdir();

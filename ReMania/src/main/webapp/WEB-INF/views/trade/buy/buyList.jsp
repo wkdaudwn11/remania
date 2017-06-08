@@ -11,15 +11,13 @@
 </head>
 <body>
 	<jsp:include page="../../include/nav.jsp" flush="true" />
-	<jsp:include page="../../include/trade/buyListInclude.jsp" flush="true" />
-	
-	<form id="hiddenForm" method="post">
+	<form id="hiddenForm2" method="post" action="trade">
 		<input type="hidden" name="category" value="buy">
-		<input type="hidden" name="categorynum" value="${buyDTO2.buynum}">
-		<input type="hidden" name="buyer" value="${buyDTO2.email}">
+		<input type="hidden" name="categorynum" value="${buyDTO.buynum}">
+		<input type="hidden" name="buyer" value="${buyDTO.email}">
 		<input type="hidden" name="seller" value="${login.email}">
 	</form>
-	
+	<jsp:include page="../../include/trade/buyListInclude.jsp" flush="true" />
 	<jsp:include page="../../include/footer.jsp" flush="true" />
 </body>
 </html>
