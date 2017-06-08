@@ -13,8 +13,8 @@
 	<jsp:include page="../../include/nav.jsp" flush="true" />
 	<form id="hiddenForm2" method="post" action="trade">
 		<input type="hidden" name="category" value="buy">
-		<input type="hidden" name="categorynum" value="${buyDTO.buynum}">
-		<input type="hidden" name="buyer" value="${buyDTO.email}">
+		<input type="hidden" name="categorynum">
+		<input type="hidden" name="buyer">
 		<input type="hidden" name="seller" value="${login.email}">
 	</form>
 	<jsp:include page="../../include/trade/buyListInclude.jsp" flush="true" />

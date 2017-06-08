@@ -119,10 +119,10 @@
 	<div class="carousel-inner" role="listbox">
 		<div class="item active">
 			<div class="carousel-caption1zz"
-				style="height: 44.3em; text-align: center; color: #FFFFFF; background-image: url('images/test/sample5.jpg');">
+				style="text-align: center; color: #FFFFFF; background-image: url('images/mobile/sample10.jpg');">
 				<br /> <br /> <br /> <br /> <span
-					style="color: #C5C5C5; font-size: 5em;">W e l c o m e !</span>
-				<p style="color: #C5C5C5; font-size: 1em;">
+					style="color: #C5C5C5; font-size: 3em;">W e l c o m e !</span>
+				<p style="color: #C5C5C5; font-size: 0.8em;">
 					<font color="white">회원가입</font>을 하기 위해선 <br /> 빈칸 없이 모두 다 입력하셔야
 					합니다!
 				</p>
@@ -133,36 +133,36 @@
 					<input type="hidden" name="randomNumber">
 					
 					<div
-						style="background-color: #478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
+						style="background-color: #478637; width: 20em; height: 3em; margin: 0 auto; border-radius: 3em;">
 						<span
-							style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;">Name</span>
+							style="width: 30%; height: 2em; float: left; font-size: 1.1em; padding-top: 7px;">Name</span>
 						<input type="text" name="name"
 							style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;">
 					</div>
 					<br />
 
 					<div
-						style="background-color: #db6450; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
+						style="background-color: #db6450; width: 20em; height: 3em; margin: 0 auto; border-radius: 3em;">
 						<span
-							style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;">Email</span>
+							style="width: 30%; height: 2em; float: left; font-size: 1.1em; padding-top: 7px;">Email</span>
 						<input type="text" name="email"
 							style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;">
 					</div>
 					<br />
 
 					<div
-						style="background-color: #478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
+						style="background-color: #478637; width: 20em; height: 3em; margin: 0 auto; border-radius: 3em;">
 						<span
-							style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;">Password</span>
+							style="width: 30%; height: 2em; float: left; font-size: 1.1em; padding-top: 7px;">Password</span>
 						<input type="password" name="pwd"
 							style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;">
 					</div>
 					<br />
 
 					<div
-						style="background-color: #db6450; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em;">
+						style="background-color: #db6450; width: 20em; height: 3em; margin: 0 auto; border-radius: 3em;">
 						<span
-							style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;">Tel</span>
+							style="width: 30%; height: 2em; float: left; font-size: 1.1em; padding-top: 7px;">Tel</span>
 						<input type="text" name="tel"
 							style="width: 70%; height: 3em; color: black; float: left; border-bottom-right-radius: 3em; border-top-right-radius: 3em;">
 					</div>
@@ -170,9 +170,9 @@
 
 					<!-- confirm -->
 					<div id="confirm"
-						style="background-color: #478637; width: 30em; height: 3em; margin: 0 auto; border-radius: 3em; display: none;">
+						style="background-color: #478637; width: 20em; height: 3em; margin: 0 auto; border-radius: 3em; display: none;">
 						<span
-							style="width: 30%; height: 2em; float: left; font-size: 1.5em; padding-top: 7px;">Confirm</span>
+							style="width: 30%; height: 2em; float: left; font-size: 1.1em; padding-top: 7px;">Confirm</span>
 						<input type="text" name="confirm2" id="confirm2"
 							style="width: 70%; height: 3em; color: black; border-bottom-right-radius: 3em; border-top-right-radius: 3em;">
 						<br />
@@ -182,12 +182,12 @@
 
 				<button type="button" id="checkNumber" class="btn btn-default"
 					onclick="check(joinForm)"
-					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.7;">
+					style="background-color: gray; width: 20em; border-radius: 3em; opacity: 0.7;">
 					인증번호 받기</button>
 
 				<button type="button" id="sign" class="btn btn-default" 
 					onclick="check2(joinForm)"
-					style="background-color: gray; width: 30em; border-radius: 3em; opacity: 0.7; display: none;">
+					style="background-color: gray; width: 20em; border-radius: 3em; opacity: 0.7; display: none;">
 					Sign up</button>
 			</div>
 		</div>

@@ -18,10 +18,16 @@ public class LoginController {
 	@Autowired
 	private LoginService service;
 	
+	/** 모바일로 접속하면 일로오게 됨 */
+	@RequestMapping(value="mobileIndex", method=RequestMethod.GET)
+	public String mobileIndex(HttpSession session){
+		session.setAttribute("mobile", "o"); // 모든 컨트롤러가 이 세션값으로 모바일로 갈 건지 웹으로 갈 건지 정함.
+		return "mobile/mobileIndex";
+	}//mobileIndex(HttpSession session)
+	
 	/** 로그인 폼에서 로그인을 하면 이 메소드로 온다. */
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
-		
 		String target = "redirect:login";
 		
 		MemberDTO login = service.loginCheck(dto);
@@ -34,6 +40,9 @@ public class LoginController {
 				login = service.loginCheck(dto);
 				session.setAttribute("login", login);
 				target = "index";
+				
+				String mobile = (String)session.getAttribute("mobile");
+				if(mobile.equals("o")) target = "mobile/mobileIndex";
 			}
 		}else{
 			model.addAttribute("email", dto.getEmail());
@@ -46,8 +55,13 @@ public class LoginController {
 	/** 로그아웃 메소드 */
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public String logout(HttpSession session){
+		String mobile = (String)session.getAttribute("mobile");
 		session.invalidate();
-		return "index";
-	}//login(HttpSession session)
+		if(mobile.equals("o")){
+			return "redirect:mobileIndex";
+		}else{
+			return "index";
+		}
+	}//logout(HttpSession session)
 	
 }

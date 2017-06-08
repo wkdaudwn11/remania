@@ -4,29 +4,10 @@
 <head>
 <title>중고매니아</title>
 
-<style>
-	.item img{height: 100%;}
-</style>
-
-<script type="text/javascript">
-	
-	var smartPhones = [
-		'iphone', 'ipod', 'windows ce', 'android', 'blackberry', 'nokia', 'webos'
-		, 'opera mini', 'sonyerricsson', 'opera mobi', 'iemobile'
-	];
-	
-	/* for(var i in smartPhones){
-		if(!(navigator.userAgent.toLowerCase().match(new RegExp(smartPhones[i])))){
-			document.location = 'home';
-		}
-	} */
-	
-</script>
-
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
-	<jsp:include page="../include/nav.jsp" flush="true" />
+	<jsp:include page="include/nav.jsp" flush="true" />
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
@@ -37,14 +18,14 @@
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner" role="listbox">
 			<div class="item active">
-				<img src="images/mobile/bike_bg3.jpg" alt="BIKE">
+				<img src="images/mobile/bike_bg6.jpg" alt="BIKE">
 				<div class="carousel-caption">
 					<h3>BIKE</h3>
 				</div>
 			</div>
 
 			<div class="item">
-				<img src="images/mobile/camera_bg3.jpg" alt="CAMERA">
+				<img src="images/mobile/camera_bg6.jpg" alt="CAMERA">
 				<div class="carousel-caption">
 					<h3>CAMERA</h3>
 				</div>
@@ -62,7 +43,7 @@
 		</a>
 	</div>
 	
-	<jsp:include page="../include/footer.jsp" flush="true" />
+	<jsp:include page="include/footer.jsp" flush="true" />
 
 </body>
 </html>
