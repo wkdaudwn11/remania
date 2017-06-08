@@ -74,16 +74,6 @@
 		});
 	});// end $(document).ready(function());
 	
-	/* function deleteBoard(){
-		if(confirm("삭제 하시겠습니까?")){
-			location.replace("deleteBoard?freeboardnum=${board.freeboardnum}&curPage=${FreeBoardPage.curPage}&type=${FreeBoardPage.type}&value=${FreeBoardPage.value}");
-		}
-	} */
-	 
-	/* function completion(){
-		writeConfirm($("textarea[name='content']"),$("#boardUpdate"));
-	}// end completion
-	 */
 	function reComment(index){
 		var $target = $("form[name='recomment']").eq(index);
 		var recomment = $target.find("textarea");
@@ -147,7 +137,7 @@
 							+"<input type='hidden' name='value' value='${searchValue}' />";
 					if(obj.comment_level < 2){
 						html += "<span style='text-align: right; float: none;'>"
-								+"<textarea type='text' name='usercomment' class='recomment' style='float: left; margin-top: 0.5em; border-style: none; width: "+(100-(obj.comment_level+25))+"%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: "+obj.comment_level*7.5+"%;' placeholder='re: '></textarea>"
+								+"<textarea type='text' name='usercomment' class='recomment' style='float: left; margin-top: 0.5em; border-style: none; border-bottom: 1px solid lightgray; width: "+(100-(obj.comment_level+25))+"%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: "+obj.comment_level*7.5+"%;' placeholder='re: '></textarea>"
 								+"<button type='button' class='btn btn-danger' style='float: right;' onclick='reComment("+((skip*responseData.length)+idx)+");'>답변하기</button></span>";
 					} 
 					html += "</form><br /><br /><br />"; 
@@ -160,7 +150,7 @@
 </script>
 </head>
 <body>
-	<form id="hiddenForm" method="post">
+	<form id="hiddenForm" method="post" action="trade">
 		<input type="hidden" name="category" value="buy">
 		<input type="hidden" name="categorynum" value="${buyDTO.buynum}">
 		<input type="hidden" name="buyer" value="${buyDTO.email}">

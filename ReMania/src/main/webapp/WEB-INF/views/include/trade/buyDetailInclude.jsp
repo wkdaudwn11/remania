@@ -18,24 +18,6 @@
 		
 		$("#contentDisplayOff").addClass("displayNone");
 		
-		/* $("#sellBtn").on("click", function(){
-			
-			var hiddenForm = document.getElementById("hiddenForm");
-			var buyerEmail = '${buyDTO.email}'; // 게시글 작성자 이메일(구매자 이메일로도 쓰임)
-			var loginEmail = '${login.email}'; // 로그인 이메일 (판매자 이메일로도 쓰임)
-			
-			if(loginEmail == "" || loginEmail == null){
-				alert('로그인을 하셔야 판매신청을 할 수 있습니다.');
-			}else if(loginEmail == buyerEmail){
-				alert('자신의 글은 판매신청을 할 수 없습니다.');
-			}else{
-				if(confirm("판매신청이 되었습니다. 거래화면으로 이동하시겠습니까?")){
-					hiddenForm.action = "trade";
-					hiddenForm.submit();
-				}
-			}
-		}); // */
-		
 		$("#contentDisplayOn").on("click", function(){
 			$("#contentDisplayOff").removeClass("displayNone");
 			$("#contentDisplayOn").addClass("displayNone");
@@ -283,7 +265,7 @@
 							<input type="hidden" name="value" value="${searchValue}" />
 							<c:if test="${comment.comment_level <2}">
 								<span style="text-align: right; float: none;">
-									<textarea type="text" name="usercomment" class="recomment" style="float: left; margin-top: 0.5em; border-style: none; width:${100-(comment.comment_level+25)}%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: ${comment.comment_level*7.5}%;" placeholder="re: "></textarea>
+									<textarea type="text" name="usercomment" class="recomment" style="float: left; margin-top: 0.5em; border-style: none; border-bottom: 1px solid lightgray; width:${100-(comment.comment_level+25)}%; height: 2.5em; outline: none; resize: none; overflow: hidden; margin-left: ${comment.comment_level*7.5}%;" placeholder="re: "></textarea>
 									<button type="button" class="btn btn-danger" style="float: right;" onclick="reComment(${status.index});"> 
 										답변하기
 									</button>

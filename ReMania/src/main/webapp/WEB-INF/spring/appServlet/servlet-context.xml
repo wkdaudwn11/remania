@@ -50,6 +50,7 @@
 	</mvc:interceptors>
 	
 	<!-- 화면 보여주기 시작 -->
+	<!-- web -->
 	<!-- index화면 -->
 	<mvc:view-controller path="/" view-name="index"/>
 	<mvc:view-controller path="home" view-name="index"/>
@@ -82,6 +83,11 @@
 	<mvc:view-controller path="sellList" view-name="trade/sell/sellList"/>
 	<mvc:view-controller path="sellWrite" view-name="trade/sell/sellWrite"/>
 	<mvc:view-controller path="sellDetail" view-name="trade/sell/sellDetail"/>
+	<!-- web -->
+	
+	<!-- mobile -->
+	<mvc:view-controller path="mobileIndex" view-name="mobile/mobileIndex"/>
+	<!-- mobile -->
 	
 	<!-- 화면 보여주기 끝 -->
 	

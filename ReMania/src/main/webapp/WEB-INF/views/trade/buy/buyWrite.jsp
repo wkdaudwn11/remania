@@ -21,14 +21,14 @@
 		var form = document.getElementById("buyWriteForm");		
 		
 		//거래방법이 바꼈을 때
-		$("#tradeway").on("change",function(){
+		/* $("#tradeway").on("change",function(){
 			let tradeway = form.tradeway;
 			if(tradeway.value == '택배'){
 				$("#locationSpan").removeClass("displayNone");
 			}else{
 				$("#locationSpan").addClass("displayNone");
 			}
-		});//tradeway on change
+		});//tradeway on change */
 		
 		//가격 결정하는 Select가 바꼈을 때
 		$("#pricechoice").on("change",function(){
@@ -125,12 +125,12 @@
 	function buyWrite(form){
 		let result = true;
 		
-		if(form.tradeway.value == "택배"){
+		//if(form.tradeway.value == "택배"){
 			if(form.location.value == "지역선택"){
 				alert("지역을 선택해주세요.");
 				result = false;
 			}
-		}
+		//}
 		
 		if((form.pricechoice.value == "범위 설정") && (result == true)){
 			if(form.price1.value == null || form.price1.value == "" || form.price2.value == null || form.price2.value == ""){
@@ -212,6 +212,7 @@
 							<select name="location" style="width: 10em; height: 1.5em;">
 								<option value="지역선택" selected="selected">지역선택</option>
 								<option value="서울">서울</option>
+								<option value="세종">세종</option>
 								<option value="인천">인천</option>
 							</select>
 						</font>
