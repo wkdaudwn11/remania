@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.mypage.MypageDAO;
-import com.entity.member.MemberDTO;
+import com.entity.board.InquiryPage;
+import com.entity.board.QuestionDTO;
 import com.entity.mypage.MypageDTO;
 import com.entity.trade.BuyDTO;
 import com.entity.trade.TradeDTO;
@@ -17,6 +19,7 @@ public class MypageService {
 	@Autowired
 	private MypageDAO dao;
 
+	@Transactional
 	public MypageDTO getMypageDTO(String email) {
 		return dao.getMypageDTO(email);
 	}
@@ -37,4 +40,11 @@ public class MypageService {
 		return dao.getWriteHistory(email, trade);
 	}
 	
+	public InquiryPage myInquiryList(String email,InquiryPage inquiryPage){
+		return dao.myInquiryList(email,inquiryPage);
+	}
+	
+	public QuestionDTO questionDetail(QuestionDTO question){
+		return dao.questionDetail(question);
+	}
 }

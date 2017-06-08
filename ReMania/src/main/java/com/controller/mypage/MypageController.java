@@ -1,6 +1,7 @@
 package com.controller.mypage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,10 +9,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.SystemPropertyUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.entity.board.InquiryPage;
+import com.entity.board.QuestionDTO;
 import com.entity.member.MemberDTO;
 import com.entity.mypage.MypageDTO;
 import com.entity.trade.BuyDTO;
@@ -101,6 +104,24 @@ public class MypageController {
 		}
 		
 		return target;
+	}
+	
+	/** 자신의 문의글 내역 가져오는 메서드*/
+	@RequestMapping("/myInquiryList")
+	public String myInquiryList(HttpSession session,@ModelAttribute("InquiryPage")InquiryPage inquiryPage){
+		MemberDTO member = (MemberDTO)session.getAttribute("login");
+		if(inquiryPage.getCurPage() == 0){
+			inquiryPage.setCurPage(1);
+		}
+		inquiryPage = service.myInquiryList(member.getEmail(),inquiryPage);
+		return "member/myPage/myInquiryList";
+	}
+	
+	/** 자신의 문의내역 보기*/
+	@RequestMapping("/myInquiryDetail")
+	public String myInquiryDetail(QuestionDTO question,String curPage,Model m){
+		m.addAttribute("Question", service.questionDetail(question) );
+		return "member/myPage/myInquiryDetail";
 	}
 	
 }

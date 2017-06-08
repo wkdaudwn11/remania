@@ -11,25 +11,21 @@ public class MypageDTO {
 	private int sellwrite;	// 팝니다에 작성한 게시글 수
 	private int selltrading;// 판매중인물품
 	private int sellend;	// 판매가 완료된 물품
+	private int inquiryRegister; // 문의 작성 한 글 수
 	
 	public MypageDTO() {
 		super();
 	}
 
-	public MypageDTO(int buywrite, int buytrading, int buyend, int sellwrite, int selltrading, int sellend) {
-		super();
+	public MypageDTO(int buywrite, int buytrading, int buyend, int sellwrite, int selltrading, int sellend,
+			int inquiryRegister) {
 		this.buywrite = buywrite;
 		this.buytrading = buytrading;
 		this.buyend = buyend;
 		this.sellwrite = sellwrite;
 		this.selltrading = selltrading;
 		this.sellend = sellend;
-	}
-
-	@Override
-	public String toString() {
-		return "MypageDTO [buywrite=" + buywrite + ", buytrading=" + buytrading + ", buyend=" + buyend + ", sellwrite="
-				+ sellwrite + ", selltrading=" + selltrading + ", sellend=" + sellend + "]";
+		this.inquiryRegister = inquiryRegister;
 	}
 
 	public int getBuywrite() {
@@ -79,5 +75,20 @@ public class MypageDTO {
 	public void setSellend(int sellend) {
 		this.sellend = sellend;
 	}
-	
+
+	public int getInquiryRegister() {
+		return inquiryRegister;
+	}
+
+	public void setInquiryRegister(int inquiryRegister) {
+		this.inquiryRegister = inquiryRegister;
+	}
+
+	@Override
+	public String toString() {
+		return "MypageDTO [buywrite=" + buywrite + ", buytrading=" + buytrading + ", buyend=" + buyend + ", sellwrite="
+				+ sellwrite + ", selltrading=" + selltrading + ", sellend=" + sellend + ", inquryRegister="
+				+ inquiryRegister + "]";
+	}
+
 }

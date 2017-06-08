@@ -4,6 +4,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.remania.MypageMapper">
 	
+	<!-- 문의 작성 한 개수 가져오는 쿼리 -->
+	<select id="getInquiryRegister" resultType="int" parameterType="string">
+		select count(*) from inquiry 
+		where comment_level = 0 and email=#{email} 
+	</select>
+	
+	<!-- 내가 문의한 글 , 답변 의 전체 개수 가져오는 쿼리 -->
+	<select id="myInquiryTotalRecord" resultType="int" parameterType="string">
+		select count(*) from inquiry
+		where email=#{email}
+	</select>
+	
+	<!-- 문의 작성한 리스트 가져오는 쿼리 -->
+	<select id="myInquiryList" resultType="QuestionDTO" parameterType="string">
+		select * from inquiry
+		where email=#{email}
+		order by ref desc,comment_level asc 
+	</select>
+	
+	<!-- 레코드 하나 가져오는 쿼리 -->
+	<select id="questionDetail" resultType="QuestionDTO" parameterType="QuestionDTO">
+		select * from inquiry
+		where registernum = #{registernum}
+	</select>
+	
 	<!-- 넘겨받은 email이 작성한 삽니다 쪽 게시글의 갯수를 가져오는 쿼리 (state가 null인 것만) -->
 	<select id="getBuywrite" parameterType="string" resultType="int">
 		select count(*) from buy where email=#{value} and state is null

@@ -1,16 +1,16 @@
 
-drop table remania_comment purge;
+drop table remania_comment cascade constraints purge;
 drop sequence comment_seq;
 drop sequence buy_comment_seq;
-drop table trade purge;
+drop table trade cascade constraints purge;
 drop sequence trade_seq;
-drop table buy purge;
+drop table buy cascade constraints purge;
 drop sequence buy_seq;
-drop table inquiry purge;
+drop table inquiry cascade constraints purge;
 drop sequence inquiry_seq;
-drop table freeBoard purge;
+drop table freeBoard cascade constraints purge;
 drop sequence freeBoard_seq;
-drop table member purge;
+drop table member cascade constraints purge;
 drop sequence member_seq;
 
 --회원 테이블
