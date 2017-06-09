@@ -58,7 +58,12 @@
 					</c:when>
 					<c:when test="${!empty login}">
 						<li><a href="javascript:logout()">Logout</a></li>
-						<li><a href="myPageIndex">Mypage</a></li>
+						<c:if test="${login.email != 'admin'}">
+							<li><a href="myPageIndex">Mypage</a></li>
+						</c:if>
+						<c:if test="${login.email == 'admin'}">
+							<li><a href="receive">Receive</a></li>
+						</c:if>
 					</c:when>
 				</c:choose>
 				

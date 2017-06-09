@@ -41,6 +41,7 @@
 			<mvc:mapping path="/myPageIndex"/>
 			<mvc:mapping path="/trading"/>
 			<mvc:mapping path="/trade"/>
+			<mvc:mapping path="receive"/>
 			<bean class="com.util.LoginValidInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
@@ -50,6 +51,10 @@
 	</mvc:interceptors>
 	
 	<!-- 화면 보여주기 시작 -->
+	
+	<!-- 관리자 관련 -->
+	<mvc:view-controller path="receive" view-name="admin/receive"/>
+	
 	<!-- index화면 -->
 	<mvc:view-controller path="/" view-name="index"/>
 	<mvc:view-controller path="home" view-name="index"/>

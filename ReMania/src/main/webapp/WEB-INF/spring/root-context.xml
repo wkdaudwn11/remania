@@ -30,6 +30,7 @@
 				<value>classpath:mapper/QuestionMapper.xml</value>
 				<value>classpath:mapper/TradeMapper.xml</value>
 				<value>classpath:mapper/MypageMapper.xml</value>
+				<value>classpath:mapper/AdminMapper.xml</value>
 			</list>
 		</property>
 		<property name="typeAliases">
