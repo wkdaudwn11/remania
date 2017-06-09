@@ -47,7 +47,7 @@ public class MemberDTO {
 	public String toString() {
 		return "MemberDTO [membernum=" + membernum + ", email=" + email + ", name=" + name + ", pwd=" + pwd + ", tel="
 				+ tel + ", post1=" + post1 + ", post2=" + post2 + ", addr1=" + addr1 + ", addr2=" + addr2
-				+ ", joindate=" + joindate + ", logindate=" + logindate + ", buyCount=" + buyCount + ", sellCount="
+				+ ", joindate=" +joindate + ", logindate="+logindate + ", buyCount=" + buyCount + ", sellCount="
 				+ sellCount + ", sns=" + sns + "]";
 	}
 

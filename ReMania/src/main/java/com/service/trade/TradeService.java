@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.trade.TradeDAO;
+import com.entity.admin.ReportTo;
 import com.entity.member.MemberDTO;
 import com.entity.trade.BuyDTO;
 import com.entity.trade.TradeDTO;
@@ -56,4 +57,11 @@ public class TradeService {
 		dao.endState(tradenum);
 	}
 	
+	public void reportTo(ReportTo reportTo){
+		dao.reportTo(reportTo);
+	}
+	
+	public ReportTo reportToConfirm(int tradenum){
+		return dao.reportToConfirm(tradenum);
+	}
 }

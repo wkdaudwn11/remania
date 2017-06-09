@@ -14,6 +14,10 @@
 
 	$(document).ready(function(){
 		
+		if(${requiredLogin != null}){
+			alert('${requiredLogin}');
+		}
+		
 		if(${loginFail != null}){ 
 			alert('${loginFail}');
 			
@@ -63,7 +67,6 @@
 				<br /><br />
 				
 				<form id="loginForm" method="post" action="loginCheck">
-				
 					<!-- name과 sns는 facebook으로 로그인 했을 때만 값이 존재한다. -->
 					<input type="hidden" name="name">
 					<input type="hidden" name="sns">

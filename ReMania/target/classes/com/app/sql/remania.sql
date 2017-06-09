@@ -2,6 +2,7 @@
 drop table remania_comment cascade constraints purge;
 drop sequence comment_seq;
 drop sequence buy_comment_seq;
+drop table reportTo cascade constraints purge;
 drop table trade cascade constraints purge;
 drop sequence trade_seq;
 drop table buy cascade constraints purge;
@@ -123,5 +124,14 @@ create table trade(
   takeover    varchar2(10)  default null    --인수
 );
 create sequence trade_seq minvalue 0;
+
+create table reportTo(
+	tradenum number(4),
+	victim varchar2(80),
+	assailant varchar2(80),
+	transfer varchar2(10),
+	takeover varchar2(10),
+	constraint reportTo_tradenum_fk foreign key(tradenum) references trade(tradenum) on delete cascade
+);
 
 commit;
