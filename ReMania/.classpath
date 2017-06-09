@@ -44,5 +44,7 @@
 	<classpathentry kind="lib" path="C:/Users/MJ/Desktop/tel/httpmime-4.5.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/MJ/Desktop/tel/jna-4.1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/MJ/Desktop/tel/jna-platform-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MJ/Desktop/tel/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MJ/Desktop/tel/mail.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

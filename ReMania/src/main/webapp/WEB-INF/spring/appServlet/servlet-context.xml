@@ -63,12 +63,17 @@
 	<mvc:view-controller path="mobileJoin" view-name="mobile/member/join/mobileJoinUI"/>
 	
 	<!-- 찾기 화면 -->
-	<mvc:view-controller path="findId" view-name="member/find/findIdUI"/>
+	<mvc:view-controller path="findIdUI" view-name="member/find/findIdUI"/>
 	<mvc:view-controller path="findPwdForEmailUI" view-name="member/find/findPwdForEmailUI"/>
 	<mvc:view-controller path="findPwdForTelUI" view-name="member/find/findPwdForTelUI"/>
+	<mvc:view-controller path="updatePwdUI" view-name="member/find/updatePwdUI"/>
+	<mvc:view-controller path="emailConfirmUI" view-name="member/find/emailConfirmUI"/>
+	
 	<mvc:view-controller path="mobileFindId" view-name="mobile/member/find/mobileFindIdUI"/>
 	<mvc:view-controller path="mobileFindPwdForEmail" view-name="mobile/member/find/mobileFindPwdForEmailUI"/>
 	<mvc:view-controller path="mobileFindPwdForTel" view-name="mobile/member/find/mobileFindPwdForTelUI"/>
+	<mvc:view-controller path="mobileUpdatePwdUI" view-name="mobile/member/find/mobileUpdatePwdUI"/>
+	<mvc:view-controller path="mobileEmailConfirmUI" view-name="mobile/member/find/mobileEmailConfirmUI"/>
 	
 	<!-- MyPage 화면 -->
 	<mvc:view-controller path="pwdCheck" view-name="member/myPage/pwdCheck"/>
