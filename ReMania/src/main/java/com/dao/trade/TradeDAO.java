@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.entity.admin.ReportTo;
 import com.entity.member.MemberDTO;
 import com.entity.trade.BuyDTO;
 import com.entity.trade.TradeDTO;
@@ -67,9 +68,6 @@ public class TradeDAO {
 		String transfer = template.selectOne(namespace+"getTransfer", tradenum);
 		String takeover = template.selectOne(namespace+"getTakeover", tradenum);
 		
-		System.out.println("transfer: "+transfer);
-		System.out.println("takeover: "+takeover);
-		
 		try{
 			if(transfer.equals("ok") && takeover.equals("ok")){
 				result = true;
@@ -86,4 +84,12 @@ public class TradeDAO {
 		template.update(namespace+"endState", tradenum);
 	}
 	
+	/** 신고*/
+	public void reportTo(ReportTo reportTo){
+		template.insert(namespace+"reportTo",reportTo);
+	}
+	/** 신고 등록 확인*/
+	public ReportTo reportToConfirm(int tradenum){
+		return template.selectOne(namespace+"reportToConfirm",tradenum);
+	}
 }

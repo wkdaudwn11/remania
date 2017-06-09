@@ -63,6 +63,23 @@
 				location.replace("transfer?trade=transfer&tradenum=${tradeDTO.tradenum}");
 			}
 		});
+		
+		// 신고 버튼
+		$("#reportTo").on("click",function(){
+			if(confirm("상대방을 신고 하시겠습니까?")){
+				var tradenum = ${tradeDTO.tradenum};
+				var transfer = '${tradeDTO.transfer}';
+				var takeover = '${tradeDTO.takeover}';
+				if(${login.email == buyer.email}){
+					var victim = "${buyer.name}(${buyer.email})";
+					var assailant = "${seller.name}(${seller.email})";
+				}else if(${login.email == seller.email}){
+					var victim = "${seller.name}(${seller.email})";
+					var assailant = "${buyer.name}(${buyer.email})";
+				}
+				location.href="reportTo?tradenum="+tradenum+"&transfer="+transfer+"&takeover="+takeover+"&victim="+victim+"&assailant="+assailant;
+			}
+		});
 	});
 	
 </script>
@@ -77,6 +94,9 @@
 	<jsp:include page="../include/nav.jsp" flush="true" />
 	<jsp:include page="../include/trade/buyDetailInclude.jsp" flush="true" />
 	
+	<c:if test="${!empty ReportTo && login.email == ReportTo.victim.substring(ReportTo.victim.indexOf('(')+1 , ReportTo.victim.indexOf(')'))}">
+		<h1 style="color: red" align="center">신고 접수 된 게시물 입니다.</h1>
+	</c:if>
 	<hr />
 	
 	<div class="container">
@@ -189,6 +209,27 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
+		
+		<c:if test="${empty ReportTo || login.email != ReportTo.victim.substring(ReportTo.victim.indexOf('(')+1 , ReportTo.victim.indexOf(')'))}">
+			<div align="right">
+			<form name="reportTo" action="reportTo" method="post">
+				<input type="hidden" name="tradenum" value="${tradeDTO.tradenum}"/>
+				<input type="hidden" name="transfer" value="${tradeDTO.transfer}"/>
+				<input type="hidden" name="takeover" value="${tradeDTO.takeover}"/>
+				<c:if test="${login.email == buyer.email}">
+					<input type="hidden" name="victim" value="${buyer.name}(${buyer.email})"/>
+					<input type="hidden" name="assailant" value="${seller.name}(${seller.email})"/>
+				</c:if>
+				<c:if test="${login.email == seller.email}">
+					<input type="hidden" name="victim" value="${seller.name}(${seller.email})"/>
+					<input type="hidden" name="assailant" value="${buyer.name}(${buyer.email})"/>
+				</c:if>
+				<font color="#fafa7d">
+					<button type="button" id="reportTo" class="btn" style="background-color: red; border-radius: 2em;">신고 하기</button>
+				</font>
+			</form>
+			</div>
+		</c:if>
 		
 	</div>
 	

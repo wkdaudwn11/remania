@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.entity.admin.ReportTo;
 import com.entity.member.MemberDTO;
 import com.entity.trade.BuyDTO;
 import com.entity.trade.TradeDTO;
@@ -99,11 +101,13 @@ public class TradeController {
 		}else{
 			//sell쪽은 아직 구현 안됌.
 		}
+		ReportTo reportTo = service.reportToConfirm(tradeDTO.getTradenum());
 		
 		MemberDTO buyer = service.getMemberInfo(tradeDTO.getBuyer());
 		
 		MemberDTO seller = service.getMemberInfo(tradeDTO.getSeller());
 		
+		m.addAttribute("ReportTo",reportTo);
 		m.addAttribute("buyer", buyer);
 		m.addAttribute("seller", seller);
 		
@@ -147,5 +151,13 @@ public class TradeController {
 		
 		return "redirect:myPageIndex";
 	}//tradeEnd(String trade, int tradenum)
+	
+	//신고
+	@RequestMapping("/reportTo")
+	public String reportTo(ReportTo reportTo,RedirectAttributes redirectAttributes){
+		service.reportTo(reportTo);
+		redirectAttributes.addFlashAttribute("reportTo","신고가 접수 되었습니다.");
+		return "redirect:myPageIndex";
+	}
 	
 }

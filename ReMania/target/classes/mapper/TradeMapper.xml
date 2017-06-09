@@ -60,4 +60,16 @@
 		update trade set state='완료' where tradenum=#{value}
 	</update>
 	
+	<!-- 신고 -->
+	<insert id="reportTo" parameterType="ReportTo">
+		insert into reportTo
+		values(#{tradenum},#{victim},#{assailant},#{transfer},#{takeover})
+	</insert>
+	
+	<!-- 신고 등록 확인 -->
+	<select id="reportToConfirm" resultType="ReportTo" parameterType="int">
+		select * from reportTo
+		where tradenum=#{tradenum}
+	</select>
+	
 </mapper>

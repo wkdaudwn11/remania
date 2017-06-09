@@ -1,5 +1,6 @@
 package com.controller.member;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,13 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService service;
+	
+	/** 로그인 됐나 확인*/
+	@RequestMapping("/loginConfirm")
+	public String loginConfirm(HttpServletRequest request,RedirectAttributes redirectAttributes){
+		redirectAttributes.addFlashAttribute("requiredLogin", "로그인이 필요한 서비스 입니다.");
+		return "redirect:login";
+	}
 	
 	/** 모바일로 접속하면 일로오게 됨 */
 	@RequestMapping(value="mobileIndex", method=RequestMethod.GET)

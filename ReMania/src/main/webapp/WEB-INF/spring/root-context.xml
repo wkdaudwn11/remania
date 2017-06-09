@@ -44,6 +44,7 @@
 				<value>com.entity.board.Comment</value>
 				<value>com.entity.board.QuestionDTO</value>
 				<value>com.entity.board.InquiryPage</value>
+				<value>com.entity.admin.ReportTo</value>
 			</list>
 		</property>
 	</bean>

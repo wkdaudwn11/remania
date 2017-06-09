@@ -14,6 +14,10 @@
 
 	$(document).ready(function(){
 		
+		if(${requiredLogin != null}){
+			alert('${requiredLogin}');
+		}
+		
 		if(${loginFail != null}){ 
 			alert('${loginFail}');
 			

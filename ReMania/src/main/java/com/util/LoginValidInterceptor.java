@@ -1,5 +1,6 @@
 package com.util;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
@@ -35,7 +37,9 @@ public class LoginValidInterceptor extends HandlerInterceptorAdapter {
 			result = false;
 			String prevPage = request.getHeader("Referer");
 			session.setAttribute("prevPage", prevPage.substring(prevPage.lastIndexOf("/")));
-			response.sendRedirect("login");
+			RequestDispatcher dis = request.getRequestDispatcher("loginConfirm");
+			dis.forward(request, response);
+			//response.sendRedirect("login");
 		}
 		return result;
 	}// end preHandle
