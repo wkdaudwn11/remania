@@ -3,10 +3,13 @@ package com.dao.mypage;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.entity.board.InquiryPage;
+import com.entity.board.QuestionDTO;
 import com.entity.mypage.MypageDTO;
 import com.entity.trade.BuyDTO;
 import com.entity.trade.TradeDTO;
@@ -23,6 +26,8 @@ private String namespace = "com.remania.MypageMapper.";
 	public MypageDTO getMypageDTO(String email) {
 		
 		MypageDTO dto = new MypageDTO();
+		//문의
+		dto.setInquiryRegister(template.selectOne(namespace+"getInquiryRegister",email));
 		
 		//삽니다
 		dto.setBuywrite(template.selectOne(namespace+"getBuywrite", email));
@@ -64,4 +69,16 @@ private String namespace = "com.remania.MypageMapper.";
 		}
 	}//getWriteHistory(String email, String trade)
 	
+	public InquiryPage myInquiryList(String email,InquiryPage inquiryPage){
+		int skip = (inquiryPage.getCurPage() - 1)*inquiryPage.getPERPAGE();
+		List<QuestionDTO> inquiryList = template.selectList(namespace+"myInquiryList",email,new RowBounds(skip,inquiryPage.getPERPAGE()));
+		inquiryPage.setInquiryList(inquiryList);
+		inquiryPage.setTotalRecord(template.selectOne(namespace+"myInquiryTotalRecord",email));
+		return inquiryPage;
+	}
+	
+	/** 문의글 상세보기 */
+	public QuestionDTO questionDetail(QuestionDTO question){
+		return template.selectOne(namespace+"questionDetail",question);
+	}
 }
