@@ -78,6 +78,14 @@
 		and tel =#{tel}
 	</select>
 	
+	<select id="emailExistCheck" parameterType="MemberDTO" resultType="MemberDTO">
+		select * from member where name=#{name} and email=#{email}
+	</select>
+	
+	<update id="updatePwd" parameterType="hashmap">
+		update member set pwd=#{pwd} where email=#{email}
+	</update>
+	
 	<!-- 회원정보 반환 -->
 	<select id="getMemberInfo" parameterType="int" resultType="MemberDTO">
 		select * from member where membernum=#{value}

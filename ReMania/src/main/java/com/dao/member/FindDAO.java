@@ -1,5 +1,7 @@
 package com.dao.member;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,5 +34,18 @@ public class FindDAO {
 	/** 입력한 tel를 DB에 조회해보는 메소드 */
 	public MemberDTO findPwdCheck2(MemberDTO dto) {
 		return template.selectOne(namespace+"findPwdCheck2", dto);
+	}
+
+	/** 비밀번호 변경 */
+	public void updatePwd(String email, String pwd) {
+		HashMap map = new HashMap();
+		map.put("email", email);
+		map.put("pwd", pwd);
+		template.update(namespace+"updatePwd", map);
+	}//updatePwd(String email, String pwd)
+
+
+	public MemberDTO emailExistCheck(MemberDTO dto) {
+		return template.selectOne(namespace+"emailExistCheck", dto);
 	}
 }

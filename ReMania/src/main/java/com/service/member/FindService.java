@@ -12,19 +12,20 @@ import com.entity.member.MemberDTO;
 public class FindService {
 
 	@Autowired
-	private FindDAO finddao;
+	private FindDAO dao;
 	
-	/** 존재하지 않는 tel이면 -1을 리턴하고
-	 *  존재하는 이메일이면 일단 dto를 리턴한다.
-	 *  dto에는 비밀번호가 맞으면 제대로 된 값이 들어가있을 것이고
-	 *  비밀번호가 틀리면 null이 들어가있다. */
+	/** 회원정보 반환 */
 	public MemberDTO findIdCheck(MemberDTO dto) {
-				
-			MemberDTO dto2 = finddao.findIdCheck(dto);
-			
+		MemberDTO dto2 = dao.findIdCheck(dto);
 		return dto2;
-		
-		
 	}//findIdCheck(MemberDTO dto)
+
+	public void updatePwd(String email, String pwd) {
+		dao.updatePwd(email, pwd);
+	}//updatePwd(String email, String pwd)
+
+	public MemberDTO emailExistCheck(MemberDTO dto) {
+		return dao.emailExistCheck(dto);
+	}
 	
 }

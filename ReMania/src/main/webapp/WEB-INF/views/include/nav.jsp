@@ -21,10 +21,7 @@
 		var sns = '${sessionScope.login.sns}';
 		if(sns == 'facebook'){
 			logoutFB();
-		}/* else if(sns == 'kakaotalk'){
-			alert('kakaotalk');
-			kakaoLogOut();
-		} */
+		}
 		location.replace("logout");
 	}
 </script>
@@ -54,7 +51,7 @@
 								Find<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="findId">Find ID</a></li>
+								<li><a href="findIdUI">Find ID</a></li>
 								<li><a href="findPwdForEmailUI">Find Password</a></li>
 							</ul>
 						</li>

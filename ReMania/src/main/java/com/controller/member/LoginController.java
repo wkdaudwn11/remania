@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.entity.member.MemberDTO;
 import com.service.member.LoginService;
@@ -27,26 +28,36 @@ public class LoginController {
 	
 	/** 로그인 폼에서 로그인을 하면 이 메소드로 온다. */
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
-	public String loginCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
-		String target = "redirect:login";
+	public String loginCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, RedirectAttributes redirectAttributes){
 		
+		String target = "";
 		MemberDTO login = service.loginCheck(dto);
+		
+		try{
+			String mobile = (String)session.getAttribute("mobile");
+			if(mobile.equals("o")) target = "redirect:mobileLogin";
+		}catch(NullPointerException e){
+			target = "redirect:login";
+		}
 		
 		if(login != null){
 			if(login.getEmail().equals("-1")){
-				model.addAttribute("loginFail", "존재하지 않는 아이디 입니다.");
+				redirectAttributes.addFlashAttribute("loginFail", "존재하지 않는 이메일 입니다.");
 			}else{
 				String loginDate = service.loginUpdate(login.getMembernum());
 				login = service.loginCheck(dto);
 				session.setAttribute("login", login);
-				target = "index";
 				
-				String mobile = (String)session.getAttribute("mobile");
-				if(mobile.equals("o")) target = "mobile/mobileIndex";
+				try{
+					String mobile = (String)session.getAttribute("mobile");
+					if(mobile.equals("o")) target = "mobile/mobileIndex";
+				}catch(NullPointerException e){
+					target = "index";
+				}
 			}
 		}else{
-			model.addAttribute("email", dto.getEmail());
-			model.addAttribute("loginFail", "비밀번호가 틀립니다.");
+			redirectAttributes.addFlashAttribute("email", dto.getEmail());
+			redirectAttributes.addFlashAttribute("loginFail", "비밀번호가 틀립니다.");
 		}
 		
 		return target;
@@ -55,13 +66,19 @@ public class LoginController {
 	/** 로그아웃 메소드 */
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public String logout(HttpSession session){
-		String mobile = (String)session.getAttribute("mobile");
-		session.invalidate();
-		if(mobile.equals("o")){
-			return "redirect:mobileIndex";
-		}else{
-			return "index";
+		
+		String target = "";
+		
+		try{
+			String mobile = (String)session.getAttribute("mobile");
+			session.invalidate();
+			if(mobile.equals("o"))
+				target =  "redirect:mobileIndex";
+		}catch(NullPointerException e){
+			target =  "redirect:home";
 		}
+		
+		return target;
 	}//logout(HttpSession session)
 	
 }

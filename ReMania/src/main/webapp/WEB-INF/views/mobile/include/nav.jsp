@@ -34,13 +34,13 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="home">
+			<a class="navbar-brand" href="mobileIndex">
 				<span style="color: white; font: bold;">중고</span>매니아
 			</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="home">Home</a></li>
+				<li><a href="mobileIndex">Home</a></li>
 				
 				<c:choose>
 					<c:when test="${empty login}">

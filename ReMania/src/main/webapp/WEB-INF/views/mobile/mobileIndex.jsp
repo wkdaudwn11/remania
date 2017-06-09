@@ -8,7 +8,7 @@
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
 	<jsp:include page="include/nav.jsp" flush="true" />
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:32.4em;">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>

@@ -27,10 +27,16 @@ public class JoinController {
 	/** 회원가입 메소드 */
 	@RequestMapping(value="joinCheck", method=RequestMethod.POST)
 	public String JoinCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model){
+		String target = "";
 		service.joinCheck(dto);
-		String mobile = (String)session.getAttribute("mobile");
-		if(mobile.equals("o")) return "redirect:mobileLogin";
-		else return "redirect:login";
+		try{
+			String mobile = (String)session.getAttribute("mobile");
+			if(mobile.equals("o")) 
+				target =  "redirect:mobileLogin";
+		}catch(NullPointerException e){
+			target =  "redirect:login";
+		}
+		return target;
 	}//JoinCheck(@ModelAttribute("MemberDTO") MemberDTO dto, HttpSession session, Model model)
 	
 	/** 이메일 중복검사 */
