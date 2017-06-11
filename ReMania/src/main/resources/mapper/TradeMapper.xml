@@ -60,4 +60,16 @@
 		update trade set state='완료' where tradenum=#{value}
 	</update>
 	
+	<update id="requestCancel" parameterType="map">
+		update trade set ${cancel}='o' where tradenum=#{tradenum}
+	</update>
+	
+	<select id="selectSellCancel" parameterType="int" resultType="string">
+		select sellcancel from trade where tradenum=#{tradenum}
+	</select>
+	
+	<select id="selectBuyCancel" parameterType="int" resultType="string">
+		select buycancel from trade where tradenum=#{tradenum}
+	</select>
+	
 </mapper>

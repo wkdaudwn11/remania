@@ -85,5 +85,28 @@ public class TradeDAO {
 	public void endState(int tradenum) {
 		template.update(namespace+"endState", tradenum);
 	}
+
+	/** 거래 취소 관련 메소드 */
+	public boolean tradeCancel(TradeDTO tradeDTO, String cancel) {
+		
+		boolean result;
+		
+		HashMap map = new HashMap();
+		map.put("tradenum", tradeDTO.getTradenum());
+		map.put("cancel", cancel);
+		
+		template.update(namespace+"requestCancel",map);
+		String sellcancel = template.selectOne(namespace+"selectSellCancel", tradeDTO.getTradenum());
+		String buycancel = template.selectOne(namespace+"selectBuyCancel", tradeDTO.getTradenum());
+		
+		if(sellcancel != null && buycancel != null){
+			result = true;
+		}else{
+			result = false;
+		}
+		
+		return result;
+		
+	}//tradeCancel(TradeDTO tradeDTO, String cancel)
 	
 }
