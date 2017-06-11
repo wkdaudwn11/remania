@@ -79,12 +79,12 @@ public class TradeDAO {
 		}
 		
 		return result;
-	}
+	}//result(int tradenum)
 
 	/** 넘겨받은 tradenum의 state를 '완료'로 수정 */
 	public void endState(int tradenum) {
 		template.update(namespace+"endState", tradenum);
-	}
+	}//endState(int tradenum)
 
 	/** 거래 취소 관련 메소드 */
 	public boolean tradeCancel(TradeDTO tradeDTO, String cancel) {

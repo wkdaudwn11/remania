@@ -57,7 +57,7 @@ public class TradeService {
 	}
 
 	public boolean tradeCancel(TradeDTO tradeDTO, String cancel) {
-		return dao.tradeCancel(tradeDTO, cancel);
+		return dao.tradeCancel(tradeDTO, cancel); 
 	}
 	
 }

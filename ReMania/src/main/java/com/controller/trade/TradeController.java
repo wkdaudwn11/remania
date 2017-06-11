@@ -110,7 +110,7 @@ public class TradeController {
 		return "trade/trade";
 	}//trade2(String tradenum, Model m)
 	
-	/** 판매 취소 */
+	/** 구매 혹은 판매 취소 메소드 */
 	@RequestMapping("cancel")
 	public String sellCancel(TradeDTO tradeDTO, String title, String buyerTel,String sellerTel, String cancel){
 		
