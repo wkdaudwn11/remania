@@ -38,15 +38,15 @@
 		
 		$("#sellCancel").on("click", function(){
 			if(confirm("정말로 판매를 취소하시겠습니까?")){
-				alert("판매가 취소되었습니다.");
-				location.replace("sellCancel?tradenum=${tradeDTO.tradenum}&title=${buyDTO.title}&receiver=${buyer.tel}&category=${tradeDTO.category}&buynum=${buyDTO.buynum}");
+				alert("판매 취소가 접수되었습니다.");
+				location.replace("cancel?tradenum=${tradeDTO.tradenum}&title=${buyDTO.title}&buyerTel=${buyer.tel}&category=${tradeDTO.category}&buynum=${buyDTO.buynum}&cancel=sellcancel");
 			}
 		});
 		
 		$("#buyCancel").on("click", function(){
 			if(confirm("정말로 구매를 취소하시겠습니까?")){
 				alert("구매 취소가 접수되었습니다.");
-				//location.replace("sellCancel?tradenum=${tradeDTO.tradenum}&title=${buyDTO.title}&receiver=${buyer.tel}");
+				location.replace("cancel?tradenum=${tradeDTO.tradenum}&title=${buyDTO.title}&buyerTel=${buyer.tel}&category=${tradeDTO.category}&buynum=${buyDTO.buynum}&cancel=buycancel");
 			}
 		});
 		

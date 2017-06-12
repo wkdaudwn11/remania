@@ -57,6 +57,10 @@ public class TradeService {
 		dao.endState(tradenum);
 	}
 	
+	public boolean tradeCancel(TradeDTO tradeDTO, String cancel) {
+		return dao.tradeCancel(tradeDTO, cancel); 
+	}
+	
 	public void reportTo(ReportTo reportTo){
 		dao.reportTo(reportTo);
 	}
