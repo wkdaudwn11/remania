@@ -121,7 +121,9 @@ create table trade(
   seller      varchar2(50)  not null,       --판매자 이메일
   state       varchar2(10)  default '진행중', -- 거래상황
   transfer    varchar2(10)  default null,   --인계
-  takeover    varchar2(10)  default null    --인수
+  takeover    varchar2(10)  default null,   --인수
+  sellcancel  varchar2(5)   default null,   --판매취소
+  buycancel   varchar2(5)   default null    --구매취소
 );
 create sequence trade_seq minvalue 0;
 

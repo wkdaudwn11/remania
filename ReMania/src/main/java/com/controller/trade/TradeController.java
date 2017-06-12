@@ -114,23 +114,37 @@ public class TradeController {
 		return "trade/trade";
 	}//trade2(String tradenum, Model m)
 	
-	/** 판매 취소 */
-	@RequestMapping("sellCancel")
-	public String sellCancel(String tradenum, String title, String receiver, String category, String buynum){
+	/** 구매 혹은 판매 취소 메소드 */
+	@RequestMapping("cancel")
+	public String tradeCancel(TradeDTO tradeDTO, String title, String buyerTel,String sellerTel, String cancel){
 		
-		service.deleteTrade(Integer.parseInt(tradenum));
-		if(category.equals("buy")){
-			service.buyStateUpdate(Integer.parseInt(buynum), "cancel");
-		}else{
-			
-		}
-		
+		String content = "";
 		BlueHouseLab bhl = new BlueHouseLab();
-		String content = "[중고매니아]\n\'"+title+"\' 게시글이 판매 취소되었습니다.";
-		bhl.sendLetter(receiver, content);
+		
+		boolean result = service.tradeCancel(tradeDTO, cancel);
+		
+		if(result == true){
+			service.deleteTrade(tradeDTO.getTradenum());
+			if(tradeDTO.getCategory().equals("buy")){
+				service.buyStateUpdate(tradeDTO.getCategorynum(), "cancel");
+			}else{
+				//판매 미구현
+			}
+			content = "[중고매니아]\n\'"+title+"\' 게시글이 판매 취소되었습니다.";
+			bhl.sendLetter(buyerTel, content);
+			bhl.sendLetter(sellerTel, content);
+		}else{
+			if(cancel.equals("sellcancel")){ // 판매자가 취소요청을 했을 경우
+				content = "[중고매니아]\n\'"+title+"\' 게시글에 판매자가 취소요청을 하였습니다.";
+				bhl.sendLetter(buyerTel, content);
+			}else{ // 구매자가 취소요청 했을 경우
+				content = "[중고매니아]\n\'"+title+"\' 게시글에 구매자가 취소요청을 하였습니다.";
+				bhl.sendLetter(sellerTel, content);
+			}
+		}// if(result == true)
 		
 		return "redirect:myPageIndex";
-	}//sellCancel(String tradenum, String title, String receiver)
+	}//tradeCancel(TradeDTO tradeDTO, String title, String buyerTel,String sellerTel, String cancel)
 	
 	// 인수, 인계 버튼을 누르면 일로옴.
 	@RequestMapping(value={"takeover", "transfer"})
