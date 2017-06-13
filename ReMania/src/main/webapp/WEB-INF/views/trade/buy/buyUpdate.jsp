@@ -354,7 +354,7 @@
 								</center>
 							</c:if>
 						</span>
-						<textarea class="content" name="content" rows="20" cols="87" style="border-style: none;">${buyDTO.content}</textarea>
+						<textarea class="content" name="content" rows="20" cols="84" style="border-style: none;">${buyDTO.content}</textarea>
 					</div> <!-- #contentDiv -->
 				</div>
 			</form>

@@ -76,7 +76,7 @@
 	<!-- 신고 -->
 	<insert id="reportTo" parameterType="ReportTo">
 		insert into reportTo
-		values(#{tradenum},#{victim},#{assailant},#{transfer},#{takeover})
+		values(#{tradenum},#{victim},#{assailant},#{transfer},#{takeover}, #{reportToContent2})
 	</insert>
 	
 	<!-- 신고 등록 확인 -->

@@ -244,10 +244,6 @@
 		</c:if>
 				
 			<br />
-			<c:if test="${board.replecnt > 0}">
-				<a href="javascript:getCommentList();">댓글 더 보기</a>
-				<p/>
-			</c:if>	
 			<!-- 댓글 리스트 -->
 			<c:forEach var="comment" items="${commentList}" varStatus="status">
 				<c:choose>
@@ -306,8 +302,10 @@
 						</form>
 				<br /><br /><br />
 			</c:forEach>
-			
 		</div>
+		<c:if test="${board.replecnt > 0}">
+			<center><a href="javascript:getCommentList();">댓글 더 보기</a></center>
+		</c:if>	
 		
 		<br /><br /><hr /><br /><br />
 		

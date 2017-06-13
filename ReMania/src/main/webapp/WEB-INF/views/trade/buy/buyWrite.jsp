@@ -213,7 +213,17 @@
 								<option value="지역선택" selected="selected">지역선택</option>
 								<option value="서울">서울</option>
 								<option value="세종">세종</option>
+								<option value="수원">수원</option>
 								<option value="인천">인천</option>
+								<option value="안양">안양</option>
+								<option value="부천">부천</option>
+								<option value="대구">대구</option>
+								<option value="대전">대전</option>
+								<option value="울산">울산</option>
+								<option value="부산">부산</option>
+								<option value="광주">광주</option>
+								<option value="공주">공주</option>
+								<option value="제주도">제주도</option>
 							</select>
 						</font>
 					</small>
@@ -267,7 +277,7 @@
 					</div> <!-- #fileDiv -->
 					
 					<div id="contentDiv" style="width: 100%; border: 1px solid black; background-color: white; color: black;">
-						<textarea class="content" name="content" rows="20" cols="87" style="border-style: none;"></textarea>
+						<textarea class="content" name="content" rows="20" cols="84" style="border-style: none;"></textarea>
 					</div> <!-- #contentDiv -->
 				</div>
 			</form>

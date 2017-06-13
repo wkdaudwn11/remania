@@ -102,9 +102,7 @@ public class TradeController {
 			//sell쪽은 아직 구현 안됌.
 		}
 		ReportTo reportTo = service.reportToConfirm(tradeDTO.getTradenum());
-		
 		MemberDTO buyer = service.getMemberInfo(tradeDTO.getBuyer());
-		
 		MemberDTO seller = service.getMemberInfo(tradeDTO.getSeller());
 		
 		m.addAttribute("ReportTo",reportTo);
@@ -169,6 +167,7 @@ public class TradeController {
 	//신고
 	@RequestMapping("/reportTo")
 	public String reportTo(ReportTo reportTo,RedirectAttributes redirectAttributes){
+		System.out.println("tradenum: "+reportTo.getTradenum());////////////////////////////////////////////////
 		service.reportTo(reportTo);
 		redirectAttributes.addFlashAttribute("reportTo","신고가 접수 되었습니다.");
 		return "redirect:myPageIndex";
