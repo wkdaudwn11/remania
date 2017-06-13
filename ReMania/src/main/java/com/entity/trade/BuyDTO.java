@@ -57,17 +57,7 @@ public class BuyDTO {
 		this.image2 = image2;
 		this.state = state;
 	}
-
-	@Override
-	public String toString() {
-		return "BuyDTO [buynum=" + buynum + ", category=" + category + ", tradeway=" + tradeway + ", location="
-				+ location + ", pricechoice=" + pricechoice + ", price1=" + price1 + ", price2=" + price2 + ", email="
-				+ email + ", author=" + author + ", title=" + title + ", content=" + content + ", writeday=" + writeday
-				+ ", readcnt=" + readcnt + ", replecnt=" + replecnt + ", upfile=" + upfile + ", upfileContent="
-				+ Arrays.toString(upfileContent) + ", image1=" + image1 + ", image2=" + image2 + ", state=" + state
-				+ "]";
-	}
-
+	
 	public int getBuynum() {
 		return buynum;
 	}

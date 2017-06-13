@@ -25,12 +25,6 @@ public class BuyPageDTO {
 		this.totalRecord = totalRecord;
 	}
 
-	@Override
-	public String toString() {
-		return "BedRoomPageDTO [buyList=" + buyList + ", curPage=" + curPage + ", perPage=" + perPage + ", page=" + page
-				+ ", totalRecord=" + totalRecord + "]";
-	}
-
 	public List<BuyDTO> getBuyList() {
 		return buyList;
 	}
