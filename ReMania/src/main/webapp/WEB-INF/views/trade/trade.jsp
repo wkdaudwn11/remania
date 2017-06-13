@@ -64,20 +64,39 @@
 			}
 		});
 		
+		$("#reportTo2").on("click",function(){
+			$("#reportToContent").toggle("slow");
+			$("#reportTo").css("display", "");
+			$("#reportTo2").css("display", "none");
+		});
+		
 		// 신고 버튼
 		$("#reportTo").on("click",function(){
-			if(confirm("상대방을 신고 하시겠습니까?")){
-				var tradenum = ${tradeDTO.tradenum};
-				var transfer = '${tradeDTO.transfer}';
-				var takeover = '${tradeDTO.takeover}';
-				if(${login.email == buyer.email}){
-					var victim = "${buyer.name}(${buyer.email})";
-					var assailant = "${seller.name}(${seller.email})";
-				}else if(${login.email == seller.email}){
-					var victim = "${seller.name}(${seller.email})";
-					var assailant = "${buyer.name}(${buyer.email})";
+		
+			let reportToContent3 = document.getElementById('reportToContent3');
+			
+			if(reportToContent3.value != null && reportToContent3.value.trim() != ""){
+				
+				document.getElementById('reportToContent2').value = reportToContent3.value;
+				
+				let reportToContent2 = document.getElementById('reportToContent2').value;
+				
+				if(confirm("상대방을 신고 하시겠습니까?")){
+					var tradenum = ${tradeDTO.tradenum};
+					var transfer = '${tradeDTO.transfer}';
+					var takeover = '${tradeDTO.takeover}';
+					if(${login.email == buyer.email}){
+						var victim = "${buyer.name}(${buyer.email})";
+						var assailant = "${seller.name}(${seller.email})";
+					}else if(${login.email == seller.email}){
+						var victim = "${seller.name}(${seller.email})";
+						var assailant = "${buyer.name}(${buyer.email})";
+					}
+					alert(tradenum);
+					location.href="reportTo?tradenum="+tradenum+"&transfer="+transfer+"&takeover="+takeover+"&victim="+victim+"&assailant="+assailant+"&reportToContent2="+reportToContent2;
 				}
-				location.href="reportTo?tradenum="+tradenum+"&transfer="+transfer+"&takeover="+takeover+"&victim="+victim+"&assailant="+assailant;
+			}else{
+				alert("신고 내용을 입력해주세요.");
 			}
 		});
 	});
@@ -185,7 +204,7 @@
 					<c:if test="${!empty tradeDTO.transfer}">
 						<div>
 							인계확인!<br />
-							구매자가 인계 확인을 하면 거래가 완료됩니다.
+							구매자가 인수 확인을 하면 거래가 완료됩니다.
 						</div>
 					</c:if>
 				</c:when>
@@ -212,22 +231,30 @@
 		
 		<c:if test="${empty ReportTo || login.email != ReportTo.victim.substring(ReportTo.victim.indexOf('(')+1 , ReportTo.victim.indexOf(')'))}">
 			<div align="right">
-			<form name="reportTo" action="reportTo" method="post">
-				<input type="hidden" name="tradenum" value="${tradeDTO.tradenum}"/>
-				<input type="hidden" name="transfer" value="${tradeDTO.transfer}"/>
-				<input type="hidden" name="takeover" value="${tradeDTO.takeover}"/>
-				<c:if test="${login.email == buyer.email}">
-					<input type="hidden" name="victim" value="${buyer.name}(${buyer.email})"/>
-					<input type="hidden" name="assailant" value="${seller.name}(${seller.email})"/>
-				</c:if>
-				<c:if test="${login.email == seller.email}">
-					<input type="hidden" name="victim" value="${seller.name}(${seller.email})"/>
-					<input type="hidden" name="assailant" value="${buyer.name}(${buyer.email})"/>
-				</c:if>
-				<font color="#fafa7d">
-					<button type="button" id="reportTo" class="btn" style="background-color: red; border-radius: 2em;">신고 하기</button>
-				</font>
-			</form>
+				<form name="reportTo" action="reportTo" method="post">
+					<input type="hidden" name="tradenum" value="${tradeDTO.tradenum}"/>
+					<input type="hidden" name="transfer" value="${tradeDTO.transfer}"/>
+					<input type="hidden" name="takeover" value="${tradeDTO.takeover}"/>
+					<input type="hidden" id="reportToContent2" name="reportToContent2"/>
+					
+					<c:if test="${login.email == buyer.email}">
+						<input type="hidden" name="victim" value="${buyer.name}(${buyer.email})"/>
+						<input type="hidden" name="assailant" value="${seller.name}(${seller.email})"/>
+					</c:if>
+					<c:if test="${login.email == seller.email}">
+						<input type="hidden" name="victim" value="${seller.name}(${seller.email})"/>
+						<input type="hidden" name="assailant" value="${buyer.name}(${buyer.email})"/>
+					</c:if>
+					<div id="reportToContent" style="display:none;">
+						<br />
+						신고 내용을 입력해주세요.<br />
+						<textarea rows="5" cols="50" id="reportToContent3" name="reportToContent3"></textarea>
+					</div>
+					<font color="#fafa7d">
+						<button type="button" id="reportTo2" class="btn" style="background-color: red; border-radius: 2em;">신고</button>
+						<button type="button" id="reportTo" class="btn" style="background-color: red; border-radius: 2em; display:none;">신고하기</button>
+					</font>
+				</form>
 			</div>
 		</c:if>
 		

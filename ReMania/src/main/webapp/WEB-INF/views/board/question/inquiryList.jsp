@@ -37,7 +37,7 @@
 <body>
 	<jsp:include page="../../include/nav.jsp" flush="true" />
 	
-	<br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br />
 	<center>
 		<font size="100"><i class="fa">&#xf0e6;</i>  <b>문의게시판</b></font><br /><br />
 	</center>
@@ -118,9 +118,8 @@
 			<br />
 			<br />
 		</div>
-
 	</div>
-	
+	<br /><br /><br /><br />
 	<jsp:include page="../../include/footer.jsp" flush="true" />
 </body>
 </html>

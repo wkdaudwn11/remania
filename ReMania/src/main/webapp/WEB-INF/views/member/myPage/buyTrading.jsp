@@ -71,7 +71,7 @@
 						<c:forEach var="buyDTO" items="${buyList}" varStatus="i">
 							<tr height="30">
 								<td width="50" align="center">${i.count}</td>
-								<td width="50" align="center">
+								<td width="100" align="center">
 									<c:choose>
 										<c:when test="${!empty buyDTO.image1}">
 											<img src="buy/${buyDTO.buynum}_${buyDTO.email}/${buyDTO.image1}.jpg" width="50" height="50">
