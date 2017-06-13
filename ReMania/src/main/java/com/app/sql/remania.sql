@@ -42,7 +42,7 @@ values(member_seq.nextval, 'admin', '관리자', '123', '010', '123', '456', '�
 --자유게시판 테이블
 create table freeBoard(
 	freeboardnum	number(4)		constraint freeBoard_freeBoard_pk primary key,--게시판번호
-	email       	varchar2(16)	not null,		--작성자의 이메일
+	email       	varchar2(50)	not null,		--작성자의 이메일
 	author			varchar2(16)	not null,		--작성자 이름
 	title	  		varchar2(50)	not null,		--제목
 	content			varchar2(4000)	not null,		--내용
